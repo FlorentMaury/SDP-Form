@@ -26,6 +26,13 @@ body {
 
     &__nav img {
         margin: 20px;
+        transition: all .3s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+            transform: rotate(90deg);
+            transition: all .3s ease-in-out;
+        }
     }
 }
 
@@ -34,7 +41,8 @@ body {
     flex-direction: column;
     align-items: center;
     width: 90%;
-    max-width: 1200px;
+    max-width: 900px;
+    border-radius: 5px;
     margin: 0 auto;
     border: 1px solid lighten($goldenColor, 30%);
 
@@ -45,6 +53,13 @@ body {
         img {
             cursor: pointer;
             width: 30px;
+            transition: all .2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.1);
+                transition: all .2s ease-in-out;
+                box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+            }
         }
     }
 
@@ -62,10 +77,6 @@ body {
     margin-bottom: 40px;
     width: 80%;
 
-    // label {
-    //     margin-left: 8px;
-    // }
-
     input,
     select {
         margin-bottom: 15px;
@@ -74,12 +85,18 @@ body {
         background: lighten($blankColor, 5%);
         border: none;
         height: 37px;
+
+        
+        &:focus {
+            outline: none;
+            border: 2px solid lighten($goldenColor, 30%);
+        }
     }
 
     &__submit {
         background: lighten($goldenColor, 30%);
         align-self: end;
-        padding: 10px;
+        padding: 10px 20px;
         border-radius: 5%;
         border: none;
     }
