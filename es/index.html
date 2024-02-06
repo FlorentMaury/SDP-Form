@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../design/style.css">
+    <title>SDP - Formulario</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__logo">
+            <img src="../assets/logo.webp" alt="Logo">
+        </div>
+        <nav class="header__nav">
+            <img src="../assets/menu.png" alt="" srcset="">
+        </nav>
+    </header>
+
+    <main class="main">
+
+        <div class="main__flagsList">
+            <a href="../index.html"><img src="../assets/fr.svg" alt="fr"></a>
+            <a href="../en/index.html"><img src="../assets/en.svg" alt="en"></a>
+            <a href="../ru/index.html"><img src="../assets/ru.svg" alt="ru"></a>
+            <a href="../ae/index.html"><img src="../assets/ae.svg" alt="ae"></a>
+        </div>
+
+        <h1 class="main__h1">Información</h1>
+
+        <form class="form" action="">
+
+            <label for="lastname">Apellido</label>
+            <input type="text" id="lastname">
+
+
+            <label for="firstname">Nombre</label>
+            <input type="text" id="firstname">
+
+            <label for="address">Dirección</label>
+            <input type="text" id="address">
+
+            <label for="country">País</label>
+            <select name="country" id="country">
+            </select>
+
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email">
+
+            <label for="phoneNumber">Número de teléfono</label>
+            <input type="tel" id="phoneNumber">
+
+            <label for="facilitator">Facilitador</label>
+            <select name="facilitator" id="facilitator">
+                <option value="facilitator1">Karim</option>
+                <option value="facilitator2">Patrice</option>
+                <option value="facilitator3">Selma</option>
+            </select>
+
+            <label for="howDidYou">¿Cómo nos encontraste?</label>
+            <select name="howDidYou" id="howDidYou">
+                <option value="giftCard">Tarjeta de regalo</option>
+                <option value="weCanDO">WeCanDo</option>
+                <option value="google">Google</option>
+                <option value="tripadvisor">Tripadvisor</option>
+                <option value="other">Otro</option>
+            </select>
+
+            <button class="form__submit" type="submit" value="Enviar">Enviar</button>
+
+        </form>
+    </main>
+
+    <script src="../js/countriesList.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>
