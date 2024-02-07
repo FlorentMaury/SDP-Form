@@ -1,3 +1,5 @@
+// sass --watch ./design/style.scss:./design/style.css --style compressed
+
 @import 'reset';
 @import 'variables';
 
@@ -24,16 +26,16 @@ body {
         }
     }
 
-    &__nav img {
-        margin     : 20px;
-        transition : all .3s ease-in-out;
-        cursor     : pointer;
+    // &__nav img {
+    //     margin     : 20px;
+    //     transition : all .3s ease-in-out;
+    //     cursor     : pointer;
 
-        &:hover {
-            transform  : rotate(90deg);
-            transition : all .3s ease-in-out;
-        }
-    }
+    //     &:hover {
+    //         transform  : rotate(90deg);
+    //         transition : all .3s ease-in-out;
+    //     }
+    // }
 }
 
 .main {

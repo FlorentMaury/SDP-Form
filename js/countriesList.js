@@ -2177,29 +2177,125 @@ const countries = [
   }
 ];
 
+let translations = {
+    en: {
+        firstName: "First Name",
+        lastName: "Last Name",
+        address: "Address",
+        country: "Country",
+        email: "Email",
+        phoneNumber: "Phone Number",
+        host: "Host",
+        discovery: "How did you find us?",
+        submit: "Submit"
+    },
+    fr: {
+        firstName: "Prénom",
+        lastName: "Nom",
+        address: "Adresse",
+        country: "Pays",
+        email: "Email",
+        phoneNumber: "Numéro de téléphone",
+        host: "Animateur",
+        discovery: "Comment nous avez-vous découverts ?",
+        submit: "Envoyer"
+    },
+    es: {
+        firstName: "Nombre",
+        lastName: "Apellido",
+        address: "Dirección",
+        country: "País",
+        email: "Correo electrónico",
+        phoneNumber: "Número de teléfono",
+        host: "Anfitrión",
+        discovery: "¿Cómo nos descubriste?",
+        submit: "Enviar"
+    },
+    ru: {
+        firstName: "Имя",
+        lastName: "Фамилия",
+        address: "Адрес",
+        country: "Страна",
+        email: "Электронная почта",
+        phoneNumber: "Номер телефона",
+        host: "Ведущий",
+        discovery: "Как вы нас нашли?",
+        submit: "Отправить"
+    },
+    ar: {
+        firstName: "الاسم الاول",
+        lastName: "الكنية",
+        address: "عنوان",
+        country: "بلد",
+        email: "البريد الإلكتروني",
+        phoneNumber: "رقم الهاتف",
+        host: "مضيف",
+        discovery: "كيف وجدتنا؟",
+        submit: "إرسال"
+    }
+};
 
-// Supposons que vous ayez un élément select avec l'id "countrySelect"
 const selectElement = document.querySelector('#country');
-
-// Et un champ d'input pour l'indicatif téléphonique avec l'id "dialCodeInput"
 const dialCodeInput = document.querySelector('#phoneNumber');
 
-// Et une variable "lang" qui contient la langue actuellement sélectionnée
-let lang = 'fr'; // par exemple
+// Récupérez la langue du stockage local, ou utilisez 'fr' par défaut
+let lang = localStorage.getItem('lang') || 'fr';
 
-// Vous pouvez alors créer des options pour chaque pays comme suit :
-countries.forEach(country => {
-    const option = document.createElement('option');
-    option.value = country.dial_code;
-    option.text = country.name[lang];
-    selectElement.appendChild(option);
-});
+function createOptions() {
+    // Supprimez toutes les options existantes
+    selectElement.innerHTML = '';
 
-// Ajoutez un gestionnaire d'événements 'change' à l'élément select
+    // Créez de nouvelles options avec le nom du pays dans la langue spécifiée
+    countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country.dial_code;
+        option.text = country.name[lang];
+        selectElement.appendChild(option);
+    });
+}
+
+createOptions(); // Créez des options au chargement de la page
+
 selectElement.addEventListener('change', function() {
-    // Récupérez l'indicatif téléphonique du pays sélectionné
     const selectedDialCode = this.value;
-
-    // Mettez à jour le champ de l'indicatif téléphonique
     dialCodeInput.value = selectedDialCode;
 });
+
+// Lorsqu'un drapeau est cliqué, mettez à jour la langue dans le stockage local
+let elements = document.querySelectorAll('[class^="flagList__"]');
+
+elements.forEach(element => {
+    element.addEventListener('click', function() {
+        lang = element.className.split('__')[1];
+        localStorage.setItem('lang', lang);
+        translatePage(); // Traduisez la page chaque fois qu'un drapeau est cliqué
+        createOptions(); // Mettez à jour les options de sélection de pays
+        updateFlags(); // Mettez à jour les drapeaux affichés
+    });
+});
+
+function translatePage() {
+    // Pour chaque clé dans l'objet de traductions, trouvez tous les éléments avec cette clé comme classe
+    // et mettez à jour leur contenu avec la traduction appropriée
+    for (let key in translations[lang]) {
+        let elements = document.querySelectorAll('.' + key);
+        elements.forEach(element => {
+            element.textContent = translations[lang][key];
+        });
+    }
+}
+
+function updateFlags() {
+    // Pour chaque drapeau, s'il correspond à la langue actuelle, le masquer, sinon l'afficher
+    elements.forEach(element => {
+        if (element.className.split('__')[1] === lang) {
+            element.style.display = 'none';
+        } else {
+            element.style.display = 'inline';
+        }
+    });
+}
+
+// Traduisez la page et mettez à jour les drapeaux affichés au chargement de la page
+translatePage();
+updateFlags();

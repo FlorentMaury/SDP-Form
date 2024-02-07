@@ -13,52 +13,52 @@
         <div class="header__logo">
             <img src="./assets/logo.webp" alt="Logo">
         </div>
-        <nav class="header__nav">
+        <!-- <nav class="header__nav">
             <img src="./assets/menu.png" alt="" srcset="">
-        </nav>
+        </nav> -->
     </header>
 
     <main class="main">
 
         <div class="main__flagsList">
-            <a href="./en/index.html"><img src="./assets/en.svg" alt="en"></a>
-            <a href="./es/index.html"><img src="./assets/es.svg" alt="es"></a>
-            <a href="./ru/index.html"><img src="./assets/ru.svg" alt="ru"></a>
-            <a href="./ae/index.html"><img src="./assets/ae.svg" alt="ae"></a>
+            <img src="./assets/fr.svg" class="flagList__fr" alt="fr">
+            <img src="./assets/en.svg" class="flagList__en" alt="en">
+            <img src="./assets/es.svg" class="flagList__es" alt="es">
+            <img src="./assets/ru.svg" class="flagList__ru" alt="ru">
+            <img src="./assets/ae.svg" class="flagList__ar" alt="ae">
         </div>
 
         <h1 class="main__h1">Informations</h1>
 
-        <form class="form" action="">
+        <form class="form" action="./php/form.php" method="POST">
 
-            <label for="lastname">Nom</label>
+            <label for="lastname" class="lastName">Nom</label>
             <input type="text" id="lastname">
-
-
-            <label for="firstname">Prénom</label>
+            
+            <label for="firstname" class="firstName">Prénom</label>
             <input type="text" id="firstname">
-
-            <label for="address">Adresse</label>
+            
+            <label for="address" class="address">Adresse</label>
             <input type="text" id="address">
-
-            <label for="country">Pays</label>
+            
+            <label for="country" class="country">Pays</label>
             <select name="country" id="country">
             </select>
-
-            <label for="email">Email</label>
+            
+            <label for="email" class="email">Email</label>
             <input type="email" id="email">
-
-            <label for="phoneNumber">Numéro de téléphone</label>
+            
+            <label for="phoneNumber" class="phoneNumber">Numéro de téléphone</label>
             <input type="tel" id="phoneNumber">
-
-            <label for="facilitator">Animateur</label>
+            
+            <label for="facilitator" class="host">Animateur</label>
             <select name="facilitator" id="facilitator">
                 <option value="facilitator1">Karim</option>
                 <option value="facilitator2">Patrice</option>
                 <option value="facilitator3">Selma</option>
             </select>
-
-            <label for="howDidYou">Comment nous avez vous découverts ?</label>
+            
+            <label for="howDidYou" class="discovery">Comment nous avez vous découverts ?</label>
             <select name="howDidYou" id="howDidYou">
                 <option value="giftCard">Bon cadeau</option>
                 <option value="weCanDO">WeCanDo</option>
@@ -66,8 +66,8 @@
                 <option value="tripadvisor">Tripadvisor</option>
                 <option value="other">Autre</option>
             </select>
-
-            <button class="form__submit" type="submit" value="Envoyer">Envoyer</button>
+            
+            <button class="form__submit submit" type="submit" value="Envoyer">Envoyer</button>
 
         </form>
     </main>
