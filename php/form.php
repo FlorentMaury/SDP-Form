@@ -20,15 +20,15 @@ if(
 
     // Vérifiez si l'adresse e-mail est valide
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location: index.php?message=Adresse e-mail invalide.');
+        header('location: ../index.php?message=Adresse e-mail invalide.');
         exit();
     }
 
-    header('location: index.php?message=Merci / Thank you !');
+    header('location: ../index.php?message=Merci / Thank you !');
     exit();
 }
 else {
-    header('location: index.php?message=Tous les champs sont requis.');
+    header('location: ../index.php?message=Tous les champs sont requis.');
     exit();
 }
 ?>

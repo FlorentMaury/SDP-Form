@@ -34,7 +34,7 @@
 
             <?php
             if (isset($_GET['message'])) {
-                echo '<p>' . htmlspecialchars($_GET['message']) . '</p>';
+                echo '<p class="alert">' . htmlspecialchars($_GET['message']) . '</p>';
             }
             ?>
 
