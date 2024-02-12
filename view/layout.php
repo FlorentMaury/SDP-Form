@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./design/style.css">
     <title>SDP - Form</title>
 </head>
@@ -19,25 +20,41 @@
         <nav class="header__nav">
             <img id="close-icon" src="./assets/close.svg" alt="" srcset="">
             <ul class="navUl">
-                <li class="navUl__li"><a href="./index.php">Accueil</a></li>
+                <?php
+                if ($_GET['page'] == 'home') {
+                ?>
+                    <li class="navUl__li"><a href="index.php?page=search">Recherche</a></li>
+
+                <?php
+                } elseif ($_GET['page'] == 'search') {
+                ?>
+                    <li class="navUl__li"><a href="index.php?page=home">Accueil</a></li>
+
+                <?php
+                }
+                ?>
                 <li class="navUl__li">Deconnexion</li>
             </ul>
         </nav>
     </header>
 
-    <main class="main">
-        <div class="form">
-            <select id="searchType">
-                <option value="name">Nom</option>
-                <option value="date">Date</option>
-            </select>
 
-            <input type="text" id="searchName" placeholder="Rechercher par nom...">
-            <input type="date" id="searchDate" placeholder="Rechercher par date..." style="display: none;">
-        </div>
+    <!-- Contenu de la page -->
+    <main class="main">
+        <?= $content ?>
     </main>
 
-    <script src="./js/search.js"></script>
+    <?php
+    if ($_GET['page'] == 'home') {
+    ?>
+        <script src="./js/countryTrad.js"></script>
+    <?php
+    } elseif ($_GET['page'] == 'search') {
+    ?>
+        <script src="./js/search.js"></script>
+    <?php
+    }
+    ?>
     <script src="./js/script.js"></script>
 </body>
 
