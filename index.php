@@ -13,9 +13,16 @@
         <div class="header__logo">
             <img src="./assets/logo.webp" alt="Logo">
         </div>
-        <!-- <nav class="header__nav">
-            <img src="./assets/menu.svg" alt="" srcset="">
-        </nav> -->
+        <div class="header__menuIcon">
+            <img class="menuIcon" src="./assets/menu.svg" alt="" srcset="">
+        </div>
+        <nav class="header__nav">
+            <img id="close-icon" src="./assets/close.svg" alt="" srcset="">
+            <ul class="navUl">
+                <li class="navUl__li"><a href="./search.php">Recherche</a></li>
+                <li class="navUl__li">Deconnexion</li>
+            </ul>
+        </nav>
     </header>
 
     <main class="main">
@@ -78,6 +85,7 @@
         </form>
     </main>
 
+    <script src="./js/countryTrad.js"></script>
     <script src="./js/script.js"></script>
 </body>
 

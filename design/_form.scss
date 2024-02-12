@@ -1,0 +1,31 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 40px;
+    width: 80%;
+
+    input,
+    select {
+        margin-bottom: 15px;
+        width: 100%;
+        border-radius: 5px;
+        background: lighten($blankColor, 5%);
+        border: none;
+        height: 37px;
+
+
+        &:focus {
+            outline: none;
+            border: 2px solid lighten($goldenColor, 30%);
+        }
+    }
+
+    &__submit {
+        background: lighten($goldenColor, 30%);
+        align-self: end;
+        padding: 10px 20px;
+        border-radius: 5%;
+        border: none;
+    }
+}
