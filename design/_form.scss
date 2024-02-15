@@ -27,5 +27,64 @@
         padding: 10px 20px;
         border-radius: 5%;
         border: none;
+        cursor: pointer;
+    }
+}
+
+
+// Variables
+$table-bg: #fff;
+$table-border: #ddd;
+$table-header-bg: #f5f5f5;
+$mobile: 600px;
+
+.tableContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tableContainer table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableContainer th,
+.tableContainer td {
+    text-align: left;
+    padding: 8px;
+}
+
+.tableContainer tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Responsive layout - makes the table responsive: When the screen is less than 800px wide, make the two columns stack on top of each other */
+@media screen and (max-width: 800px) {
+    .tableContainer table, .tableContainer th, .tableContainer td {
+        width: 100%;
+        display: block;
+    }
+    .tableContainer td {
+        /* Increase font size for mobile */
+        font-size: 18px;
+    }
+    .tableContainer td:before {
+        content: attr(data-column);
+        float: left;
+        text-transform: uppercase;
+        font-weight: bold;
+        /* Add a colon after the label */
+        padding-right: 10px;
+        content: attr(data-column) ": ";
+    }
+    .tableContainer tr {
+        /* Add space between rows */
+        margin-bottom: 30px;
+        /* Add border to make rows stand out */
+        border: 1px solid #ddd;
+    }
+    .tableContainer td:not(:first-child):before {
+        /* Hide column labels for all but the first cell in each card */
+        display: none;
     }
 }

@@ -4,8 +4,7 @@
     // session_start();
 
     // Intégration des connexions.
-    // require('./model/connectionDBModel.php');
-    // require('./model/connectionUserModel.php');
+    require('./model/connectionDBModel.php');
 
     // Routeur.
     require('./controller/controller.php');

@@ -2248,7 +2248,8 @@ function createOptions() {
     // Créez de nouvelles options avec le nom du pays dans la langue spécifiée
     countries.forEach(country => {
         const option = document.createElement('option');
-        option.value = country.dial_code;
+        option.value = country.name[lang];
+        option.dataset.dialCode = country.dial_code;
         option.text = country.name[lang];
         selectElement.appendChild(option);
     });
@@ -2257,8 +2258,8 @@ function createOptions() {
 createOptions(); // Créez des options au chargement de la page
 
 selectElement.addEventListener('change', function() {
-    const selectedDialCode = this.value;
-    dialCodeInput.value = selectedDialCode;
+    const selectedOption = this.options[this.selectedIndex];
+    dialCodeInput.value = selectedOption.dataset.dialCode;
 });
 
 // Lorsqu'un drapeau est cliqué, mettez à jour la langue dans le stockage local

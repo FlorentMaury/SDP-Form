@@ -1,85 +1,85 @@
 .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
 
     &__logo {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display        : flex;
+        flex-direction : column;
+        align-items    : center;
 
         img {
-            width: 60%;
-            margin: 20px;
+            width  : 60%;
+            margin : 20px;
         }
     }
 
     &__menuIcon .menuIcon {
-        margin: 20px;
-        transition: all .3s ease-in-out;
-        cursor: pointer;
+        margin     : 20px;
+        transition : all .3s ease-in-out;
+        cursor     : pointer;
 
-        &:hover {
-            transform: rotate(90deg);
-            transition: all .3s ease-in-out;
+        &:hover,
+        &.active {
+            transform  : rotate(90deg);
+            transition : all .3s ease-in-out;
         }
     }
 
     &__nav {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        margin: 20px;
-        border: 1px solid lighten($goldenColor, 30%);
-        border-radius: 5px;
-        position: fixed;
-        left: -100%;
-        z-index: 1000;
-        transition: left 0.5s ease-in-out;
-        width: 70%;
-        max-width: 300px;
-        height: 40%;
-        background: white;
-        padding: 10px;
+        display        : flex;
+        flex-direction : column;
+        align-items    : start;
+        margin         : 20px;
+        border         : 1px solid lighten($goldenColor, 30%);
+        border-radius  : 5px;
+        position       : fixed;
+        left           : -100%;
+        z-index        : 1000;
+        transition     : left 0.5s ease-in-out;
+        width          : 70%;
+        max-width      : 300px;
+        height         : 40%;
+        background     : white;
+        padding        : 10px;
 
         img {
-            align-self: end;
-            margin: 10px;
-            transition: all .3s ease-in-out;
-            cursor: pointer;
+            align-self : end;
+            margin     : 10px;
+            transition : all .3s ease-in-out;
+            cursor     : pointer;
     
             &:hover {
-                transform: rotate(90deg);
-                transition: all .3s ease-in-out;
+                transform  : rotate(90deg);
+                transition : all .3s ease-in-out;
             }
         }
-
     }
 
     &__nav.open {
-        left: 0;
+        left : 0;
     }
 }
 
 .navUl {
-    width: 100%;
+    width : 100%;
 
     &__li {
-        width: 100%;
-        margin-top: 10px;
-        cursor: pointer;
-        transition: all .3s ease-in-out;
-        padding: 10px;
-        border-radius: 5px;
+        width       : 100%;
+        margin-top  : 10px;
+        cursor      : pointer;
+        transition  : all .3s ease-in-out;
+        padding     : 10px;
+        border-radius : 5px;
 
         &:hover {
-            background: lighten($goldenColor, 30%);
-            transition: all .3s ease-in-out;
+            background : lighten($goldenColor, 30%);
+            transition : all .3s ease-in-out;
         }
 
         a {
-            text-decoration: none;
-            color: black;
+            text-decoration : none;
+            color           : black;
         }
     }
 }

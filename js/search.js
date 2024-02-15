@@ -1,43 +1,58 @@
-// Obtenez les éléments de recherche et de type de recherche
-var searchType = document.getElementById('searchType');
-var searchName = document.getElementById('searchName');
-var searchDate = document.getElementById('searchDate');
+document.getElementById('searchType').addEventListener('change', function() {
+    document.getElementById('searchName').style.display = this.value === 'name' ? 'block' : 'none';
+    document.getElementById('searchDate').style.display = this.value === 'date' ? 'block' : 'none';
+});
 
-// Ajoutez un écouteur d'événements pour le changement du type de recherche
-searchType.addEventListener('change', function(e) {
-    // Cachez les deux éléments de recherche
-    searchName.style.display = 'none';
-    searchDate.style.display = 'none';
+document.getElementById('searchName').addEventListener('keyup', function() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById('searchName');
+    filter = input.value.toUpperCase();
+    table = document.querySelector('.tableContainer table');
+    tr = table.getElementsByTagName('tr');
 
-    // Affichez l'élément de recherche correspondant au type de recherche sélectionné
-    if (e.target.value === 'name') {
-        searchName.style.display = '';
-    } else if (e.target.value === 'date') {
-        searchDate.style.display = '';
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName('td')[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = '';
+            } else {
+                tr[i].style.display = 'none';
+            }
+        }
     }
 });
 
-// Ajoutez des écouteurs d'événements pour le changement des entrées de recherche
-searchName.addEventListener('input', filterElements);
-searchDate.addEventListener('input', filterElements);
+document.getElementById('searchDate').addEventListener('change', function() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = new Date(document.getElementById('searchDate').value);
+    table = document.querySelector('.tableContainer table');
+    tr = table.getElementsByTagName('tr');
 
-function filterElements(e) {
-    // Obtenez la valeur de recherche
-    var searchValue = e.target.value.toLowerCase();
-
-    // Obtenez tous les éléments li
-    var liElements = document.querySelectorAll('li');
-
-    // Parcourez tous les éléments li
-    liElements.forEach(function(li) {
-        // Obtenez le nom ou la date de l'élément li
-        var nameOrDate = li.textContent.toLowerCase();
-
-        // Si la valeur de recherche est dans le nom ou la date, affichez l'élément li, sinon cachez-le
-        if (nameOrDate.includes(searchValue)) {
-            li.style.display = '';
-        } else {
-            li.style.display = 'none';
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName('td')[3]; // Assurez-vous que cet index correspond à la colonne de date
+        if (td) {
+            txtValue = new Date(td.textContent || td.innerText);
+            if (txtValue.getTime() === input.getTime()) {
+                tr[i].style.display = '';
+            } else {
+                tr[i].style.display = 'none';
+            }
         }
-    });
-}
+    }
+});
+
+document.getElementById('resetButton').addEventListener('click', function() {
+    // Réinitialisez les valeurs des champs de recherche
+    document.getElementById('searchName').value = '';
+    document.getElementById('searchDate').value = '';
+
+    // Affichez toutes les lignes du tableau
+    var table, tr, i;
+    table = document.querySelector('.tableContainer table');
+    tr = table.getElementsByTagName('tr');
+
+    for (i = 0; i < tr.length; i++) {
+        tr[i].style.display = '';
+    }
+});

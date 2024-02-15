@@ -17,47 +17,50 @@ ob_start();
 
 <h1 class="main__h1">Informations</h1>
 
-<form class="form" action="./php/form.php" method="POST">
+<form class="form" action="./model/addCustomerModel.php" method="POST">
 
     <?php
-    if (isset($_GET['message'])) {
-        echo '<p class="alert">' . htmlspecialchars($_GET['message']) . '</p>';
+    if (isset($_GET['error']) && !empty($_GET['message'])) {
+        echo '<p class="errorMessage">' . htmlspecialchars($_GET['message']) . '</p>';
+    }
+    if (isset($_GET['success']) && !empty($_GET['message'])) {
+        echo '<p class="successMesssage">' . htmlspecialchars($_GET['message']) . '</p>';
     }
     ?>
 
-    <label for="lastname" class="lastName">Nom</label>
-    <input type="text" id="lastname">
+<label for="lastname" class="lastName">Nom</label>
+    <input type="text" id="lastname" name="lastname">
 
     <label for="firstname" class="firstName">Prénom</label>
-    <input type="text" id="firstname">
+    <input type="text" id="firstname" name="firstname">
 
     <label for="address" class="address">Adresse</label>
-    <input type="text" id="address">
+    <input type="text" id="address" name="address">
 
     <label for="country" class="country">Pays</label>
     <select name="country" id="country">
     </select>
 
     <label for="email" class="email">Email</label>
-    <input type="email" id="email">
+    <input type="email" id="email" name="email">
 
     <label for="phoneNumber" class="phoneNumber">Numéro de téléphone</label>
-    <input type="tel" id="phoneNumber">
+    <input type="tel" id="phoneNumber" name="phoneNumber">
 
     <label for="facilitator" class="host">Animateur</label>
     <select name="facilitator" id="facilitator">
-        <option value="facilitator1">Karim</option>
-        <option value="facilitator2">Patrice</option>
-        <option value="facilitator3">Selma</option>
+        <option value="Karim">Karim</option>
+        <option value="Patrice">Patrice</option>
+        <option value="Selma">Selma</option>
     </select>
 
     <label for="howDidYou" class="discovery">Comment nous avez vous découverts ?</label>
     <select name="howDidYou" id="howDidYou">
-        <option value="giftCard">Bon cadeau</option>
-        <option value="weCanDO">WeCanDo</option>
-        <option value="google">Google</option>
-        <option value="tripadvisor">Tripadvisor</option>
-        <option value="other">Autre</option>
+        <option value="Bon cadeau">Bon cadeau</option>
+        <option value="WeCanDo">WeCanDo</option>
+        <option value="Google">Google</option>
+        <option value="TripAdvisor">Tripadvisor</option>
+        <option value="Autre">Autre</option>
     </select>
 
     <button class="form__submit submit" type="submit" value="Envoyer">Envoyer</button>

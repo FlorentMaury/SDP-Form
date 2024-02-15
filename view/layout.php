@@ -21,15 +21,15 @@
             <img id="close-icon" src="./assets/close.svg" alt="" srcset="">
             <ul class="navUl">
                 <?php
-                if ($_GET['page'] == 'home') {
+                $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : 'home';
+
+                if ($page == 'home') {
                 ?>
                     <li class="navUl__li"><a href="index.php?page=search">Recherche</a></li>
-
                 <?php
-                } elseif ($_GET['page'] == 'search') {
+                } elseif ($page == 'search') {
                 ?>
                     <li class="navUl__li"><a href="index.php?page=home">Accueil</a></li>
-
                 <?php
                 }
                 ?>
@@ -45,11 +45,11 @@
     </main>
 
     <?php
-    if ($_GET['page'] == 'home') {
+    if ($page == 'home') {
     ?>
         <script src="./js/countryTrad.js"></script>
     <?php
-    } elseif ($_GET['page'] == 'search') {
+    } elseif ($page == 'search') {
     ?>
         <script src="./js/search.js"></script>
     <?php
