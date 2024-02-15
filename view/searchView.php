@@ -1,7 +1,7 @@
 <?php
 
 // Modification du titre de la page.
-$title = 'Accueil';
+$title = 'Recherche | Studio des Parfums';
 // Début d'enregistrement du HTML.
 ob_start();
 

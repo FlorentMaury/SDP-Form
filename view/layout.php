@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./design/style.css">
-    <title>SDP - Form</title>
+    <title>Formulaire | Studio des Parfums</title>
 </head>
 
 <body>
@@ -15,26 +15,53 @@
             <img src="./assets/logo.webp" alt="Logo">
         </div>
         <div class="header__menuIcon">
-            <img class="menuIcon" src="./assets/menu.svg" alt="" srcset="">
+            <img class="menuIcon burger" src="./assets/menu.svg" alt="" srcset="">
         </div>
         <nav class="header__nav">
             <img id="close-icon" src="./assets/close.svg" alt="" srcset="">
-            <ul class="navUl">
-                <?php
-                $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : 'home';
+<ul class="navUl">
+    <?php
+    $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : 'home';
+    ?>
 
-                if ($page == 'home') {
-                ?>
-                    <li class="navUl__li"><a href="index.php?page=search">Recherche</a></li>
-                <?php
-                } elseif ($page == 'search') {
-                ?>
-                    <li class="navUl__li"><a href="index.php?page=home">Accueil</a></li>
-                <?php
-                }
-                ?>
-                <li class="navUl__li">Deconnexion</li>
-            </ul>
+    <!-- Lien vers la page d'accueil pour toutes les pages -->
+    <li class="navUl__li">
+        <a href="index.php?page=home">
+            Accueil
+            <img src="./assets/home.svg" alt="Accueil">
+        </a>
+    </li>
+
+    <?php // Si l'utilisateur est connecté
+    if (isset($_SESSION['connect'])) : ?>
+
+        <li class="navUl__li">
+            <a href="index.php?page=search">
+                Recherche
+                <img src="./assets/search.svg" alt="Recherche">
+            </a>
+        </li>
+        <!-- Lien de déconnexion pour toutes les pages -->
+        <li class="navUl__li">
+            <a href="index.php?page=logOut">
+                Deconnexion
+                <img src="./assets/Logout.svg" alt="Deconnexion">
+            </a>
+        </li>
+
+    <?php else : // Si l'utilisateur n'est pas connecté, affichez le lien de connexion uniquement sur la page d'accueil
+        if ($page == 'home') : ?>
+
+            <li class="navUl__li">
+                <a href="index.php?page=logIn">
+                    Connexion
+                    <img src="./assets/login.svg" alt="Connexion">
+                </a>
+            </li>
+
+    <?php endif;
+    endif; ?>
+</ul>
         </nav>
     </header>
 

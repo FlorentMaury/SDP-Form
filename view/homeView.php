@@ -1,7 +1,7 @@
 <?php
 
 // Modification du titre de la page.
-$title = 'Accueil';
+$title = 'Accueil | Studio des Parfums';
 // Début d'enregistrement du HTML.
 ob_start();
 
@@ -24,7 +24,7 @@ ob_start();
         echo '<p class="errorMessage">' . htmlspecialchars($_GET['message']) . '</p>';
     }
     if (isset($_GET['success']) && !empty($_GET['message'])) {
-        echo '<p class="successMesssage">' . htmlspecialchars($_GET['message']) . '</p>';
+        echo '<p class="successMessage">' . htmlspecialchars($_GET['message']) . '</p>';
     }
     ?>
 
