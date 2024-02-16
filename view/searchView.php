@@ -33,6 +33,7 @@ ob_start();
         echo '<th>Hôte</th>';
         echo '<th>Découverte</th>';
         echo '<th>Pays</th>';
+        echo '<th>Fiche</th>';
         echo '</tr>';
 
         while ($row = $customer->fetch()) {
@@ -46,6 +47,7 @@ ob_start();
             echo '<td data-column="Hôte">' . $row['host'] . '</td>';
             echo '<td data-column="Découverte">' . $row['how_did_you'] . '</td>';
             echo '<td data-column="Pays">' . $row['country'] . '</td>';
+            echo '<td data-column="Fiche"><a href=""><img src="./assets/download.svg" alt="Télécharger"></a></td>';
             echo '</tr>';
         }
 

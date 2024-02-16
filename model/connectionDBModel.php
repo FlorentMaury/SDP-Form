@@ -2,7 +2,7 @@
 
     // Connexion à la base de donnée : "intranet_SDP".
     try {
-        $bdd = new PDO('mysql:host=localhost;dbname=intranet_sdp;charset=utf8', 'root', '');
+        $bdd = new PDO('mysql:host=db5014654403.hosting-data.io;dbname=dbs12176894;charset=utf8', 'dbu5440750', 'mdp0394SDP!');
     } catch(Exception $e) {
         die('Erreur : ' .$e->getMessage());
     };
