@@ -83,7 +83,7 @@ if (
             <p>Pays : $country</p>
             <p>Email : $email</p>
             <p>Numéro de téléphone : $phoneNumber</p>
-            <p>Facilitateur : $host</p>
+            <p>Hôte : $host</p>
             <p>Comment avez-vous entendu parler de nous ? : $howDidYou</p>
             <img src='data:image/png;base64,$qrCodeImage' />
         ";

@@ -37,7 +37,7 @@ ob_start();
         echo '</tr>';
 
         while ($row = $customer->fetch()) {
-            echo '<tr>';
+            echo '<tr class="tr">';
             echo '<td data-column="Civilité">' . $row['title'] . '</td>';
             echo '<td data-column="Nom">' . $row['lastname'] . '</td>';
             echo '<td data-column="Prénom">' . $row['firstname'] . '</td>';
@@ -47,7 +47,8 @@ ob_start();
             echo '<td data-column="Ville">' . $row['city'] . '</td>';
             echo '<td data-column="Téléphone">' . $row['phone_number'] . '</td>';
             echo '<td data-column="Pays">' . $row['country'] . '</td>';
-            echo "<td data-column='Fiche'><a target='_blank' href='http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$row['date']}/{$row['lastname']}/{$row['firstname']}/{$row['lastname']}_{$row['firstname']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";            echo '</tr>';
+            echo "<td data-column='Fiche'><a target='_blank' href='http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$row['date']}/{$row['lastname']}/{$row['firstname']}/{$row['lastname']}_{$row['firstname']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";            
+            echo '</tr>';
         }
 
         echo '</table>';

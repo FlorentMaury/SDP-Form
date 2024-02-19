@@ -1,0 +1,67 @@
+// Variables
+$table-bg: #fff;
+$table-border: #ddd;
+$table-header-bg: #f5f5f5;
+$mobile: 600px;
+
+.tableContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tableContainer table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableContainer th,
+.tableContainer td {
+    text-align: left;
+    padding: 8px;
+}
+
+.tableContainer tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+@media screen and (max-width: 600px) {
+    .tableContainer table, .tableContainer th, .tableContainer td {
+        width: 100%;
+        display: block;
+    }
+
+    .tableContainer th {
+        display: none;
+    }
+
+    .tableContainer td {
+        font-size: 16px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+    
+    .tableContainer td:before {
+        content: attr(data-column);
+        float: left;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding-right: 10px;
+        content: attr(data-column) ": ";
+    }
+    .tableContainer table tbody tr {
+        /* Increase the space between rows */
+        margin: 30px;
+        border: none;
+    }
+    .tableContainer td:not(:first-child):before {
+        display: block;
+    }
+    .tr td:last-child {
+        margin-bottom: 15px;
+    }
+
+    .tr {
+        border: 3px solid red;
+    }
+}
