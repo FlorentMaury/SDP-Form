@@ -28,7 +28,7 @@ ob_start();
     }
     ?>
 
-<label for="title" class="civility">Civilité</label>
+    <label for="title" class="civility">Civilité</label>
     <select name="title" id="title">
         <option value="Mr">Mr</option>
         <option value="Mme">Mrs </option>

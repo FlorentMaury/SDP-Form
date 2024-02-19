@@ -2286,10 +2286,8 @@ elements.forEach(element => {
 });
 
 function translatePage() {
-    // Pour chaque clé dans l'objet de traductions, trouvez tous les éléments avec cette clé comme classe
-    // et mettez à jour leur contenu avec la traduction appropriée
     for (let key in translations[lang]) {
-        let elements = document.querySelectorAll('.' + key);
+        let elements = document.querySelectorAll('label.' + key);
         elements.forEach(element => {
             element.textContent = translations[lang][key];
         });
@@ -2310,5 +2308,3 @@ function updateFlags() {
 // Traduisez la page et mettez à jour les drapeaux affichés au chargement de la page
 translatePage();
 updateFlags();
-
-
