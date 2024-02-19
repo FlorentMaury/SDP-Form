@@ -24,31 +24,30 @@ ob_start();
         // Affichez les résultats dans un tableau
         echo '<table>';
         echo '<tr>';
+        echo '<th>Civilité</th>';
         echo '<th>Nom</th>';
         echo '<th>Prénom</th>';
         echo '<th>Email</th>';
         echo '<th>Date</th>';
         echo '<th>Adresse</th>';
+        echo '<th>Ville</th>';
         echo '<th>Téléphone</th>';
-        echo '<th>Hôte</th>';
-        echo '<th>Découverte</th>';
         echo '<th>Pays</th>';
         echo '<th>Fiche</th>';
         echo '</tr>';
 
         while ($row = $customer->fetch()) {
             echo '<tr>';
+            echo '<td data-column="Civilité">' . $row['title'] . '</td>';
             echo '<td data-column="Nom">' . $row['lastname'] . '</td>';
             echo '<td data-column="Prénom">' . $row['firstname'] . '</td>';
             echo '<td data-column="Email">' . $row['email'] . '</td>';
             echo '<td data-column="Date">' . $row['date'] . '</td>';
             echo '<td data-column="Adresse">' . $row['address'] . '</td>';
+            echo '<td data-column="Ville">' . $row['city'] . '</td>';
             echo '<td data-column="Téléphone">' . $row['phone_number'] . '</td>';
-            echo '<td data-column="Hôte">' . $row['host'] . '</td>';
-            echo '<td data-column="Découverte">' . $row['how_did_you'] . '</td>';
             echo '<td data-column="Pays">' . $row['country'] . '</td>';
-            echo '<td data-column="Fiche"><a href=""><img src="./assets/download.svg" alt="Télécharger"></a></td>';
-            echo '</tr>';
+            echo "<td data-column='Fiche'><a target='_blank' href='http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$row['date']}/{$row['lastname']}/{$row['firstname']}/{$row['lastname']}_{$row['firstname']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";            echo '</tr>';
         }
 
         echo '</table>';

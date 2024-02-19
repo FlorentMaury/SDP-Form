@@ -28,7 +28,13 @@ ob_start();
     }
     ?>
 
-<label for="lastname" class="lastName">Nom</label>
+<label for="title" class="civility">Civilité</label>
+    <select name="title" id="title">
+        <option value="Mr">Mr</option>
+        <option value="Mme">Mrs </option>
+    </select>
+
+    <label for="lastname" class="lastName">Nom</label>
     <input type="text" id="lastname" name="lastname">
 
     <label for="firstname" class="firstName">Prénom</label>
@@ -36,6 +42,9 @@ ob_start();
 
     <label for="address" class="address">Adresse</label>
     <input type="text" id="address" name="address">
+
+    <label for="city" class="city">Ville</label>
+    <input type="text" id="city" name="city">
 
     <label for="country" class="country">Pays</label>
     <select name="country" id="country">
@@ -50,6 +59,8 @@ ob_start();
     <label for="facilitator" class="host">Animateur</label>
     <select name="facilitator" id="facilitator">
         <option value="Karim">Karim</option>
+        <option value="Lea">Léa</option>
+        <option value="Manon">Manon</option>
         <option value="Patrice">Patrice</option>
         <option value="Selma">Selma</option>
     </select>

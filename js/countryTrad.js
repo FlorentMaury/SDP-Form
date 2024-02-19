@@ -2179,9 +2179,11 @@ const countries = [
 
 let translations = {
     en: {
+        civility: "Civility",
         firstName: "First Name",
         lastName: "Last Name",
         address: "Address",
+        city: "City",
         country: "Country",
         email: "Email",
         phoneNumber: "Phone Number",
@@ -2190,9 +2192,11 @@ let translations = {
         submit: "Submit"
     },
     fr: {
+        civility: "Civilité",
         firstName: "Prénom",
         lastName: "Nom",
         address: "Adresse",
+        city: "Ville",
         country: "Pays",
         email: "Email",
         phoneNumber: "Numéro de téléphone",
@@ -2201,9 +2205,11 @@ let translations = {
         submit: "Envoyer"
     },
     es: {
+        civility: "Cortesía",
         firstName: "Nombre",
         lastName: "Apellido",
         address: "Dirección",
+        city: "Ciudad",
         country: "País",
         email: "Correo electrónico",
         phoneNumber: "Número de teléfono",
@@ -2212,9 +2218,11 @@ let translations = {
         submit: "Enviar"
     },
     ru: {
+        civility: "Вежливость",
         firstName: "Имя",
         lastName: "Фамилия",
         address: "Адрес",
+        city: "Город",
         country: "Страна",
         email: "Электронная почта",
         phoneNumber: "Номер телефона",
@@ -2223,9 +2231,11 @@ let translations = {
         submit: "Отправить"
     },
     ar: {
+        civility: "الأدب",
         firstName: "الاسم الاول",
         lastName: "الكنية",
         address: "عنوان",
+        city: "مدينة",
         country: "بلد",
         email: "البريد الإلكتروني",
         phoneNumber: "رقم الهاتف",
