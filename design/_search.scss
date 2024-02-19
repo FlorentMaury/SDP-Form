@@ -1,23 +1,23 @@
 // Variables
-$table-bg: #fff;
-$table-border: #ddd;
+$table-bg       : #fff;
+$table-border   : #ddd;
 $table-header-bg: #f5f5f5;
-$mobile: 600px;
+$mobile         : 600px;
 
 .tableContainer {
-    width: 100%;
+    width     : 100%;
     overflow-x: auto;
 }
 
 .tableContainer table {
-    width: 100%;
+    width          : 100%;
     border-collapse: collapse;
 }
 
 .tableContainer th,
 .tableContainer td {
     text-align: left;
-    padding: 8px;
+    padding   : 8px;
 }
 
 .tableContainer tr:nth-child(even) {
@@ -26,7 +26,7 @@ $mobile: 600px;
 
 @media screen and (max-width: 600px) {
     .tableContainer table, .tableContainer th, .tableContainer td {
-        width: 100%;
+        width  : 100%;
         display: block;
     }
 
@@ -35,19 +35,19 @@ $mobile: 600px;
     }
 
     .tableContainer td {
-        font-size: 16px;
-        border: 1px solid #ddd;
-        padding: 10px;
+        font-size       : 16px;
+        border          : 1px solid #ddd;
+        padding         : 10px;
         background-color: #f9f9f9;
     }
     
     .tableContainer td:before {
-        content: attr(data-column);
-        float: left;
+        content       : attr(data-column);
+        float         : left;
         text-transform: uppercase;
-        font-weight: bold;
-        padding-right: 10px;
-        content: attr(data-column) ": ";
+        font-weight   : bold;
+        padding-right : 10px;
+        content       : attr(data-column) ": ";
     }
     .tableContainer table tbody tr {
         /* Increase the space between rows */

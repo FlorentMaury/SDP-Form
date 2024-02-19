@@ -24,8 +24,8 @@ dd {
 /* Remove list styles on ul, ol elements */
 ul,
 ol {
-    margin: 0;
-    padding: 0;
+    margin    : 0;
+    padding   : 0;
     list-style: none;
 }
 
@@ -42,16 +42,16 @@ html:focus-within {
 
 /* Set core body defaults */
 body {
-    min-height: 100vh;
+    min-height    : 100vh;
     text-rendering: optimizeSpeed;
-    line-height: 1.5;
+    line-height   : 1.5;
 }
 
 /* A better looking default horizontal rule */
 hr {
-    size: 1px;
-    border: none;
+    size            : 1px;
+    border          : none;
     background-color: #333;
-    height: 1px;
-    margin: 1em 0;
+    height          : 1px;
+    margin          : 1em 0;
 }
