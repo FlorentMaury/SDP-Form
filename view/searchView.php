@@ -7,7 +7,7 @@ ob_start();
 
 ?>
 
-<div class="form">
+<div class="form searchForm">
     <select id="searchType">
         <option value="name">Rechercher par nom</option>
         <option value="date">Rechercher par  date</option>
