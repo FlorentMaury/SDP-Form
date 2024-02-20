@@ -11,7 +11,7 @@ document.getElementById('searchName').addEventListener('keyup', function() {
     tr = table.getElementsByTagName('tr');
 
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName('td')[0];
+        td = tr[i].getElementsByTagName('td')[1];
         if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -25,15 +25,16 @@ document.getElementById('searchName').addEventListener('keyup', function() {
 
 document.getElementById('searchDate').addEventListener('change', function() {
     var input, filter, table, tr, td, i, txtValue;
-    input = new Date(document.getElementById('searchDate').value);
+    input = document.getElementById('searchDate');
+    filter = input.value;
     table = document.querySelector('.tableContainer table');
-    tr = table.getElementsByTagName('tr');
+    tr = table.getElementsByClassName('tr');
 
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName('td')[3]; // Assurez-vous que cet index correspond à la colonne de date
+        td = tr[i].getElementsByClassName('date')[0];
         if (td) {
-            txtValue = new Date(td.textContent || td.innerText);
-            if (txtValue.getTime() === input.getTime()) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.indexOf(filter) > -1) {
                 tr[i].style.display = '';
             } else {
                 tr[i].style.display = 'none';

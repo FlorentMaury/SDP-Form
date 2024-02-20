@@ -9,8 +9,8 @@ ob_start();
 
 <div class="form">
     <select id="searchType">
-        <option value="name">Nom</option>
-        <option value="date">Date</option>
+        <option value="name">Rechercher par nom</option>
+        <option value="date">Rechercher par  date</option>
     </select>
 
     <input type="text" id="searchName" placeholder="Rechercher par nom...">
@@ -42,7 +42,7 @@ ob_start();
             echo '<td data-column="Nom">' . $row['lastname'] . '</td>';
             echo '<td data-column="Prénom">' . $row['firstname'] . '</td>';
             echo '<td data-column="Email">' . $row['email'] . '</td>';
-            echo '<td data-column="Date">' . $row['date'] . '</td>';
+            echo '<td class="date "data-column="Date">' . $row['date'] . '</td>';
             echo '<td data-column="Adresse">' . $row['address'] . '</td>';
             echo '<td data-column="Ville">' . $row['city'] . '</td>';
             echo '<td data-column="Téléphone">' . $row['phone_number'] . '</td>';
