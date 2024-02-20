@@ -40,13 +40,10 @@ ob_start();
 
     <label for="firstname" class="firstName">Prénom</label>
     <input type="text" id="firstname" name="firstname">
-    
+
     <label for="email" class="email">Email</label>
     <input type="email" id="email" name="email">
 
-    <label for="phoneNumber" class="phoneNumber">Numéro de téléphone</label>
-    <input type="tel" id="phoneNumber" name="phoneNumber">
-    
     <label for="country" class="country">Pays</label>
     <select name="country" id="country">
     </select>
@@ -56,6 +53,9 @@ ob_start();
 
     <label for="city" class="city">Ville</label>
     <input type="text" id="city" name="city">
+
+    <label for="phoneNumber" class="phoneNumber">Numéro de téléphone</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber">
 
     <label for="facilitator" class="host">Animateur</label>
     <select name="facilitator" id="facilitator">
