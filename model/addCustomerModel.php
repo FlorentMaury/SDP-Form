@@ -38,39 +38,58 @@ if (
         exit();
     }
 
-    // Préparez la requête SQL
-    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, how_did_you) VALUES (?, ?,?, ?, ?, ?, ?, ?, ?, ?)');
+    // Obtenez l'année et le mois actuels
+    $yearMonth = date('Ym');
 
-    // Exécutez la requête avec les données nettoyées
-    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $howDidYou]);
+    // Obtenez le plus grand customer_id qui commence par l'année et le mois actuels
+    $stmt = $bdd->prepare("SELECT creation_id FROM customer WHERE creation_id LIKE ? ORDER BY creation_id DESC LIMIT 1");
+    $stmt->execute([$yearMonth . '%']);
+    $row = $stmt->fetch();
+
+    if ($row) {
+        // Si un tel customer_id existe, prenez les trois derniers chiffres et ajoutez 1
+        $nextId = substr($row['creation_id'], -3) + 1;
+    } else {
+        // Sinon, c'est la première commande du mois, donc utilisez 1 comme ID
+        $nextId = 1;
+    }
+
+    // Générez la valeur pour la colonne customer_id
+    $creationId = $yearMonth . str_pad($nextId, 3, '0', STR_PAD_LEFT);
+
+    // Préparez la requête SQL
+    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, how_did_you, creation_id) VALUES (?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?)');
+
+    // Exécutez la requête avec les données nettoyées.
+    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $howDidYou, $creationId]);
 
     if ($result) {
 
         require '../vendor/autoload.php';
 
-        // Créez une nouvelle instance de Dompdf
+        // Créez une nouvelle instance de Dompdf.
         $dompdf = new Dompdf();
 
-        // Obtenez la date actuelle
+        // Obtenez la date actuelle.
         $date = date('Y-m-d');
 
-        // Générez le lien vers le fichier PDF
+        // Générez le lien vers le fichier PDF.
         $pdfLink = "http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$date}/{$lastname}/{$firstname}/{$lastname}_{$firstname}.pdf";
 
-        // Créez une nouvelle instance de QrCode
+        // Créez une nouvelle instance de QrCode.
         $qrCode = new QrCode($pdfLink);
 
-        // Définissez les paramètres du QR code si nécessaire
-        $qrCode->setSize(300); // Taille en pixels
+        // Définissez les paramètres du QR code si nécessaire.
+        $qrCode->setSize(300); // Taille en pixels.
 
-        // Générez le QR code en tant qu'image PNG
+        // Générez le QR code en tant qu'image PNG.
         $writer = new PngWriter();
         $image = $writer->write($qrCode);
 
-        // Encodez l'image en base64 pour l'inclure dans le HTML
+        // Encodez l'image en base64 pour l'inclure dans le HTML.
         $qrCodeImage = base64_encode($image->getString());
 
-        // Générez le HTML pour le PDF
+        // Générez le HTML pour le PDF.
         $html = "
             <h1>Récapitulatif des informations</h1>
 
@@ -85,6 +104,7 @@ if (
             <p>Numéro de téléphone : $phoneNumber</p>
             <p>Hôte : $host</p>
             <p>Comment avez-vous entendu parler de nous ? : $howDidYou</p>
+            <p>Numéro de création : $creationId</p>
             <img src='data:image/png;base64,$qrCodeImage' />
         ";
 

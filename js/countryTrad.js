@@ -2171,13 +2171,13 @@ const countries = [
 let translations = {
     en: {
         civility: "Civility",
-        firstName: "First Name",
-        lastName: "Last Name",
+        firstName: "Firstname",
+        lastName: "Lastname",
         address: "Address",
         city: "City",
         country: "Country",
         email: "Email",
-        phoneNumber: "Phone Number",
+        phoneNumber: "Phone number",
         host: "Host",
         discovery: "How did you find us?",
         submit: "Submit"
