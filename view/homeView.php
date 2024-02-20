@@ -11,8 +11,8 @@ ob_start();
     <img src="./assets/fr.svg" class="flagList__fr" alt="fr">
     <img src="./assets/en.svg" class="flagList__en" alt="en">
     <img src="./assets/es.svg" class="flagList__es" alt="es">
+    <img src="./assets/pt.svg" class="flagList__pt" alt="pt">
     <img src="./assets/ru.svg" class="flagList__ru" alt="ru">
-    <img src="./assets/ae.svg" class="flagList__ar" alt="ae">
 </div>
 
 <h1 class="main__h1">Informations</h1>

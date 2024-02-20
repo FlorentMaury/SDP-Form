@@ -2230,18 +2230,18 @@ let translations = {
         discovery: "Как вы нас нашли?",
         submit: "Отправить"
     },
-    ar: {
-        civility: "الأدب",
-        firstName: "الاسم الاول",
-        lastName: "الكنية",
-        address: "عنوان",
-        city: "مدينة",
-        country: "بلد",
-        email: "البريد الإلكتروني",
-        phoneNumber: "رقم الهاتف",
-        host: "مضيف",
-        discovery: "كيف وجدتنا؟",
-        submit: "إرسال"
+    pt: {
+        civility: "Civilidade",
+        firstName: "Primeiro nome",
+        lastName: "Sobrenome",
+        address: "Endereço",
+        city: "Cidade",
+        country: "País",
+        email: "Email",
+        phoneNumber: "Número de telefone",
+        host: "Anfitrião",
+        discovery: "Como você nos encontrou?",
+        submit: "Enviar"
     }
 };
 
