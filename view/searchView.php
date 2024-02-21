@@ -15,7 +15,8 @@ ob_start();
     </select>
 
     <input type="text" id="searchName" placeholder="Rechercher par nom...">
-    <input type="date" id="searchDate" placeholder="Rechercher par date..." style="display: none;">
+    <input type="date" id="searchStartDate" placeholder="Date de début..." style="display: none;">
+    <input type="date" id="searchEndDate" placeholder="Date de fin..." style="display: none;">
     <input type="number" id="searchNumber" placeholder="Rechercher par numéro de création..." style="display: none;">
     <button class="form__submit" id="resetButton">Reinitialiser les filtres</button>
 </div>
@@ -49,7 +50,7 @@ ob_start();
             echo '<td data-column="Ville">' . $row['city'] . '</td>';
             echo '<td data-column="Téléphone">' . $row['phone_number'] . '</td>';
             echo '<td data-column="Pays">' . $row['country'] . '</td>';
-            echo "<td class='download' data-column='Fiche'><a target='_blank' href='http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$row['lastname']}/{$row['creation_id']}/{$row['lastname']}_{$row['creation_id']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";            
+            echo "<td class='download' data-column='Fiche'><a target='_blank' href='http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$row['lastname']}/{$row['creation_id']}/{$row['lastname']}_{$row['creation_id']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";
             echo '</tr>';
         }
 
