@@ -11,7 +11,7 @@ require('./controller/controller.php');
 
 // Direction de l'utilisateur en fonction de la requête.
 try {
-    if (isset($_GET['page'])) {
+    if (isset($_GET['page']) && isset($_SESSION['can_access_db'])) {
 
         // Page d'accueil.
         if ($_GET['page'] == 'home') {
@@ -35,7 +35,7 @@ try {
         }
     } else {
         // Retour accueil.
-        home();
+        logIn();
     };
 }
 

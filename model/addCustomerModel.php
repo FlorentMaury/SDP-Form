@@ -74,7 +74,7 @@ if (
         $date = date('Y-m-d');
 
         // Générez le lien vers le fichier PDF.
-        $pdfLink = "http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$date}/{$lastname}/{$firstname}/{$lastname}_{$firstname}.pdf";
+        $pdfLink = "http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$lastname}/{$creationId}/{$lastname}_{$creationId}.pdf";
 
         // Créez une nouvelle instance de QrCode.
         $qrCode = new QrCode($pdfLink);

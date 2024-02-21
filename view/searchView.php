@@ -29,7 +29,7 @@ ob_start();
         echo '<th>Prénom</th>';
         echo '<th>Email</th>';
         echo '<th>Date</th>';
-        echo '<th>Adresse</th>';
+        echo '<th>N° de créa</th>';
         echo '<th>Ville</th>';
         echo '<th>Téléphone</th>';
         echo '<th>Pays</th>';
@@ -42,12 +42,12 @@ ob_start();
             echo '<td data-column="Nom">' . $row['lastname'] . '</td>';
             echo '<td data-column="Prénom">' . $row['firstname'] . '</td>';
             echo '<td data-column="Email">' . $row['email'] . '</td>';
-            echo '<td class="date "data-column="Date">' . $row['date'] . '</td>';
-            echo '<td data-column="Adresse">' . $row['address'] . '</td>';
+            echo '<td class="date" data-column="Date">' . $row['date'] . '</td>';
+            echo '<td data-column="Adresse">' . $row['creation_id'] . '</td>';
             echo '<td data-column="Ville">' . $row['city'] . '</td>';
             echo '<td data-column="Téléphone">' . $row['phone_number'] . '</td>';
             echo '<td data-column="Pays">' . $row['country'] . '</td>';
-            echo "<td data-column='Fiche'><a target='_blank' href='http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$row['date']}/{$row['lastname']}/{$row['firstname']}/{$row['lastname']}_{$row['firstname']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";            
+            echo "<td class='download' data-column='Fiche'><a target='_blank' href='http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$row['date']}/{$row['lastname']}/{$row['firstname']}/{$row['lastname']}_{$row['firstname']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";            
             echo '</tr>';
         }
 

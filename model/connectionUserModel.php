@@ -51,11 +51,17 @@ if(!empty($_POST['email']) && !empty($_POST['password']) && empty($_SESSION)) {
 
         // Si le mot de passe est le bon création d'une session.
         if($password == $user['password']) {
+
+            if($user['can_access_db'] == 0) {
+                header('location: ../index.php?page=logIn&error=1&message=Vous n\'avez pas les droits pour accéder à la base de données.');
+                exit();
+            }
+
             session_start();
-            $_SESSION['connect'] = 1;
-            $_SESSION['id']      = $user['id'];
-            $_SESSION['surname'] = $user['surname'];
-            $_SESSION['name']    = $user['name'];
+            $_SESSION['connect']       = 1;
+            $_SESSION['id']            = $user['id'];
+            $_SESSION['surname']       = $user['surname'];
+            $_SESSION['name']          = $user['name'];
 
             // Validation de la connexion.
             header('location: ../index.php?page=home&success=1&message=Bienvenue.');
