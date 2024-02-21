@@ -58,13 +58,15 @@ if(!empty($_POST['email']) && !empty($_POST['password']) && empty($_SESSION)) {
             }
 
             session_start();
+            
             $_SESSION['connect']       = 1;
             $_SESSION['id']            = $user['id'];
             $_SESSION['surname']       = $user['surname'];
             $_SESSION['name']          = $user['name'];
+            $_SESSION['can_access_db'] = $user['can_access_db'];
 
             // Validation de la connexion.
-            header('location: ../index.php?page=home&success=1&message=Bienvenue.');
+            header("location: ../index.php?page=home&success=1&message=Bienvenue " . $_SESSION['name']);
             exit();
         } else {
             // Erreur dans le mot de passe.

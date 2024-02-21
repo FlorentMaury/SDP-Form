@@ -118,18 +118,15 @@ if (
         $output = $dompdf->output();
 
         // Créez les dossiers s'ils n'existent pas déjà
-        if (!is_dir("../assets/CustomersPDF/{$date}")) {
-            mkdir("../assets/CustomersPDF/{$date}", 0777, true);
+        if (!is_dir("../assets/CustomersPDF/{$lastname}")) {
+            mkdir("../assets/CustomersPDF/{$lastname}", 0777, true);
         }
-        if (!is_dir("../assets/CustomersPDF/{$date}/{$lastname}")) {
-            mkdir("../assets/CustomersPDF/{$date}/{$lastname}", 0777, true);
-        }
-        if (!is_dir("../assets/CustomersPDF/{$date}/{$lastname}/{$firstname}")) {
-            mkdir("../assets/CustomersPDF/{$date}/{$lastname}/{$firstname}", 0777, true);
+        if (!is_dir("../assets/CustomersPDF/{$lastname}/{$creationId}")) {
+            mkdir("../assets/CustomersPDF/{$lastname}/{$creationId}", 0777, true);
         }
 
         // Écrivez le contenu dans un fichier
-        file_put_contents("../assets/CustomersPDF/{$date}/{$lastname}/{$firstname}/{$lastname}_{$firstname}.pdf", $output);
+        file_put_contents("../assets/CustomersPDF/{$lastname}/{$creationId}/{$lastname}_{$creationId}.pdf", $output);
 
         header('location: ../index.php?page=home&success=1&message=Merci.');
         exit();
