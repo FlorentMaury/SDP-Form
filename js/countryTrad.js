@@ -2255,12 +2255,24 @@ const dialCodeInput = document.querySelector('#phoneNumber');
 // Récupérez la langue du stockage local, ou utilisez 'fr' par défaut
 let lang = localStorage.getItem('lang') || 'fr';
 
+// Pays à mettre en avant
+let highlightedCountries = ["France", "Royaume-Uni", "États-Unis", "Émirats Arabes Unis", "Russie", "Espagne", "Brésil"];
+
 function createOptions() {
     // Supprimez toutes les options existantes
     selectElement.innerHTML = '';
 
+    // Filtrez les pays à mettre en avant
+    let highlightedCountriesList = countries.filter(country => highlightedCountries.includes(country.name.fr));
+
+    // Filtrez les autres pays
+    let otherCountries = countries.filter(country => !highlightedCountries.includes(country.name.fr));
+
+    // Fusionnez les deux listes
+    let finalList = [...highlightedCountriesList, ...otherCountries];
+
     // Créez de nouvelles options avec le nom du pays dans la langue spécifiée
-    countries.forEach(country => {
+    finalList.forEach(country => {
         const option = document.createElement('option');
         option.value = country.name[lang];
         option.dataset.dialCode = country.dial_code;
