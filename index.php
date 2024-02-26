@@ -34,8 +34,20 @@ try {
             throw new Exception("Cette page n'existe pas ou a été supprimée.");
         }
     } else if (isset($_GET['page']) && isset($_GET['token'])) {
-        home();
-    } else {
+        $token = $_GET['token'];
+    
+        // Préparez une requête SQL pour vérifier si le token existe déjà
+        $stmt = $bdd->prepare('SELECT 1 FROM customer WHERE token = ?');
+        $stmt->execute([$token]);
+        $row = $stmt->fetch();
+    
+        if ($row) {
+            // Si le token existe déjà, appelez la fonction home() avec un message d'erreur
+            header('location: ./index.php?page=home&error=1&message=Vous êtes déjà enregistré.');
+        } else {
+            home();
+        }
+    }  else {
         // Retour accueil.
         logIn();
     };
