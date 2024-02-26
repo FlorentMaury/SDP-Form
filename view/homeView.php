@@ -75,6 +75,13 @@ ob_start();
         <option value="Autre">Autre / Other</option>
     </select>
 
+    <?php
+    if (isset($_GET['token'])) {
+        $token = $_GET['token'];
+        echo '<input type="hidden" name="token" value="' . htmlspecialchars($token) . '">';
+    }
+    ?>
+
     <button class="form__submit submit" type="submit" value="Envoyer">Envoyer</button>
 
 </form>

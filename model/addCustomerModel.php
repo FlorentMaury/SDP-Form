@@ -57,11 +57,27 @@ if (
     // Générez la valeur pour la colonne customer_id
     $creationId = $yearMonth . str_pad($nextId, 3, '0', STR_PAD_LEFT);
 
-    // Préparez la requête SQL
-    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, how_did_you, creation_id) VALUES (?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    // Vérifiez si le token est présent dans $_POST
+    $token = isset($_POST['token']) ? trim(htmlspecialchars($_POST['token'])) : NULL;
 
-    // Exécutez la requête avec les données nettoyées.
-    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $howDidYou, $creationId]);
+    if ($token) {
+        // Préparez une requête SQL pour vérifier si le token existe déjà
+        $stmt = $bdd->prepare('SELECT 1 FROM customer WHERE token = ?');
+        $stmt->execute([$token]);
+        $row = $stmt->fetch();
+
+        if ($row) {
+            // Si le token existe déjà, redirigez vers la page d'accueil avec un message d'erreur
+            header('location: ../index.php?page=home&error=1&message=Vous êtes déjà enregistré.');
+            exit();
+        }
+    }
+
+    // Préparez la requête SQL avec le nouveau champ token
+    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, how_did_you, creation_id, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+
+    // Exécutez la requête avec les données nettoyées et le token.
+    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $howDidYou, $creationId, $token]);
 
     if ($result) {
 

@@ -33,6 +33,8 @@ try {
         else {
             throw new Exception("Cette page n'existe pas ou a été supprimée.");
         }
+    } else if (isset($_GET['page']) && isset($_GET['token'])) {
+        home();
     } else {
         // Retour accueil.
         logIn();
