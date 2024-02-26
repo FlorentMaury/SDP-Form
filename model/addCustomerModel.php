@@ -107,8 +107,18 @@ if (
 
         // Générez le HTML pour le PDF.
         $html = "
-            <h1>Récapitulatif des informations</h1>
-
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+    
+            .summary {
+                font-family: 'Roboto', sans-serif;
+                text-align: center;
+            }
+        </style>
+    
+        <div class='summary'>
+            <h1>Création N°$creationId</h1>
+    
             <p>Date : $date</p>
             <p>Civilité : $title</p>
             <p>Nom : $lastname</p>
@@ -120,9 +130,9 @@ if (
             <p>Numéro de téléphone : $phoneNumber</p>
             <p>Hôte : $host</p>
             <p>Comment avez-vous entendu parler de nous ? : $howDidYou</p>
-            <p>Numéro de création : $creationId</p>
             <img src='data:image/png;base64,$qrCodeImage' />
-        ";
+        </div>
+    ";
 
         // Chargez le HTML dans Dompdf
         $dompdf->loadHtml($html);
