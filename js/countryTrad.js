@@ -2303,7 +2303,7 @@ elements.forEach(element => {
 
 function translatePage() {
     for (let key in translations[lang]) {
-        let elements = document.querySelectorAll('label.' + key);
+        let elements = document.querySelectorAll('label.' + key + ', button.' + key);
         elements.forEach(element => {
             element.textContent = translations[lang][key];
         });
