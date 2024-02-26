@@ -69,7 +69,7 @@ ob_start();
     <label for="howDidYou" class="discovery">Comment nous avez vous découverts ?</label>
     <select name="howDidYou" id="howDidYou">
         <option value="Bon cadeau">Bon cadeau / Gift card</option>
-        <option value="WeCanDo">WeCanDo</option>
+        <option value="Wecandoo">Wecandoo</option>
         <option value="Google">Google</option>
         <option value="TripAdvisor">Tripadvisor</option>
         <option value="Autre">Autre / Other</option>
