@@ -7,6 +7,7 @@ $mobile         : 600px;
 .tableContainer {
     width     : 100%;
     overflow-x: auto;
+    margin    : 30px;
 }
 
 .tableContainer table {
@@ -22,6 +23,10 @@ $mobile         : 600px;
 
 .tableContainer tr:nth-child(even) {
     background-color: #c2c2c2;
+}
+
+.searchForm {
+    margin: 30px;
 }
 
 @media screen and (max-width: 600px) {
