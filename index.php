@@ -10,7 +10,7 @@ require('./model/connectionDBModel.php');
 require('./controller/controller.php');
 
 // Pages valides.
-$validPages = ['home', 'search', 'logIn', 'logOut'];
+$validPages = ['home'];
 
 // Direction de l'utilisateur en fonction de la requête.
 try {
@@ -36,7 +36,7 @@ try {
         else {
             throw new Exception("Cette page n'existe pas ou a été supprimée.");
         }
-        
+
     } else if (isset($_GET['page'])&& in_array($_GET['page'], $validPages) && isset($_GET['token'])) {
         $token = $_GET['token'];
 
