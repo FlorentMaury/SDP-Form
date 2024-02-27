@@ -1,5 +1,6 @@
 // sass --watch ./design/style.scss:./design/style.css --style compressed
 
+// Import des variables et des autres design.
 @import 'reset';
 @import 'variables';
 @import 'header';
@@ -13,6 +14,7 @@ body {
     align-items   : center;
 }
 
+// Contenu principal des pages.
 .main {
     padding       : 10px;
     display       : flex;
@@ -47,6 +49,7 @@ body {
     }
 }
 
+// Bouton de redirection.
 .redirect {
     cursor: pointer;
     transition: all .2s ease-in-out;
@@ -57,6 +60,7 @@ body {
     }
 }
 
+// Messages d'erreur et de succès.
 .errorMessage {
     color    : red;
     font-size: 1.2em;

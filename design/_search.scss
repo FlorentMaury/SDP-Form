@@ -1,4 +1,4 @@
-// Variables
+// Variables propres au tableau.
 $table-bg       : #fff;
 $table-border   : #ddd;
 $table-header-bg: #f5f5f5;
@@ -29,6 +29,7 @@ $mobile         : 600px;
     margin: 30px;
 }
 
+// Responsive design.
 @media screen and (max-width: 600px) {
     .tableContainer table, .tableContainer th, .tableContainer td {
         width  : 100%;
@@ -55,7 +56,6 @@ $mobile         : 600px;
         content       : attr(data-column) ": ";
     }
     .tableContainer table tbody tr {
-        /* Increase the space between rows */
         margin: 30px;
         border: none;
     }
@@ -71,6 +71,7 @@ $mobile         : 600px;
     }
 }
 
+// Image / logo de téléchargement du PDF.
 .download {
     cursor: pointer;
 

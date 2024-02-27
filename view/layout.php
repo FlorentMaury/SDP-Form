@@ -1,6 +1,8 @@
+<!-- Début de structure des pages. -->
 <!DOCTYPE html>
 <html lang="fr">
 
+<!-- Head. -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +11,7 @@
     <title>Formulaire | Studio des Parfums</title>
 </head>
 
+<!-- Body. -->
 <body>
     <header class="header">
         <div class="header__logo">
@@ -24,7 +27,7 @@
     $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : 'home';
     ?>
 
-    <!-- Lien vers la page d'accueil pour toutes les pages -->
+    <!-- Lien vers la page d'accueil pour toutes les pages. -->
     <li class="navUl__li">
         <a href="index.php?page=home">
             Accueil
@@ -32,7 +35,7 @@
         </a>
     </li>
 
-    <?php // Si l'utilisateur est connecté
+    <?php // Si l'utilisateur est connecté.
     if (isset($_SESSION['connect'])) : ?>
 
         <li class="navUl__li">
@@ -41,7 +44,7 @@
                 <img src="./assets/search.svg" alt="Recherche">
             </a>
         </li>
-        <!-- Lien de déconnexion pour toutes les pages -->
+        <!-- Lien de déconnexion pour toutes les pages. -->
         <li class="navUl__li">
             <a href="index.php?page=logOut">
                 Deconnexion
@@ -49,7 +52,7 @@
             </a>
         </li>
 
-    <?php else : // Si l'utilisateur n'est pas connecté, affichez le lien de connexion uniquement sur la page d'accueil
+    <?php else : // Si l'utilisateur n'est pas connecté, affichez le lien de connexion uniquement sur la page d'accueil.
         if ($page == 'home') : ?>
 
             <li class="navUl__li">
@@ -66,11 +69,12 @@
     </header>
 
 
-    <!-- Contenu de la page -->
+    <!-- Contenu de la page. -->
     <main class="main">
         <?= $content ?>
     </main>
 
+    <!-- DIfférents scripts sont chargés en fonction de la page demandée. -->
     <?php
     if ($page == 'home') {
     ?>

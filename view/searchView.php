@@ -7,13 +7,16 @@ ob_start();
 
 ?>
 
+<!-- Tableau et liste des clients. -->
 <div class="form searchForm">
+    <!-- Type de filtre. -->
     <select id="searchType">
         <option value="name">Rechercher par nom</option>
         <option value="date">Rechercher par date</option>
         <option value="number">Rechercher par numéro de création</option>
     </select>
 
+    <!-- Outils de filtrage. -->
     <input type="text" id="searchName" placeholder="Rechercher par nom...">
     <input type="date" id="searchStartDate" placeholder="Date de début..." style="display: none;">
     <input type="date" id="searchEndDate" placeholder="Date de fin..." style="display: none;">
@@ -23,8 +26,8 @@ ob_start();
 
 <div class="tableContainer">
     <?php
+    // Boucle de créations de lignes.
     if ($customer->rowCount() > 0) {
-        // Affichez les résultats dans un tableau
         echo '<table>';
         echo '<tr>';
         echo '<th>Civilité</th>';
@@ -38,6 +41,7 @@ ob_start();
         echo '<th>Fiche</th>';
         echo '</tr>';
 
+        // Informations pour chaque utilisateurs.
         while ($row = $customer->fetch()) {
             echo '<tr class="tr">';
             echo '<td data-column="Civilité">' . $row['title'] . '</td>';

@@ -7,6 +7,7 @@ ob_start();
 
 ?>
 
+<!-- Formulaire de connection. -->
 <form class="form" action="./model/connectionUserModel.php" method="POST">
 
     <?php

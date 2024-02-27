@@ -1,3 +1,4 @@
+// Récupération des différents filtres de recherche et ajustement de leurs afffichages.
 document.getElementById('searchType').addEventListener('change', function() {
     var isDateSearch = this.value === 'date';
     document.getElementById('searchStartDate').style.display = isDateSearch ? 'block' : 'none';
@@ -6,6 +7,7 @@ document.getElementById('searchType').addEventListener('change', function() {
     document.getElementById('searchNumber').style.display = this.value === 'number' ? 'block' : 'none';
 });
 
+// Recherche par nom.
 document.getElementById('searchName').addEventListener('keyup', function() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById('searchName');
@@ -26,6 +28,7 @@ document.getElementById('searchName').addEventListener('keyup', function() {
     }
 });
 
+// Recherche par date.
 document.getElementById('searchStartDate').addEventListener('change', filterByDateRange);
 document.getElementById('searchEndDate').addEventListener('change', filterByDateRange);
 
@@ -49,6 +52,7 @@ function filterByDateRange() {
     }
 }
 
+// Recherche par numéro de création.
 document.getElementById('searchNumber').addEventListener('keyup', function() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById('searchNumber');
@@ -69,6 +73,7 @@ document.getElementById('searchNumber').addEventListener('keyup', function() {
     }
 });
 
+// Réinitialisation des filtres de recherche.
 document.getElementById('resetButton').addEventListener('click', function() {
     // Réinitialisez les valeurs des champs de recherche
     document.getElementById('searchName').value = '';

@@ -1,3 +1,4 @@
+// Liste des pays ainsi que leurs traduction dans les six langues définies.
 const countries = [
     {
         name: {
@@ -2168,6 +2169,7 @@ const countries = [
     }
 ];
 
+// Traductions pour chaque langue des éléments de formulaire.
 let translations = {
     en: {
         civility: "Civility",
@@ -2249,29 +2251,30 @@ let translations = {
     }
 };
 
+// Sélection les éléments de formulaire.
 const selectElement = document.querySelector('#country');
 const dialCodeInput = document.querySelector('#phoneNumber');
 
-// Récupérez la langue du stockage local, ou utilisez 'fr' par défaut
+// Récupérez la langue du stockage local, ou utilisez 'fr' par défaut.
 let lang = localStorage.getItem('lang') || 'fr';
 
-// Pays à mettre en avant
+// Pays à mettre en avant.
 let highlightedCountries = ["France", "Royaume-Uni", "États-Unis", "Émirats Arabes Unis", "Russie", "Espagne", "Brésil"];
 
 function createOptions() {
-    // Supprimez toutes les options existantes
+    // Supprimez toutes les options existantes.
     selectElement.innerHTML = '';
 
-    // Filtrez les pays à mettre en avant
+    // Filtrez les pays à mettre en avant.
     let highlightedCountriesList = countries.filter(country => highlightedCountries.includes(country.name.fr));
 
-    // Filtrez les autres pays
+    // Filtrez les autres pays.
     let otherCountries = countries.filter(country => !highlightedCountries.includes(country.name.fr));
 
-    // Fusionnez les deux listes
+    // Fusionnez les deux listes.
     let finalList = [...highlightedCountriesList, ...otherCountries];
 
-    // Créez de nouvelles options avec le nom du pays dans la langue spécifiée
+    // Créez de nouvelles options avec le nom du pays dans la langue spécifiée.
     finalList.forEach(country => {
         const option = document.createElement('option');
         option.value = country.name[lang];
@@ -2281,23 +2284,23 @@ function createOptions() {
     });
 }
 
-createOptions(); // Créez des options au chargement de la page
+createOptions(); // Créez des options au chargement de la page.
 
 selectElement.addEventListener('change', function () {
     const selectedOption = this.options[this.selectedIndex];
     dialCodeInput.value = selectedOption.dataset.dialCode;
 });
 
-// Lorsqu'un drapeau est cliqué, mettez à jour la langue dans le stockage local
+// Lorsqu'un drapeau est cliqué, mettez à jour la langue dans le stockage local.
 let elements = document.querySelectorAll('[class^="flagList__"]');
 
 elements.forEach(element => {
     element.addEventListener('click', function () {
         lang = element.className.split('__')[1];
         localStorage.setItem('lang', lang);
-        translatePage(); // Traduisez la page chaque fois qu'un drapeau est cliqué
-        createOptions(); // Mettez à jour les options de sélection de pays
-        updateFlags(); // Mettez à jour les drapeaux affichés
+        translatePage(); // Traduisez la page chaque fois qu'un drapeau est cliqué.
+        createOptions(); // Mettez à jour les options de sélection de pays.
+        updateFlags(); // Mettez à jour les drapeaux affichés.
     });
 });
 
@@ -2311,7 +2314,7 @@ function translatePage() {
 }
 
 function updateFlags() {
-    // Pour chaque drapeau, s'il correspond à la langue actuelle, le masquer, sinon l'afficher
+    // Pour chaque drapeau, s'il correspond à la langue actuelle, le masquer, sinon l'afficher.
     elements.forEach(element => {
         if (element.className.split('__')[1] === lang) {
             element.style.display = 'none';
@@ -2321,6 +2324,6 @@ function updateFlags() {
     });
 }
 
-// Traduisez la page et mettez à jour les drapeaux affichés au chargement de la page
+// Traduisez la page et mettez à jour les drapeaux affichés au chargement de la page.
 translatePage();
 updateFlags();

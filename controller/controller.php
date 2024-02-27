@@ -10,12 +10,14 @@ function home()
     require('view/homeView.php');
 };
 
+// Dans la page de recherche.
 function search()
 {
     require('./model/connectionDBModel.php');
     require('view/searchView.php');
 }
 
+// Dans la page de connexion.
 function logIn()
 {
     require('./model/connectionDBModel.php');

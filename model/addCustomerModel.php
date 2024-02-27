@@ -1,9 +1,11 @@
 <?php
 
+// Utilisation de la bibliothèque Dompdf pour générer un PDF.
 use Dompdf\Dompdf;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 
+// Vérifiez si les champs requis sont remplis.
 if (
     !empty($_POST['title']) &&
     !empty($_POST['lastname']) &&
@@ -38,42 +40,42 @@ if (
         exit();
     }
 
-    // Obtenez l'année et le mois actuels
+    // Année et mois actuels.
     $yearMonth = date('Ym');
 
-    // Obtenez le plus grand customer_id qui commence par l'année et le mois actuels
+    // Obtenez le plus grand customer_id qui commence par l'année et le mois actuels.
     $stmt = $bdd->prepare("SELECT creation_id FROM customer WHERE creation_id LIKE ? ORDER BY creation_id DESC LIMIT 1");
     $stmt->execute([$yearMonth . '%']);
     $row = $stmt->fetch();
 
     if ($row) {
-        // Si un tel customer_id existe, prenez les trois derniers chiffres et ajoutez 1
+        // Si un tel customer_id existe, prenez les trois derniers chiffres et ajoutez 1.
         $nextId = substr($row['creation_id'], -3) + 1;
     } else {
-        // Sinon, c'est la première commande du mois, donc utilisez 1 comme ID
+        // Sinon, c'est la première commande du mois, donc utilisez 1 comme ID.
         $nextId = 1;
     }
 
-    // Générez la valeur pour la colonne customer_id
+    // Générez la valeur pour la colonne customer_id.
     $creationId = $yearMonth . str_pad($nextId, 3, '0', STR_PAD_LEFT);
 
-    // Vérifiez si le token est présent dans $_POST
+    // Vérifiez si le token est présent dans $_POST.
     $token = isset($_POST['token']) ? trim(htmlspecialchars($_POST['token'])) : NULL;
 
     if ($token) {
-        // Préparez une requête SQL pour vérifier si le token existe déjà
+        // Préparez une requête SQL pour vérifier si le token existe déjà.
         $stmt = $bdd->prepare('SELECT 1 FROM customer WHERE token = ?');
         $stmt->execute([$token]);
         $row = $stmt->fetch();
 
         if ($row) {
-            // Si le token existe déjà, redirigez vers la page d'accueil avec un message d'erreur
+            // Si le token existe déjà, redirigez vers la page d'accueil avec un message d'erreur.
             header('location: ../index.php?page=home&error=1&message=Vous êtes déjà enregistré.');
             exit();
         }
     }
 
-    // Préparez la requête SQL avec le nouveau champ token
+    // Préparez la requête SQL avec le nouveau champ token.
     $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, how_did_you, creation_id, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 
     // Exécutez la requête avec les données nettoyées et le token.
@@ -134,16 +136,16 @@ if (
         </div>
     ";
 
-        // Chargez le HTML dans Dompdf
+        // Chargez le HTML dans Dompdf.
         $dompdf->loadHtml($html);
 
-        // Rendez le PDF
+        // Rendez le PDF.
         $dompdf->render();
 
-        // Récupérez le contenu du PDF
+        // Récupérez le contenu du PDF.
         $output = $dompdf->output();
 
-        // Créez les dossiers s'ils n'existent pas déjà
+        // Créez les dossiers s'ils n'existent pas déjà.
         if (!is_dir("../assets/CustomersPDF/{$lastname}")) {
             mkdir("../assets/CustomersPDF/{$lastname}", 0777, true);
         }
