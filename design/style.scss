@@ -47,6 +47,16 @@ body {
     }
 }
 
+.redirect {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        background: lighten($goldenColor, 20%);
+        transition: all .2s ease-in-out;
+    }
+}
+
 .errorMessage {
     color    : red;
     font-size: 1.2em;

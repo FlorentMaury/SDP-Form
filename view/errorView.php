@@ -11,6 +11,7 @@ ob_start();
 
     <h1>Cette page n'existe pas !</h1>
     <p>Vous allez être redirigé vers la page d'accueil.</p>
+    <p>Si vous n'êtes pas redirigé, <a class="redirect" href="index.html?page=home">cliquez ici</a>.</p>
 
 </div>
 
