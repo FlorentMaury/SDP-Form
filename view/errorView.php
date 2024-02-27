@@ -11,13 +11,13 @@ ob_start();
 <div class="form" >
     <h1>Cette page n'existe pas !</h1>
     <p>Vous allez être redirigé vers la page de connexion.</p>
-    <p>Si vous n'êtes pas redirigé, <a class="redirect" href="index.html?page=home">cliquez ici</a>.</p>
+    <p>Si vous n'êtes pas redirigé, <a class="redirect" href="index.php?page=home">cliquez ici</a>.</p>
 </div>
 
 <!-- Script de redirection programmée sous 5 secondes. -->
 <script>
 setTimeout(function(){
-   window.location.href = 'index.html?page=home';
+   window.location.href = 'index.php?page=home';
 }, 5000);
 </script>
 
