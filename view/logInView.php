@@ -17,7 +17,11 @@ ob_start();
     if (isset($_GET['success']) && !empty($_GET['message'])) {
         echo '<p class="successMessage">' . htmlspecialchars($_GET['message']) . '</p>';
     }
+
+    // Ajouter le jeton CSRF au formulaire en tant que champ caché
+    echo '<input type="hidden" name="csrf_token" value="' . $_SESSION['csrf_token'] . '">';
     ?>
+    
     <label for="email">Email</label>
     <input type="email" name="email" id="email">
 

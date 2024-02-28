@@ -1,11 +1,18 @@
-// Récupération des différents filtres de recherche et ajustement de leurs afffichages.
+window.onload = function() {
+    adjustSearchFields(document.getElementById('searchType').value);
+};
+
 document.getElementById('searchType').addEventListener('change', function() {
-    var isDateSearch = this.value === 'date';
+    adjustSearchFields(this.value);
+});
+
+function adjustSearchFields(searchType) {
+    var isDateSearch = searchType === 'date';
     document.getElementById('searchStartDate').style.display = isDateSearch ? 'block' : 'none';
     document.getElementById('searchEndDate').style.display = isDateSearch ? 'block' : 'none';
-    document.getElementById('searchName').style.display = this.value === 'name' ? 'block' : 'none';
-    document.getElementById('searchNumber').style.display = this.value === 'number' ? 'block' : 'none';
-});
+    document.getElementById('searchName').style.display = searchType === 'name' ? 'block' : 'none';
+    document.getElementById('searchNumber').style.display = searchType === 'number' ? 'block' : 'none';
+}
 
 // Recherche par nom.
 document.getElementById('searchName').addEventListener('keyup', function() {

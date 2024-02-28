@@ -74,7 +74,9 @@
         <?= $content ?>
     </main>
 
-    <!-- DIfférents scripts sont chargés en fonction de la page demandée. -->
+    <!-- DIfférents scripts sont chargés en fonction de la page demandée.
+
+ -->
     <?php
     if ($page == 'home') {
     ?>
