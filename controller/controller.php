@@ -30,4 +30,8 @@ function logOut()
     require('model/logOutModel.php');
 };
 
-?>
+// Dans la fonction de mot de passe oublié.
+function forgotPassword()
+{
+    require('view/forgotPasswordView.php');
+};

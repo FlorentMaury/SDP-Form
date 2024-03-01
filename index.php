@@ -18,7 +18,7 @@ require('./model/connectionDBModel.php');
 require('./controller/controller.php');
 
 // Pages valides.
-$validPages = ['home', 'search', 'logIn', 'logOut'];
+$validPages = ['home', 'search', 'logIn', 'logOut', 'forgotPassword'];
 
 // Si $_GET['page'] n'est pas défini, définir une valeur par défaut 'logIn'
 if (!isset($_GET['page'])) {
@@ -60,6 +60,10 @@ try {
             } else {
                 home();
             }
+        }
+        // Page de mot de passe oublié.
+        else if ($_GET['page'] == 'forgotPassword') {
+            forgotPassword();
         } else {
             // Retour accueil.
             logIn();

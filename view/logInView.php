@@ -17,9 +17,6 @@ ob_start();
     if (isset($_GET['success']) && !empty($_GET['message'])) {
         echo '<p class="successMessage">' . htmlspecialchars($_GET['message']) . '</p>';
     }
-
-    // Ajouter le jeton CSRF au formulaire en tant que champ caché
-    echo '<input type="hidden" name="csrf_token" value="' . $_SESSION['csrf_token'] . '">';
     ?>
     
     <label for="email">Email</label>
@@ -28,6 +25,8 @@ ob_start();
     <label for="password">Mot de passe</label>
     <input type="password" name="password" id="password">
     <button class="form__submit submit" type="submit" value="Envoyer">Envoyer</button>
+    <!-- Lien vers la page de réinitialisation du mot de passe -->
+    <a href="./view/forgotPasswordView.php">Mot de passe oublié?</a>
 </form>
 
 <?php
