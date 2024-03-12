@@ -7,7 +7,7 @@ ob_start();
 
 ?>
 
-<form method="POST" action="./model/resetPasswordModel.php">
+<form class="form" method="POST" action="./model/resetPasswordModel.php">
     <input type="hidden" name="token" value="<?php echo $_GET['token']; ?>">
     <label for="password">Nouveau mot de passe</label>
     <input type="password" id="password" name="password" required>

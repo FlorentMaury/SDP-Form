@@ -1,12 +1,12 @@
 <?php
 // En-têtes de sécurité HTTP
-header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
-header("Content-Security-Policy: default-src 'self'");
-header('X-Frame-Options: SAMEORIGIN');
-header('X-Content-Type-Options: nosniff');
-header('Referrer-Policy: no-referrer');
-header('Permissions-Policy: none');
-header("Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self';");
+// header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+// header("Content-Security-Policy: default-src 'self'");
+// header('X-Frame-Options: SAMEORIGIN');
+// header('X-Content-Type-Options: nosniff');
+// header('Referrer-Policy: no-referrer');
+// header('Permissions-Policy: none');
+// header("Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self';");
 
 // Initialisation de la session.
 session_start();
@@ -18,7 +18,7 @@ require('./model/connectionDBModel.php');
 require('./controller/controller.php');
 
 // Pages valides.
-$validPages = ['home', 'search', 'logIn', 'logOut', 'forgotPassword'];
+$validPages = ['home', 'search', 'logIn', 'logOut', 'forgotPassword', 'add'];
 
 // Si $_GET['page'] n'est pas défini, définir une valeur par défaut 'logIn'
 if (!isset($_GET['page'])) {
@@ -28,7 +28,7 @@ if (!isset($_GET['page'])) {
 // Direction de l'utilisateur en fonction de la requête.
 try {
     if (isset($_GET['page']) && in_array($_GET['page'], $validPages)) {
-        if (isset($_SESSION['can_access_db'])) {
+        if (isset($_SESSION['id'])) {
             // Page d'accueil.
             if ($_GET['page'] == 'home') {
                 home();
@@ -40,6 +40,10 @@ try {
             // Page de connexion.
             else if ($_GET['page'] == 'logIn') {
                 logIn();
+            }
+            // Page d'ajout'.
+            else if ($_GET['page'] == 'add') {
+                add();
             }
             // Deconnexion.
             else if ($_GET['page'] == 'logOut') {

@@ -24,6 +24,14 @@ function logIn()
     require('view/logInView.php');
 }
 
+// Ajout d'un utilisateur.
+function add()
+{
+    require('./model/connectionDBModel.php');
+    require('./model/addNewUserModel.php');
+    require('view/addNewUserView.php');
+}
+
 // Dans la fonction de déconnexion.
 function logOut()
 {
