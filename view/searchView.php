@@ -38,6 +38,10 @@ ob_start();
         echo '<th>Téléphone</th>';
         echo '<th>Date</th>';
         echo '<th>N° de créa</th>';
+        // Si l'utilisateur est un administrateur.
+        if ($_SESSION['id'] <= 3) {
+            echo '<th>Modifier</th>';
+        }
         echo '<th>Fiche</th>';
         echo '</tr>';
 
@@ -52,7 +56,11 @@ ob_start();
             echo '<td data-column="Téléphone">' . $row['phone_number'] . '</td>';
             echo '<td class="date" data-column="Date">' . $row['date'] . '</td>';
             echo '<td class="creationId" data-column="NumeroCrea">' . $row['creation_id'] . '</td>';
-            echo "<td class='download' data-column='Fiche'><a target='_blank' href='http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$row['lastname']}/{$row['creation_id']}/{$row['lastname']}_{$row['creation_id']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";
+            // Si l'utilisateur est un administrateur.
+            if ($_SESSION['id'] <= 3) {
+                echo "<td class='edit' data-column='Modifier'><a href='index.php?page=edit&id={$row['id']}'><img src='./assets/edit.svg' alt='Modifier'></a></td>";
+            }
+            echo "<td class='download' data-column='Fiche'><a target='_blank' href='http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$row['creation_id']}/{$row['creation_id']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";
             echo '</tr>';
         }
 

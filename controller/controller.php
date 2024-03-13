@@ -32,6 +32,14 @@ function add()
     require('view/addNewUserView.php');
 }
 
+// Modification fiche client.
+function edit()
+{
+    require('./model/connectionDBModel.php');
+    require('./model/editCustomerModel.php');
+    require('view/editCustomerView.php');
+}
+
 // Dans la fonction de déconnexion.
 function logOut()
 {

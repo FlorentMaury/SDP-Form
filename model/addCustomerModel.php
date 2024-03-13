@@ -92,7 +92,7 @@ if (
         $date = date('Y-m-d');
 
         // Générez le lien vers le fichier PDF.
-        $pdfLink = "http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$lastname}/{$creationId}/{$lastname}_{$creationId}.pdf";
+        $pdfLink = "http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$creationId}/{$creationId}.pdf";
 
         // Créez une nouvelle instance de QrCode.
         $qrCode = new QrCode($pdfLink);
@@ -146,16 +146,13 @@ if (
         $output = $dompdf->output();
 
         // Créez les dossiers s'ils n'existent pas déjà.
-        if (!is_dir("../assets/CustomersPDF/{$lastname}")) {
-            mkdir("../assets/CustomersPDF/{$lastname}", 0777, true);
-        }
-        if (!is_dir("../assets/CustomersPDF/{$lastname}/{$creationId}")) {
-            mkdir("../assets/CustomersPDF/{$lastname}/{$creationId}", 0777, true);
+        if (!is_dir("../assets/CustomersPDF/{$creationId}")) {
+            mkdir("../assets/CustomersPDF/{$creationId}", 0777, true);
         }
 
         // Écrivez le contenu dans un fichier
-        file_put_contents("../assets/CustomersPDF/{$lastname}/{$creationId}/{$lastname}_{$creationId}.pdf", $output);
-
+        file_put_contents("../assets/CustomersPDF/{$creationId}/{$creationId}.pdf", $output);
+        
         header('location: ../index.php?page=home&success=1&message=Merci.');
         exit();
     } else {
