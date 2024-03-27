@@ -31,6 +31,8 @@ if (isset($_GET['id'])) {
 
     <form method="post" action="./model/editCustomerModel.php">
 
+        <button type="button" onclick="confirmDelete()">Supprimer la fiche client</button>
+
         <?php
         if (isset($_GET['error']) && !empty($_GET['message'])) {
             echo '<p class="errorMessage">' . htmlspecialchars($_GET['message']) . '</p>';
@@ -93,6 +95,14 @@ if (isset($_GET['id'])) {
         </script>
     </div>
 </div>
+
+<script>
+    function confirmDelete() {
+        if (confirm("Êtes-vous sûr de vouloir supprimer cette fiche client ? Cette action est irréversible.")) {
+            window.location.href = "./model/deleteCustomerModel.php?id=<?= $id ?>";
+        }
+    }
+</script>
 
 <?php
 
