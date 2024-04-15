@@ -66,7 +66,7 @@ if (!empty($_POST['name']) && !empty($_POST['surname']) && !empty($_POST['email'
 
     // Redirection.
     if ($result) {
-        header('location: ../index.php?page=add&success=1&message=Utilisateur enregistré avec succès.');
+        header('location: ../index.php?page=userList&success=1&message=Utilisateur enregistré avec succès.');
         exit();
     } else {
         header('location: ../index.php?page=add&error=1&message=Impossible d\'enregistrer ce collaborateur.');

@@ -40,6 +40,13 @@ function edit()
     require('view/editCustomerView.php');
 }
 
+// Liste des utilisateurs.
+function userList()
+{
+    require('./model/connectionDBModel.php');
+    require('view/userListView.php');
+}
+
 // Dans la fonction de déconnexion.
 function logOut()
 {

@@ -56,6 +56,12 @@
                         <img src="./assets/add.svg" alt="Ajouter">
                     </a>
                 </li>
+                <li class="navUl__li">
+                    <a href="index.php?page=userList">
+                        Voir la liste des utilisateurs
+                        <img src="./assets/list.svg" alt="Liste des utilisateurs">
+                    </a>
+                </li>
             <?php } ?>
 
             <!-- Lien de déconnexion pour toutes les pages. -->
