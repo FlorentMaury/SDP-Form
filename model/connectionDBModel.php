@@ -15,13 +15,13 @@ $users = $bdd->query('
     ');
 
 $customer = $bdd->query('
-        SELECT *
-        FROM customer 
-        ORDER BY lastname
-        ');
+    SELECT *
+    FROM customer 
+    ORDER BY lastname
+    ');
 
 $user = $bdd->query('
-        SELECT *
-        FROM user 
-        ORDER BY surname
-        ');
+    SELECT *
+    FROM user 
+    ORDER BY surname
+    ');
