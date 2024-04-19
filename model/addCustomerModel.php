@@ -112,31 +112,51 @@ if (
         // Générez le HTML pour le PDF.
         $html = "
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
     
-            .summary {
-                font-family: 'Roboto', sans-serif;
-                text-align: center;
-            }
-        </style>
+        .header {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            height: 30vh; 
+            overflow: hidden; 
+        }
     
-        <div class='summary'>
-            <h1>Création N°$creationId</h1>
+        .header img {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            height: 50px;
+        }
     
-            <p>Date : $date</p>
-            <p>Civilité : $title</p>
-            <p>Nom : $lastname</p>
-            <p>Prénom : $firstname</p>
-            <p>Adresse : $address</p>
-            <p>Ville : $city</p>
-            <p>Pays : $country</p>
-            <p>Email : $email</p>
-            <p>Numéro de téléphone : $phoneNumber</p>
-            <p>Hôte : $host</p>
-            <p>Atelier : $workshop</p>
-            <p>Comment avez-vous entendu parler de nous ? : $howDidYou</p>
-            <img src='data:image/png;base64,$qrCodeImage' />
-        </div>
+        .summary {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+        }
+    </style>
+    
+    <div class='header'>
+        <img src='../assets/logo.webp' alt='Logo'>
+        <h1>Création N°$creationId</h1>
+    </div>
+    
+    <div class='summary'>
+        <p>Date : $date</p>
+        <p>Civilité : $title</p>
+        <p>Nom : $lastname</p>
+        <p>Prénom : $firstname</p>
+        <p>Adresse : $address</p>
+        <p>Ville : $city</p>
+        <p>Pays : $country</p>
+        <p>Email : $email</p>
+        <p>Numéro de téléphone : $phoneNumber</p>
+        <p>Hôte : $host</p>
+        <p>Atelier : $workshop</p>
+        <p>Comment avez-vous entendu parler de nous ? : $howDidYou</p>
+        <img src='data:image/png;base64,$qrCodeImage' />
+    </div>
     ";
 
         // Chargez le HTML dans Dompdf.
@@ -159,7 +179,7 @@ if (
 
         // Écrivez le contenu dans un fichier
         file_put_contents("../assets/CustomersPDF/{$creationId}/{$creationId}.pdf", $output);
-        
+
         header('location: ../index.php?page=home&success=1&message=Merci.');
         exit();
     } else {

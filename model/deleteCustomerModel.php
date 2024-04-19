@@ -16,6 +16,6 @@
     }
 
     // Redirigez l'utilisateur vers la page d'accueil avec un message de succès
-    header('location: ../index.php?page=home&success=1&message=Fiche client supprimée avec succès.');
+    header('location: ../index.php?page=search&success=1&message=Fiche client supprimée avec succès.');
     exit();
 ?>
