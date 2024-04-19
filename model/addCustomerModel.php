@@ -16,6 +16,7 @@ if (
     !empty($_POST['email']) &&
     !empty($_POST['phoneNumber']) &&
     !empty($_POST['facilitator']) &&
+    !empty($_POST['workshop']) &&
     !empty($_POST['howDidYou'])
 ) {
 
@@ -32,6 +33,7 @@ if (
     $email       = trim(htmlspecialchars($_POST['email']));
     $phoneNumber = trim(htmlspecialchars($_POST['phoneNumber']));
     $host        = trim(htmlspecialchars($_POST['facilitator']));
+    $workshop    = trim(htmlspecialchars($_POST['workshop']));
     $howDidYou   = trim(htmlspecialchars($_POST['howDidYou']));
 
     // L'adresse email est-elle correcte ?
@@ -76,10 +78,10 @@ if (
     }
 
     // Préparez la requête SQL avec le nouveau champ token.
-    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, how_did_you, creation_id, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, how_did_you, creation_id, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 
     // Exécutez la requête avec les données nettoyées et le token.
-    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $howDidYou, $creationId, $token]);
+    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $workshop, $howDidYou, $creationId, $token]);
 
     if ($result) {
 
@@ -92,7 +94,7 @@ if (
         $date = date('Y-m-d');
 
         // Générez le lien vers le fichier PDF.
-        $pdfLink = "http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$creationId}/{$creationId}.pdf";
+        $pdfLink = "http://sdp-paris.com/SDP-Form/assets/CustomersPDF/{$creationId}/{$creationId}.pdf";
 
         // Créez une nouvelle instance de QrCode.
         $qrCode = new QrCode($pdfLink);
@@ -131,6 +133,7 @@ if (
             <p>Email : $email</p>
             <p>Numéro de téléphone : $phoneNumber</p>
             <p>Hôte : $host</p>
+            <p>Atelier : $workshop</p>
             <p>Comment avez-vous entendu parler de nous ? : $howDidYou</p>
             <img src='data:image/png;base64,$qrCodeImage' />
         </div>
@@ -144,6 +147,10 @@ if (
 
         // Récupérez le contenu du PDF.
         $output = $dompdf->output();
+
+        if (!is_writable("../assets/CustomersPDF/")) {
+            die('Le dossier n\'est pas accessible en écriture');
+        }
 
         // Créez les dossiers s'ils n'existent pas déjà.
         if (!is_dir("../assets/CustomersPDF/{$creationId}")) {

@@ -60,7 +60,7 @@ ob_start();
             if ($_SESSION['id'] <= 3) {
                 echo "<td class='edit' data-column='Modifier'><a href='index.php?page=edit&id={$row['id']}'><img src='./assets/edit.svg' alt='Modifier'></a></td>";
             }
-            echo "<td class='download' data-column='Fiche'><a target='_blank' href='http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$row['creation_id']}/{$row['creation_id']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";
+            echo "<td class='download' data-column='Fiche'><a target='_blank' href='http://sdp-paris.com/SDP-Form/assets/CustomersPDF/{$row['creation_id']}/{$row['creation_id']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";
             echo '</tr>';
         }
 

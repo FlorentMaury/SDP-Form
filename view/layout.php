@@ -62,6 +62,12 @@
                         <img src="./assets/list.svg" alt="Liste des utilisateurs">
                     </a>
                 </li>
+                <li class="navUl__li">
+                    <a href="index.php?page=formParams">
+                        Paramétres du formulaire
+                        <img src="./assets/edit.svg" alt="Paramètres">
+                    </a>
+                </li>
             <?php } ?>
 
             <!-- Lien de déconnexion pour toutes les pages. -->

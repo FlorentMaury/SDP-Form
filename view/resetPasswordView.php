@@ -1,18 +1,24 @@
 <?php
 
 // Modification du titre de la page.
-$title = 'Mot de passe oublié | Studio des Parfums';
+$title = 'Modification du mot de passe | Studio des Parfums';
 // Début d'enregistrement du HTML.
 ob_start();
 
 ?>
 
-<form class="form" method="POST" action="./model/resetPasswordModel.php">
-    <input type="hidden" name="token" value="<?php echo $_GET['token']; ?>">
-    <label for="password">Nouveau mot de passe</label>
-    <input type="password" id="password" name="password" required>
-    <button type="submit">Changer le mot de passe</button>
-</form>
+<!-- Contenu de la page. -->
+<div class="form" >
+    <h1>Modification du mot de passe.</h1>
+
+    <form action="">
+        <label for="password">Nouveau mot de passe :</label>
+        <input type="password" name="password" id="password" required>
+        <label for="password">Confirmer le mot de passe :</label>
+        <input type="password" name="password" id="password" required>
+        <input type="submit" value="Modifier le mot de passe">
+    </form>
+</div>
 
 <?php
 

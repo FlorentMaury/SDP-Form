@@ -1,11 +1,11 @@
 <?php
 // En-têtes de sécurité HTTP
-header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self';");
-header('X-Frame-Options: SAMEORIGIN');
-header('X-Content-Type-Options: nosniff');
-header('Referrer-Policy: no-referrer');
-header('Permissions-Policy: none');
+// header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+// header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self';");
+// header('X-Frame-Options: SAMEORIGIN');
+// header('X-Content-Type-Options: nosniff');
+// header('Referrer-Policy: no-referrer');
+// header('Permissions-Policy: none');
 
 // Initialisation de la session.
 session_start();
@@ -17,7 +17,7 @@ require('./model/connectionDBModel.php');
 require('./controller/controller.php');
 
 // Pages valides.
-$validPages = ['home', 'search', 'logIn', 'logOut', 'forgotPassword', 'add', 'userList', 'edit'];
+$validPages = ['home', 'search', 'logIn', 'logOut', 'forgotPassword', 'add', 'resetPassword', 'userList', 'edit', 'formParams'];
 
 // Si $_GET['page'] n'est pas défini, définir une valeur par défaut 'logIn'
 if (!isset($_GET['page'])) {
@@ -40,6 +40,10 @@ try {
             else if ($_GET['page'] == 'logIn') {
                 logIn();
             }
+            // Page de paramètres du formulaire.
+            else if ($_GET['page'] == 'formParams') {
+                formParams();
+            }
             // Page d'ajout.
             else if ($_GET['page'] == 'add') {
                 add();
@@ -51,6 +55,10 @@ try {
             // Page de modification.
             else if ($_GET['page'] == 'edit') {
                 edit();
+            }
+            // Page de modification du mot de passe.
+            else if ($_GET['page'] == 'resetPassword') {
+                resetPassword();
             }
             // Deconnexion.
             else if ($_GET['page'] == 'logOut') {
@@ -71,10 +79,6 @@ try {
             } else {
                 home();
             }
-        }
-        // Page de mot de passe oublié.
-        else if ($_GET['page'] == 'forgotPassword') {
-            forgotPassword();
         } else {
             // Retour accueil.
             logIn();

@@ -6,32 +6,33 @@ use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérez l'ID du profil consulté à partir du formulaire
+    // Récupérez l'ID du profil consulté à partir du formulaire.
     $id = htmlspecialchars(trim($_POST['profile_id']));
     $creationId = htmlspecialchars(trim($_POST['creationId']));
 
-    // Récupérez la nouvelle valeur de chaque champ du formulaire
-    $date = htmlspecialchars(trim($_POST['date']));
-    $title = htmlspecialchars(trim($_POST['title']));
-    $lastname = htmlspecialchars(trim($_POST['lastname']));
-    $firstname = htmlspecialchars(trim($_POST['firstname']));
-    $address = htmlspecialchars(trim($_POST['address']));
-    $city = htmlspecialchars(trim($_POST['city']));
-    $country = htmlspecialchars(trim($_POST['country']));
-    $email = htmlspecialchars(trim($_POST['email']));
+    // Récupérez la nouvelle valeur de chaque champ du formulaire.
+    $date         = htmlspecialchars(trim($_POST['date']));
+    $title        = htmlspecialchars(trim($_POST['title']));
+    $lastname     = htmlspecialchars(trim($_POST['lastname']));
+    $firstname    = htmlspecialchars(trim($_POST['firstname']));
+    $address      = htmlspecialchars(trim($_POST['address']));
+    $city         = htmlspecialchars(trim($_POST['city']));
+    $country      = htmlspecialchars(trim($_POST['country']));
+    $email        = htmlspecialchars(trim($_POST['email']));
     $phone_number = htmlspecialchars(trim($_POST['phoneNumber']));
-    $host = htmlspecialchars(trim($_POST['host']));
-    $how_did_you = htmlspecialchars(trim($_POST['howDidYou']));
+    $host         = htmlspecialchars(trim($_POST['host']));
+    $workshop     = htmlspecialchars(trim($_POST['workshop']));
+    $how_did_you  = htmlspecialchars(trim($_POST['howDidYou']));
 
     require('../model/connectionDBModel.php');
 
-    // Mettez à jour la base de données
+    // Mettez à jour la base de données.
     $req = $bdd->prepare('
         UPDATE customer
-        SET date = ?, title = ?, lastname = ?, firstname = ?, address = ?, city = ?, country = ?, email = ?, phone_number = ?, host = ?, how_did_you = ?
+        SET date = ?, title = ?, lastname = ?, firstname = ?, address = ?, city = ?, country = ?, email = ?, phone_number = ?, workshop = ?, host = ?, how_did_you = ?
         WHERE id = ?
     ');
-    $result = $req->execute([$date, $title, $lastname, $firstname, $address, $city, $country, $email, $phone_number, $host, $how_did_you, $id]);
+    $result = $req->execute([$date, $title, $lastname, $firstname, $address, $city, $country, $email, $phone_number, $workshop, $host, $how_did_you, $id]);
 
     // Redirection.
     if ($result) {
@@ -44,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $date = date('Y-m-d');
 
         // Générez le lien vers le fichier PDF.
-        $pdfLink = "http://formulairesdp.florent-maury.fr/assets/CustomersPDF/{$creationId}/{$creationId}.pdf";
+        $pdfLink = "http://sdp-paris.com/SDP-Form/assets/CustomersPDF/{$creationId}/{$creationId}.pdf";
 
         // Créez une nouvelle instance de QrCode.
         $qrCode = new QrCode($pdfLink);
@@ -82,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p>Pays : $country</p>
             <p>Email : $email</p>
             <p>Numéro de téléphone : $phoneNumber</p>
+            <p>Atelier : $workshop</p>
             <p>Hôte : $host</p>
             <p>Comment avez-vous entendu parler de nous ? : $howDidYou</p>
             <img src='data:image/png;base64,$qrCodeImage' />

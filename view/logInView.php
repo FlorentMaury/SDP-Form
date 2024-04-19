@@ -26,7 +26,7 @@ ob_start();
     <input type="password" name="password" id="password">
     <button class="form__submit submit" type="submit" value="Envoyer">Envoyer</button>
     <!-- Lien vers la page de réinitialisation du mot de passe -->
-    <a href="./forgotPasswordView.php">Mot de passe oublié?</a>
+    <p>Mot de passe oublié ? Veuillez contacter votre responsable.</p>
 </form>
 
 <?php

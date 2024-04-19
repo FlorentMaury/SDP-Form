@@ -15,14 +15,21 @@ function search()
 {
     require('./model/connectionDBModel.php');
     require('view/searchView.php');
-}
+};
 
 // Dans la page de connexion.
 function logIn()
 {
     require('./model/connectionDBModel.php');
     require('view/logInView.php');
-}
+};
+
+// Dans la page de paramètres du formulaire.
+function formParams()
+{
+    require('./model/connectionDBModel.php');
+    require('view/formParamsView.php');
+};
 
 // Ajout d'un utilisateur.
 function add()
@@ -30,7 +37,7 @@ function add()
     require('./model/connectionDBModel.php');
     require('./model/addNewUserModel.php');
     require('view/addNewUserView.php');
-}
+};
 
 // Modification fiche client.
 function edit()
@@ -38,23 +45,23 @@ function edit()
     require('./model/connectionDBModel.php');
     require('./model/editCustomerModel.php');
     require('view/editCustomerView.php');
-}
+};
 
 // Liste des utilisateurs.
 function userList()
 {
     require('./model/connectionDBModel.php');
     require('view/userListView.php');
-}
+};
+
+// Dans la fonction de mot de passe oublié.
+function resetPassword()
+{
+    require('view/resetPasswordView.php');
+};
 
 // Dans la fonction de déconnexion.
 function logOut()
 {
     require('model/logOutModel.php');
-};
-
-// Dans la fonction de mot de passe oublié.
-function forgotPassword()
-{
-    require('view/forgotPasswordView.php');
 };

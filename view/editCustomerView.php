@@ -75,6 +75,9 @@ if (isset($_GET['id'])) {
         <label for="host">Hôte :</label>
         <input type="text" id="host" name="host" value="<?= $data['host'] ?>">
 
+        <label for="workshop">Atelier :</label>
+        <input type="text" id="workshop" name="workshop" value="<?= $data['workshop'] ?>">
+
         <label for="howDidYou">Comment avez-vous entendus parler de nous :</label>
         <input type="text" id="howDidYou" name="howDidYou" value="<?= $data['how_did_you'] ?>">
 

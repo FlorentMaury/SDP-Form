@@ -5,6 +5,8 @@ $title = 'Accueil | Studio des Parfums';
 // Début d'enregistrement du HTML.
 ob_start();
 
+$config = require './model/config.php';
+
 ?>
 
 <!-- Contenu de la page. -->
@@ -73,21 +75,25 @@ ob_start();
     <!-- Hôte. -->
     <label for="facilitator" class="host">Hôte</label>
     <select name="facilitator" id="facilitator">
-        <option value="Karim">Karim</option>
-        <option value="Lea">Léa</option>
-        <option value="Manon">Manon</option>
-        <option value="Patrice">Patrice</option>
-        <option value="Selma">Selma</option>
+        <?php foreach ($config['hosts'] as $host) : ?>
+            <option value="<?= htmlspecialchars($host) ?>"><?= htmlspecialchars($host) ?></option>
+        <?php endforeach; ?>
+    </select>
+
+    <!-- Atelier. -->
+    <label for="workshop" class="workshop">Atelier</label>
+    <select name="workshop" id="workshop">
+        <?php foreach ($config['workshops'] as $workshop) : ?>
+            <option value="<?= htmlspecialchars($workshop) ?>"><?= htmlspecialchars($workshop) ?></option>
+        <?php endforeach; ?>
     </select>
 
     <!-- Comment nous avez vous découverts ? -->
     <label for="howDidYou" class="discovery">Comment nous avez vous découverts ?</label>
     <select name="howDidYou" id="howDidYou">
-        <option value="Bon cadeau">Bon cadeau / Gift card</option>
-        <option value="Wecandoo">Wecandoo</option>
-        <option value="Google">Google</option>
-        <option value="TripAdvisor">Tripadvisor</option>
-        <option value="Autre">Autre / Other</option>
+        <?php foreach ($config['discovery_methods'] as $method) : ?>
+            <option value="<?= htmlspecialchars($method) ?>"><?= htmlspecialchars($method) ?></option>
+        <?php endforeach; ?>
     </select>
 
     <!-- Champ caché si provenance d'un email. -->
