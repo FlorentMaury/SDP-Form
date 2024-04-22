@@ -64,7 +64,7 @@
                 </li>
                 <li class="navUl__li">
                     <a href="index.php?page=formParams">
-                        Paramétres du formulaire
+                        Paramètres du formulaire
                         <img src="./assets/edit.svg" alt="Paramètres">
                     </a>
                 </li>

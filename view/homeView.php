@@ -88,6 +88,12 @@ $config = require './model/config.php';
         <?php endforeach; ?>
     </select>
 
+    <!-- Options supplémentaires. -->
+    <?php foreach ($config['extras'] as $extra) : ?>
+        <label for="<?= htmlspecialchars($extra) ?>"><?= htmlspecialchars($extra) ?></label>
+        <input class="small-checkbox" type="checkbox" id="<?= htmlspecialchars($extra) ?>" name="extras[]" value="<?= htmlspecialchars($extra) ?>">
+    <?php endforeach; ?>
+
     <!-- Comment nous avez vous découverts ? -->
     <label for="howDidYou" class="discovery">Comment nous avez vous découverts ?</label>
     <select name="howDidYou" id="howDidYou">

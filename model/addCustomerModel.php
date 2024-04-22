@@ -25,7 +25,6 @@ if (
 
     $title       = trim(htmlspecialchars($_POST['title']));
     $lastname    = trim(htmlspecialchars($_POST['lastname']));
-    $title       = trim(htmlspecialchars($_POST['title']));
     $firstname   = trim(htmlspecialchars($_POST['firstname']));
     $address     = trim(htmlspecialchars($_POST['address']));
     $city        = trim(htmlspecialchars($_POST['city']));
@@ -35,6 +34,9 @@ if (
     $host        = trim(htmlspecialchars($_POST['facilitator']));
     $workshop    = trim(htmlspecialchars($_POST['workshop']));
     $howDidYou   = trim(htmlspecialchars($_POST['howDidYou']));
+    $extras = !empty($_POST['extras']) ? implode(", ", array_map(function($value) {
+        return trim(htmlspecialchars($value));
+    }, $_POST['extras'])) : 'N/A';
 
     // L'adresse email est-elle correcte ?
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -77,11 +79,11 @@ if (
         }
     }
 
-    // Préparez la requête SQL avec le nouveau champ token.
-    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, how_did_you, creation_id, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    // Préparez la requête SQL avec le nouveau champ extras.
+    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, extras, how_did_you, creation_id, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 
-    // Exécutez la requête avec les données nettoyées et le token.
-    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $workshop, $howDidYou, $creationId, $token]);
+    // Exécutez la requête avec les données nettoyées, le token et les extras.
+    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $workshop, $extras, $howDidYou, $creationId, $token]);
 
     if ($result) {
 
@@ -100,7 +102,7 @@ if (
         $qrCode = new QrCode($pdfLink);
 
         // Définissez les paramètres du QR code si nécessaire.
-        $qrCode->setSize(300); // Taille en pixels.
+        $qrCode->setSize(100); // Taille en pixels.
 
         // Générez le QR code en tant qu'image PNG.
         $writer = new PngWriter();
@@ -113,51 +115,70 @@ if (
         $html = "
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-    
+        
+        .file {
+            width: 100%;
+            overflow: hidden;
+        }
+        
         .header {
             font-family: 'Roboto', sans-serif;
             background-color: #f8f9fa;
-            padding: 20px;
+            padding: 10px;
             text-align: center;
             position: relative;
-            height: 30vh; 
             overflow: hidden; 
         }
-    
+        
         .header img {
             position: absolute;
             left: 20px;
             top: 20px;
-            height: 50px;
         }
-    
+        
         .summary {
             font-family: 'Roboto', sans-serif;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Alignement vertical */
+            flex-wrap: nowrap;
         }
-    </style>
-    
-    <div class='header'>
-        <img src='../assets/logo.webp' alt='Logo'>
-        <h1>Création N°$creationId</h1>
-    </div>
-    
-    <div class='summary'>
-        <p>Date : $date</p>
-        <p>Civilité : $title</p>
-        <p>Nom : $lastname</p>
-        <p>Prénom : $firstname</p>
-        <p>Adresse : $address</p>
-        <p>Ville : $city</p>
-        <p>Pays : $country</p>
-        <p>Email : $email</p>
-        <p>Numéro de téléphone : $phoneNumber</p>
-        <p>Hôte : $host</p>
-        <p>Atelier : $workshop</p>
-        <p>Comment avez-vous entendu parler de nous ? : $howDidYou</p>
-        <img src='data:image/png;base64,$qrCodeImage' />
-    </div>
-    ";
+        
+        .summary > div {
+            width: 50%; /* Augmentez la largeur à 50% pour laisser plus d'espace pour le QR code */
+            padding: 10px; /* Ajout de marges intérieures */
+            box-sizing: border-box; /* Assurez-vous que les marges intérieures ne dépassent pas la largeur spécifiée */
+        }
+        
+        .summary img {
+            max-width: 100%; /* Pour s'assurer que le QR code ne dépasse pas la largeur du conteneur */
+            height: auto;
+        }
+        </style>
+        
+            
+        <div class='file'>
+            <div class='header'>
+                <img src='../assets/logo.webp' alt='Logo'>
+                <h1>Création N°$creationId</h1>
+            </div>
+            
+            <div class='summary'>
+                <div>
+                    <p>Date : $date Civilité : $title Nom : $lastname Prénom : $firstname</p>
+                    <p>Adresse : $address Ville : $city Pays : $country</p>
+                    <p>Email : $email Numéro de téléphone : $phoneNumber</p>
+                    <p>Hôte : $host Atelier : $workshop</p>
+                    <p>Comment avez-vous entendu parler de nous ? : $howDidYou</p>
+                    <p>Options : " . (!empty($extras) ? $extras : "Aucune") . "</p>
+                </div>
+                <div>
+                    <img src='data:image/png;base64,$qrCodeImage' />
+                </div>
+            </div>
+        </div>
+        ";
+        
 
         // Chargez le HTML dans Dompdf.
         $dompdf->loadHtml($html);

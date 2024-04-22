@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $config['hosts'] = explode(',', $_POST['hosts']);
     $config['workshops'] = explode(',', $_POST['workshops']);
     $config['discovery_methods'] = explode(',', $_POST['discovery_methods']);
+    $config['extras'] = explode(',', $_POST['extras']);
 
     // Enregistrer les nouvelles valeurs de configuration dans le fichier de configuration.
     // Nous utilisons la fonction var_export() pour convertir le tableau de configuration en une chaîne qui peut être écrite dans un fichier.
@@ -39,6 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <label for="discovery_methods">Méthodes de découverte :</label><br>
     <textarea id="discovery_methods" name="discovery_methods" rows="4" cols="50"><?= htmlspecialchars(implode(',', $config['discovery_methods'])) ?></textarea><br>
+
+    <label for="extras">Options supplémentaires :</label><br>
+    <textarea id="extras" name="extras" rows="4" cols="50"><?= htmlspecialchars(implode(',', $config['extras'])) ?></textarea><br>
     
     <input class="form__submit" type="submit" value="Mettre à jour">
 </form>
