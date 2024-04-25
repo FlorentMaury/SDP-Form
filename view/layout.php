@@ -48,7 +48,7 @@
             </li>
 
             <?php // Si l'utilisateur est un administrateur.
-            if ($_SESSION['id'] <= 3) { ?>
+            if ($_SESSION['role'] == 1) { ?>
 
                 <li class="navUl__li">
                     <a href="index.php?page=add">

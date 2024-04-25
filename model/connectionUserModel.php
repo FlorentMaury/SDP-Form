@@ -55,6 +55,7 @@ if (!empty($_POST['email']) && !empty($_POST['password']) && empty($_SESSION)) {
             $_SESSION['id']      = $user['id'];
             $_SESSION['surname'] = $user['surname'];
             $_SESSION['name']    = $user['name'];
+            $_SESSION['role']    = $user['role'];
 
             // Validation de la connexion.
             header("location: ../index.php?page=home&success=1&message=Bienvenue " . $_SESSION['name']);

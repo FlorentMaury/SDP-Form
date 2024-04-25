@@ -17,7 +17,7 @@ require('./model/connectionDBModel.php');
 require('./controller/controller.php');
 
 // Pages valides.
-$validPages = ['home', 'search', 'logIn', 'logOut', 'forgotPassword', 'add', 'resetPassword', 'userList', 'edit', 'formParams'];
+$validPages = ['home', 'search', 'logIn', 'logOut', 'forgotPassword', 'add', 'editUser', 'userList', 'edit', 'formParams'];
 
 // Si $_GET['page'] n'est pas défini, définir une valeur par défaut 'logIn'
 if (!isset($_GET['page'])) {
@@ -57,8 +57,8 @@ try {
                 edit();
             }
             // Page de modification du mot de passe.
-            else if ($_GET['page'] == 'resetPassword') {
-                resetPassword();
+            else if ($_GET['page'] == 'editUser') {
+                editUser();
             }
             // Deconnexion.
             else if ($_GET['page'] == 'logOut') {

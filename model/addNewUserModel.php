@@ -12,6 +12,7 @@ if (!empty($_POST['name']) && !empty($_POST['surname']) && !empty($_POST['email'
     $email       = htmlspecialchars($_POST['email']);
     $password    = htmlspecialchars($_POST['password']);
     $passwordTwo = htmlspecialchars($_POST['passwordTwo']);
+    $role        = htmlspecialchars($_POST['role']);
 
     // Les mots de passe sont-ils identiques ?
     if ($password != $passwordTwo) {
@@ -61,8 +62,8 @@ if (!empty($_POST['name']) && !empty($_POST['surname']) && !empty($_POST['email'
     $secret = sha1($secret) . time();
 
     // Ajouter un utilisateur.
-    $req = $bdd->prepare('INSERT INTO user(name, surname, email, password, secret) VALUES(?, ?, ?, ?, ?)');
-    $result = $req->execute([$name, $surname, $email, $password, $secret]);
+    $req = $bdd->prepare('INSERT INTO user(name, surname, email, password, role, secret) VALUES(?, ?, ?, ?, ?, ?)');
+    $result = $req->execute([$name, $surname, $email, $password, $role, $secret]);
 
     // Redirection.
     if ($result) {

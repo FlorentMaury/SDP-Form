@@ -39,6 +39,12 @@ ob_start();
         <label for="passwordTwo">Confirmation du mot de passe</label>
         <input type="password" name="passwordTwo" class="form-control" id="passwordTwo">
     </p>
+    <p>
+        <label for="role">Rôle</label>
+        <select name="role" id="role" class="form-select">
+            <option value="0">Utilisateur (Peux ajouter et lire les fiches)</option>
+            <option value="1">Administrateur</option>
+        </select>
     </p>
     <button class="btn btn-md btn-dark mt-4 p-2" type="submit">Ajouter</button>
 </form>

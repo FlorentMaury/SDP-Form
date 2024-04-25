@@ -87,13 +87,7 @@ $config = require './model/config.php';
             <option value="<?= htmlspecialchars($workshop) ?>"><?= htmlspecialchars($workshop) ?></option>
         <?php endforeach; ?>
     </select>
-
-    <!-- Options supplémentaires. -->
-    <?php foreach ($config['extras'] as $extra) : ?>
-        <label for="<?= htmlspecialchars($extra) ?>"><?= htmlspecialchars($extra) ?></label>
-        <input class="small-checkbox" type="checkbox" id="<?= htmlspecialchars($extra) ?>" name="extras[]" value="<?= htmlspecialchars($extra) ?>">
-    <?php endforeach; ?>
-
+    
     <!-- Comment nous avez vous découverts ? -->
     <label for="howDidYou" class="discovery">Comment nous avez vous découverts ?</label>
     <select name="howDidYou" id="howDidYou">
@@ -101,6 +95,13 @@ $config = require './model/config.php';
             <option value="<?= htmlspecialchars($method) ?>"><?= htmlspecialchars($method) ?></option>
         <?php endforeach; ?>
     </select>
+    
+    <!-- Options supplémentaires. -->
+    <?php foreach ($config['extras'] as $extra) : ?>
+        <label for="<?= htmlspecialchars($extra) ?>"><?= htmlspecialchars($extra) ?></label>
+        <input class="small-checkbox" type="checkbox" id="<?= htmlspecialchars($extra) ?>" name="extras[]" value="<?= htmlspecialchars($extra) ?>">
+    <?php endforeach; ?>
+
 
     <!-- Champ caché si provenance d'un email. -->
     <?php

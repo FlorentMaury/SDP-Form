@@ -55,9 +55,10 @@ function userList()
 };
 
 // Dans la fonction de mot de passe oublié.
-function resetPassword()
+function editUser()
 {
-    require('view/resetPasswordView.php');
+    require('view/editUserView.php');
+    require('model/editUserModel.php');
 };
 
 // Dans la fonction de déconnexion.
