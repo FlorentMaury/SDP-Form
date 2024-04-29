@@ -42,7 +42,8 @@ ob_start();
     <p>
         <label for="role">Rôle</label>
         <select name="role" id="role" class="form-select">
-            <option value="0">Utilisateur (Peux ajouter et lire les fiches)</option>
+            <option value="0">Utilisateur</option>
+            <option value="2">Manager</option>
             <option value="1">Administrateur</option>
         </select>
     </p>

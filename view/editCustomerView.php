@@ -31,7 +31,11 @@ if (isset($_GET['id'])) {
 
     <form method="post" action="./model/editCustomerModel.php">
 
-        <button type="button" onclick="confirmDelete()">Supprimer la fiche client</button>
+        <?php
+        if ($_SESSION['role'] > 0) {
+        ?>
+            <button type="button" onclick="confirmDelete()">Supprimer la fiche client</button>
+        <?php } ?>
 
         <?php
         if (isset($_GET['error']) && !empty($_GET['message'])) {
@@ -87,16 +91,23 @@ if (isset($_GET['id'])) {
         <input type="submit" value="Modifier">
     </form>
     <div>
-        <object data="./assets/CustomersPDF/<?= $data['creation_id'] ?>/<?= $data['creation_id'] ?>.pdf" type="application/pdf" width="100%" height="100%">
+        <!-- <object data="./assets/CustomersPDF/<?= $data['creation_id'] ?>/<?= $data['creation_id'] ?>.pdf" type="application/pdf" width="100%" height="100%">
             <p>Il semble que votre navigateur ne peut pas afficher ce PDF. Vous pouvez <a href="./assets/CustomersPDF/<?= $data['creation_id'] ?>/<?= $data['creation_id'] ?>.pdf">télécharger le PDF</a> à la place.</p>
         </object>
 
-        <button onclick="printPDF()">Imprimer le PDF</button>
+        <button onclick="printPDF()">Imprimer le PDF</button> -->
+
+        <button onclick="redirectToCustomerInfos()">Voir la fiche</button>
 
         <script>
             function printPDF() {
                 var obj = window.open("./assets/CustomersPDF/<?= $data['creation_id'] ?>/<?= $data['creation_id'] ?>.pdf");
                 obj.print();
+            }
+
+
+            function redirectToCustomerInfos() {
+                <?php echo "window.location.href = './index.php?page=customerInfos&id=" . $data['creation_id'] . "';"; ?>
             }
         </script>
     </div>

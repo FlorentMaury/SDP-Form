@@ -31,6 +31,7 @@ ob_start();
         <select name="role" id="role">
             <option value="0">Utilisateur</option>
             <option value="1">Administrateur</option>
+            <option value="2">Manager</option>
         </select>
         <input type="submit" value="Modifier le rôle">
     </form>

@@ -17,7 +17,7 @@ require('./model/connectionDBModel.php');
 require('./controller/controller.php');
 
 // Pages valides.
-$validPages = ['home', 'search', 'logIn', 'logOut', 'forgotPassword', 'add', 'editUser', 'userList', 'edit', 'formParams'];
+$validPages = ['home', 'search', 'logIn', 'logOut', 'customerInfos', 'forgotPassword', 'add', 'editUser', 'userList', 'edit', 'formParams'];
 
 // Si $_GET['page'] n'est pas défini, définir une valeur par défaut 'logIn'
 if (!isset($_GET['page'])) {
@@ -47,6 +47,10 @@ try {
             // Page d'ajout.
             else if ($_GET['page'] == 'add') {
                 add();
+            }
+            // Page d'info des clients.
+            else if ($_GET['page'] == 'customerInfos') {
+                customerInfos();
             }
             // Page de la liste des utilisateurs.
             else if ($_GET['page'] == 'userList') {

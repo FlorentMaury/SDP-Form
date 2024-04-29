@@ -34,7 +34,7 @@ if (
     $host        = trim(htmlspecialchars($_POST['facilitator']));
     $workshop    = trim(htmlspecialchars($_POST['workshop']));
     $howDidYou   = trim(htmlspecialchars($_POST['howDidYou']));
-    $extras = !empty($_POST['extras']) ? implode(", ", array_map(function($value) {
+    $extras      = !empty($_POST['extras']) ? implode(", ", array_map(function($value) {
         return trim(htmlspecialchars($value));
     }, $_POST['extras'])) : 'N/A';
 
@@ -159,7 +159,7 @@ if (
             
         <div class='file'>
             <div class='header'>
-                <img src='../assets/logo.webp' alt='Logo'>
+                <img src='/assets/logo.webp' alt='Logo'>
                 <h1>Création N°$creationId</h1>
             </div>
             

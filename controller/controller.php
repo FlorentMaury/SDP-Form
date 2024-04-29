@@ -61,6 +61,13 @@ function editUser()
     require('model/editUserModel.php');
 };
 
+// Dans les infos clients.
+function customerInfos()
+{
+    require('model/connectionDBModel.php');
+    require('view/customerInfosView.php');
+};
+
 // Dans la fonction de déconnexion.
 function logOut()
 {
