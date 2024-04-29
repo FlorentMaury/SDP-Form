@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label for="extras">Options supplémentaires :</label><br>
     <textarea id="extras" name="extras" rows="4" cols="50"><?= htmlspecialchars(implode(',', $config['extras'])) ?></textarea><br>
     
-    <input class="form__submit" type="submit" value="Mettre à jour">
+    <input class="form__submit submit" type="submit" value="Mettre à jour">
 </form>
 
 <?php

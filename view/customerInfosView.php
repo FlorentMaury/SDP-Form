@@ -1,3 +1,13 @@
+<?php
+require('./model/connectionDBModel.php');
+
+$id = $_GET['id'];
+
+$stmt = $bdd->prepare('SELECT * FROM customer WHERE creation_id = ?');
+$stmt->execute([$id]);
+$customer = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -6,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./design/style.css">
-    <title>Profil | Studio des Parfums</title>
+    <title>Fiche N° <?php echo htmlspecialchars($id); ?> | Studio des Parfums</title>
     <style>
         .header__logo {
             width: 30%;
@@ -30,13 +40,6 @@
 
     <main>
         <?php
-        require('./model/connectionDBModel.php');
-
-        $id = $_GET['id'];
-
-        $stmt = $bdd->prepare('SELECT * FROM customer WHERE creation_id = ?');
-        $stmt->execute([$id]);
-        $customer = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $translations = [
             'workshop' => 'Atelier',

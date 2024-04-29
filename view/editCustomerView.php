@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
         <?php
         if ($_SESSION['role'] > 0) {
         ?>
-            <button type="button" onclick="confirmDelete()">Supprimer la fiche client</button>
+            <button class="button" type="button" onclick="confirmDelete()">Supprimer la fiche client</button>
         <?php } ?>
 
         <?php

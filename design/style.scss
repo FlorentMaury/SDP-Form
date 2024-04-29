@@ -74,3 +74,19 @@ body {
     font-size: 1.2em;
     margin   : 10px;
 }
+
+button,
+.button {
+    background: lighten($goldenColor, 30%);
+    align-self: end;
+    padding: 10px 20px;
+    border-radius: 5%;
+    border: none;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        background: lighten($goldenColor, 20%);
+        transition: all .2s ease-in-out;
+    }
+}
