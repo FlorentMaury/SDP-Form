@@ -22,12 +22,6 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             width: 30%;
             margin: auto;
         }
-
-        @media print {
-            .print-content {
-            transform: scale(0.3); /* Réduit la taille du contenu à 30% de sa taille originale */
-        }
-    }
     </style>
 </head>
 
@@ -59,10 +53,18 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             'host' => 'Hôte(sse)',
         ];
 
-        $excludeKeys = ['id', 'token'];
+        $excludeKeys = ['id', 'token', 'creation_id'];
 
         if ($customer !== false) {
             echo '<div style="width: 80%; margin: auto; display: flex; flex-wrap: wrap;">';
+
+            // Afficher le creation_id en premier
+            if (isset($customer['creation_id'])) {
+                echo '<div style="flex: 1 0 100%; padding: 5px; text-align: center;">';
+                echo '<h2>' . htmlspecialchars($translations['creation_id']) . '</h2>';
+                echo '<p>' . htmlspecialchars($customer['creation_id']) . '</p>';
+                echo '</div>';
+            }
 
             foreach ($customer as $key => $value) {
                 if (in_array($key, $excludeKeys)) {

@@ -15,6 +15,7 @@ function search()
 {
     require('./model/connectionDBModel.php');
     require('view/searchView.php');
+    require('./model/printCustomersModel.php');
 };
 
 // Dans la page de connexion.
