@@ -88,7 +88,7 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             // Afficher le creation_id en premier
             if (isset($customer['creation_id'])) {
                 echo '<div style="flex: 1 0 100%; padding: 5px; text-align: center;">';
-                echo '<h3>' . htmlspecialchars($translations['creation_id']) . '</h3>';
+                echo '<h4>' . htmlspecialchars($translations['creation_id']) . '</h4>';
                 echo '<p>' . htmlspecialchars($customer['creation_id']) . '</p>';
                 echo '</div>';
             }

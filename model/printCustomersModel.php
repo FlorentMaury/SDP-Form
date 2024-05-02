@@ -22,7 +22,7 @@ if (isset($_POST['customerIds'])) {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
-                <link rel="stylesheet" href="./design/style.css">
+                <link rel="stylesheet" href="../design/style.css">
                 <title>Fiche N° <?php echo htmlspecialchars($id); ?> | Studio des Parfums</title>
                 <style>
                     .header__logo {
@@ -93,7 +93,7 @@ if (isset($_POST['customerIds'])) {
                     // Afficher le creation_id en premier.
                     if (isset($customer['creation_id'])) {
                         echo '<div style="flex: 1 0 100%; padding: 5px; text-align: center;">';
-                        echo '<h2>' . htmlspecialchars($translations['creation_id']) . '</h2>';
+                        echo '<h4>' . htmlspecialchars($translations['creation_id']) . '</h4>';
                         echo '<p>' . htmlspecialchars($customer['creation_id']) . '</p>';
                         echo '</div>';
                     }
