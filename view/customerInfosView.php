@@ -109,10 +109,10 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             // Tableau 1 : Notes de tête
             echo '<table style="width: 100%;">';
             echo '<tr style="background: #DBBA4F;">';
-            echo '<th>Code ess.</th>';
-            echo '<th>Notes de tête</th>';
-            echo '<th>Qté en ml</th>';
-            echo '<th>Qté utile</th>';
+            echo '<th style="width: 15%;">Code ess.</th>';
+            echo '<th style="width: 45%;">Notes de tête</th>';
+            echo '<th style="width: 20%;">Qté en ml</th>';
+            echo '<th style="width: 20%;">Qté utile</th>';
             echo '</tr>';
             for ($i = 0; $i < 9; $i++) {
                 echo '<tr>';
@@ -126,10 +126,10 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             // Tableau 2 : Notes de coeur
             echo '<table style="width: 100%;">';
             echo '<tr style="background: #DB4B29;">';
-            echo '<th>Code ess.</th>';
-            echo '<th>Notes de coeur</th>';
-            echo '<th>Qté en ml</th>';
-            echo '<th>Qté utile</th>';
+            echo '<th style="width: 15%;">Code ess.</th>';
+            echo '<th style="width: 45%;">Notes de coeur</th>';
+            echo '<th style="width: 20%;">Qté en ml</th>';
+            echo '<th style="width: 20%;">Qté utile</th>';
             echo '</tr>';
             for ($i = 0; $i < 9; $i++) {
                 echo '<tr>';
@@ -143,10 +143,10 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             // Tableau 3 : Notes de fond
             echo '<table style="width: 100%;">';
             echo '<tr style="background: #308ADC;">';
-            echo '<th>Code ess.</th>';
-            echo '<th>Notes de fond</th>';
-            echo '<th>Qté en ml</th>';
-            echo '<th>Qté utile</th>';
+            echo '<th style="width: 15%;">Code ess.</th>';
+            echo '<th style="width: 45%;">Notes de fond</th>';
+            echo '<th style="width: 20%;">Qté en ml</th>';
+            echo '<th style="width: 20%;">Qté utile</th>';
             echo '</tr>';
             for ($i = 0; $i < 9; $i++) {
                 echo '<tr>';
