@@ -113,7 +113,9 @@ $config = require './model/config.php';
 
     <!-- Bouton d'envoi. -->
     <button class="form__submit submit" type="submit" value="Envoyer">Envoyer</button>
-
+    
+    <!-- Bouton pour imprimer les fiches sélectionnées. -->
+    <!-- <button class="form__print print" type="button" value="Imprimer" onclick="window.print()">Imprimer</button> -->
 </form>
 
 <?php

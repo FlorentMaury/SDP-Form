@@ -1,6 +1,4 @@
 <?php
-
-
 // Vérification de l'existence des identifiants des clients sélectionnés
 if (isset($_POST['customerIds'])) {
     require('../model/connectionDBModel.php');
@@ -28,8 +26,35 @@ if (isset($_POST['customerIds'])) {
                 <title>Fiche N° <?php echo htmlspecialchars($id); ?> | Studio des Parfums</title>
                 <style>
                     .header__logo {
-                        width: 30%;
+                        width: 20%;
                         margin: auto;
+                    }
+
+                    td,
+                    th {
+                        border: 1px solid black;
+                        padding: 10px;
+                    }
+
+                    table {
+                        margin: 0;
+                    }
+
+                    h4,
+                    h2,
+                    table,
+                    p,
+                    th {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    @media print {
+
+                        #printButton,
+                        #backButton {
+                            display: none;
+                        }
                     }
                 </style>
             </head>
@@ -80,11 +105,62 @@ if (isset($_POST['customerIds'])) {
 
                         $translatedKey = isset($translations[$key]) ? $translations[$key] : $key;
 
-                        echo '<div style="flex: 1 0 25%; padding: 5px;">';
+                        echo '<div style="flex: 1 0 25%;">';
                         echo '<h4>' . htmlspecialchars($translatedKey) . '</h4>';
                         echo '<p>' . htmlspecialchars($value) . '</p>';
                         echo '</div>';
                     }
+
+                    // Tableau 1 : Notes de tête
+                    echo '<table style="width: 100%;">';
+                    echo '<tr style="background: #DBBA4F;">';
+                    echo '<th>Code ess.</th>';
+                    echo '<th>Notes de tête</th>';
+                    echo '<th>Qté en ml</th>';
+                    echo '<th>Qté utile</th>';
+                    echo '</tr>';
+                    for ($i = 0; $i < 9; $i++) {
+                        echo '<tr>';
+                        for ($j = 0; $j < 4; $j++) {
+                            echo '<td class="td"></td>';
+                        }
+                        echo '</tr>';
+                    }
+                    echo '</table>';
+
+                    // Tableau 2 : Notes de coeur
+                    echo '<table style="width: 100%;">';
+                    echo '<tr style="background: #DB4B29;">';
+                    echo '<th>Code ess.</th>';
+                    echo '<th>Notes de coeur</th>';
+                    echo '<th>Qté en ml</th>';
+                    echo '<th>Qté utile</th>';
+                    echo '</tr>';
+                    for ($i = 0; $i < 9; $i++) {
+                        echo '<tr>';
+                        for ($j = 0; $j < 4; $j++) {
+                            echo '<td class="td"></td>';
+                        }
+                        echo '</tr>';
+                    }
+                    echo '</table>';
+
+                    // Tableau 3 : Notes de fond
+                    echo '<table style="width: 100%;">';
+                    echo '<tr style="background: #308ADC;">';
+                    echo '<th>Code ess.</th>';
+                    echo '<th>Notes de fond</th>';
+                    echo '<th>Qté en ml</th>';
+                    echo '<th>Qté utile</th>';
+                    echo '</tr>';
+                    for ($i = 0; $i < 9; $i++) {
+                        echo '<tr>';
+                        for ($j = 0; $j < 4; $j++) {
+                            echo '<td class="td"></td>';
+                        }
+                        echo '</tr>';
+                    }
+                    echo '</table>';
 
                     echo '</div>';
 
@@ -108,9 +184,10 @@ if (isset($_POST['customerIds'])) {
                     }
 
                     function goBack() {
-                        window.history.back();
+                        window.location.href = 'https://localhost/SDP-Form/index.php?page=search';
                     }
                 </script>
+
             </body>
 
             </html>
