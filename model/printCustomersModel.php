@@ -36,6 +36,12 @@ if (isset($_POST['customerIds'])) {
                         padding: 10px;
                     }
 
+                    h4,
+                    p,
+                    th {
+                        font-size: 14px;
+                    }
+
                     table {
                         margin: 0;
                     }
@@ -50,6 +56,22 @@ if (isset($_POST['customerIds'])) {
                     }
 
                     @media print {
+
+                        tr {
+                            -webkit-print-color-adjust: exact;
+                        }
+
+                        tr[style*="background: #DBBA4F"] {
+                            background-color: #DBBA4F !important;
+                        }
+
+                        tr[style*="background: #DB4B29"] {
+                            background-color: #DB4B29 !important;
+                        }
+
+                        tr[style*="background: #308ADC"] {
+                            background-color: #308ADC !important;
+                        }
 
                         #printButton,
                         #backButton {
@@ -86,17 +108,9 @@ if (isset($_POST['customerIds'])) {
                         'host' => 'Hôte(sse)',
                     ];
 
-                    $excludeKeys = ['id', 'token', 'creation_id'];
+                    $excludeKeys = ['id', 'token'];
 
                     echo '<div style="width: 80%; margin: auto; display: flex; flex-wrap: wrap;">';
-
-                    // Afficher le creation_id en premier.
-                    if (isset($customer['creation_id'])) {
-                        echo '<div style="flex: 1 0 100%; padding: 5px; text-align: center;">';
-                        echo '<h4>' . htmlspecialchars($translations['creation_id']) . '</h4>';
-                        echo '<p>' . htmlspecialchars($customer['creation_id']) . '</p>';
-                        echo '</div>';
-                    }
 
                     foreach ($customer as $key => $value) {
                         if (in_array($key, $excludeKeys)) {

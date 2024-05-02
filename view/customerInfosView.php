@@ -23,6 +23,12 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             margin: auto;
         }
 
+        h4,
+        p,
+        th {
+            font-size: 14px;
+        }
+
         td,
         th {
             border: 1px solid black;
@@ -43,6 +49,22 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
         @media print {
+
+            tr {
+                -webkit-print-color-adjust: exact;
+            }
+
+            tr[style*="background: #DBBA4F"] {
+                background-color: #DBBA4F !important;
+            }
+
+            tr[style*="background: #DB4B29"] {
+                background-color: #DB4B29 !important;
+            }
+
+            tr[style*="background: #308ADC"] {
+                background-color: #308ADC !important;
+            }
 
             #printButton,
             #backButton {
@@ -80,18 +102,10 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             'host' => 'Hôte(sse)',
         ];
 
-        $excludeKeys = ['id', 'token', 'creation_id'];
+        $excludeKeys = ['id', 'token'];
 
         if ($customer !== false) {
             echo '<div style="width: 80%; margin: auto; display: flex; flex-wrap: wrap;">';
-
-            // Afficher le creation_id en premier
-            if (isset($customer['creation_id'])) {
-                echo '<div style="flex: 1 0 100%; padding: 5px; text-align: center;">';
-                echo '<h4>' . htmlspecialchars($translations['creation_id']) . '</h4>';
-                echo '<p>' . htmlspecialchars($customer['creation_id']) . '</p>';
-                echo '</div>';
-            }
 
             foreach ($customer as $key => $value) {
                 if (in_array($key, $excludeKeys)) {
