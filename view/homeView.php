@@ -87,7 +87,7 @@ $config = require './model/config.php';
             <option value="<?= htmlspecialchars($workshop) ?>"><?= htmlspecialchars($workshop) ?></option>
         <?php endforeach; ?>
     </select>
-    
+
     <!-- Comment nous avez vous découverts ? -->
     <label for="howDidYou" class="discovery">Comment nous avez vous découverts ?</label>
     <select name="howDidYou" id="howDidYou">
@@ -95,13 +95,41 @@ $config = require './model/config.php';
             <option value="<?= htmlspecialchars($method) ?>"><?= htmlspecialchars($method) ?></option>
         <?php endforeach; ?>
     </select>
-    
+
     <!-- Options supplémentaires. -->
     <?php foreach ($config['extras'] as $extra) : ?>
         <label for="<?= htmlspecialchars($extra) ?>"><?= htmlspecialchars($extra) ?></label>
         <input class="small-checkbox" type="checkbox" id="<?= htmlspecialchars($extra) ?>" name="extras[]" value="<?= htmlspecialchars($extra) ?>">
     <?php endforeach; ?>
 
+    <!-- Allérgies cutanées. -->
+    <div class="checkboxQuestionDiv">
+        <label for="allergies">Avez-vous des allergies cutanées ?</label>
+        <div class="checkboxes">
+            <input class="small-checkbox" type="radio" id="allergies_yes" name="allergies" value="Oui"> Oui
+            <input class="small-checkbox" type="radio" id="allergies_no" name="allergies" value="Non"> Non
+        </div>
+    </div>
+
+    <!-- Acceptez-vous de continuer ? -->
+    <div class="checkboxQuestionDiv">
+        <label for="responsibility">Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?</label>
+        <div class="checkboxes">
+            <input class="small-checkbox" type="radio" id="responsibility_yes" name="responsibility" value="Oui"> Oui
+            <input class="small-checkbox" type="radio" id="responsibility_no" name="responsibility" value="Non"> Non
+        </div>
+    </div>
+
+    <!-- Acceptation des normes RGPD. -->
+    <div class="checkboxQuestionDiv">
+        <label for="rgpd">Acceptez-vous les normes RGPD* ?</label>
+        <div class="checkboxes">
+            <input class="small-checkbox" type="radio" id="rgpd_yes" name="rgpd" value="Acceptées"> Oui
+            <input class="small-checkbox" type="radio" id="rgpd_no" name="rgpd" value="Refusées"> Non
+        </div>
+    </div>
+
+    <!-- Champ invisible language. -->
 
     <!-- Champ caché si provenance d'un email. -->
     <?php
@@ -113,7 +141,9 @@ $config = require './model/config.php';
 
     <!-- Bouton d'envoi. -->
     <button class="form__submit submit" type="submit" value="Envoyer">Envoyer</button>
-    
+
+    <p class="rgpd">Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers.</p>
+
     <!-- Bouton pour imprimer les fiches sélectionnées. -->
     <!-- <button class="form__print print" type="button" value="Imprimer" onclick="window.print()">Imprimer</button> -->
 </form>

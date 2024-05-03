@@ -25,25 +25,30 @@ if (isset($_POST['customerIds'])) {
                 <link rel="stylesheet" href="../design/style.css">
                 <title>Fiche N° <?php echo htmlspecialchars($id); ?> | Studio des Parfums</title>
                 <style>
-                    .header__logo {
-                        width: 20%;
-                        margin: auto;
-                    }
-
-                    td,
-                    th {
-                        border: 1px solid black;
-                        padding: 8px;
+                    header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
                     }
 
                     h4,
                     p,
                     th {
-                        font-size: 14px;
+                        font-size: 12px;
+                    }
+
+                    td,
+                    th {
+                        border: 1px solid black;
+                        padding: 10px;
                     }
 
                     table {
                         margin: 0;
+                    }
+
+                    .rgpd {
+                        font-size: 10px;
                     }
 
                     h4,
@@ -95,8 +100,8 @@ if (isset($_POST['customerIds'])) {
                     $translations = [
                         'workshop' => 'Atelier',
                         'extras'   => 'Options',
-                        'how_did_you' => 'Comment avez-vous entendu parler de nous ?',
-                        'facilitator' => 'Hôte(sse)',
+                        'how_did_you' => 'Découverte ?',
+                        'facilitator' => 'Expert parf.',
                         'creation_id' => 'Numéro de création',
                         'title' => 'Civilité',
                         'lastname' => 'Nom',
@@ -107,7 +112,10 @@ if (isset($_POST['customerIds'])) {
                         'email' => 'Email',
                         'phone_number' => 'Numéro de téléphone',
                         'date' => 'Date',
-                        'host' => 'Hôte(sse)',
+                        'host' => 'Expert parf.',
+                        'rgpd' => 'RGPD',
+                        'allergies' => 'Allergies',
+                        'responsibility' => 'Décliner responsabilité'
                     ];
 
                     $excludeKeys = ['id', 'token', 'creation_id'];
@@ -127,20 +135,6 @@ if (isset($_POST['customerIds'])) {
                         echo '</div>';
                     }
 
-                    echo '<p>Toutes nos notes parfumées sont respectueuses de la réglementation en vigeur française et européennes.</p>';
-
-                    echo '<p>Néanmoins, avez-vous des allergies liées au parfum ou allergies cutanées : ';
-                    echo '<input type="checkbox" id="allergiesYes" name="allergies" value="yes"><label for="allergiesYes"></label>';
-                    echo '<input type="checkbox" id="allergiesNo" name="allergies" value="no"><label for="allergiesNo"></label></p>';
-
-                    echo '<p>Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ? ';
-                    echo '<input type="checkbox" id="responsibilityYes" name="responsibility" value="yes"><label for="responsibilityYes"></label>';
-                    echo '<input type="checkbox" id="responsibilityNo" name="responsibility" value="no"><label for="responsibilityNo"></label></p>';
-
-                    echo '<p>Dans le cadre de la RGPD, pouvons-vous conserver vos formules ? ';
-                    echo '<input type="checkbox" id="rgpdYes" name="rgpd" value="yes"><label for="rgpdYes"></label>';
-                    echo '<input type="checkbox" id="rgpdNo" name="rgpd" value="no"><label for="rgpdNo"></label></p>';
-
                     // Tableau 1 : Notes de tête
                     echo '<table style="width: 100%;">';
                     echo '<tr style="background: #DBBA4F;">';
@@ -149,7 +143,7 @@ if (isset($_POST['customerIds'])) {
                     echo '<th style="width: 20%;">Qté en ml</th>';
                     echo '<th style="width: 20%;">Qté utile</th>';
                     echo '</tr>';
-                    for ($i = 0; $i < 9; $i++) {
+                    for ($i = 0; $i < 10; $i++) {
                         echo '<tr>';
                         for ($j = 0; $j < 4; $j++) {
                             echo '<td class="td"></td>';
@@ -166,7 +160,7 @@ if (isset($_POST['customerIds'])) {
                     echo '<th style="width: 20%;">Qté en ml</th>';
                     echo '<th style="width: 20%;">Qté utile</th>';
                     echo '</tr>';
-                    for ($i = 0; $i < 9; $i++) {
+                    for ($i = 0; $i < 10; $i++) {
                         echo '<tr>';
                         for ($j = 0; $j < 4; $j++) {
                             echo '<td class="td"></td>';
@@ -183,7 +177,7 @@ if (isset($_POST['customerIds'])) {
                     echo '<th style="width: 20%;">Qté en ml</th>';
                     echo '<th style="width: 20%;">Qté utile</th>';
                     echo '</tr>';
-                    for ($i = 0; $i < 9; $i++) {
+                    for ($i = 0; $i < 10; $i++) {
                         echo '<tr>';
                         for ($j = 0; $j < 4; $j++) {
                             echo '<td class="td"></td>';
@@ -192,7 +186,7 @@ if (isset($_POST['customerIds'])) {
                     }
                     echo '</table>';
 
-                    echo '<p>Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers.</p>';
+                    echo '<p class="rgpd">Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers.</p>';
 
                     echo '</div>';
 

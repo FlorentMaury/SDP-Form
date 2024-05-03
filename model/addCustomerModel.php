@@ -17,7 +17,9 @@ if (
     !empty($_POST['phoneNumber']) &&
     !empty($_POST['facilitator']) &&
     !empty($_POST['workshop']) &&
-    !empty($_POST['howDidYou'])
+    !empty($_POST['howDidYou']) &&
+    isset($_POST['allergies']) && // Ajout de la vérification pour les allergies cutanées
+    isset($_POST['rgpd'])
 ) {
 
     // Connexion à la base de données.
@@ -34,6 +36,13 @@ if (
     $host        = trim(htmlspecialchars($_POST['facilitator']));
     $workshop    = trim(htmlspecialchars($_POST['workshop']));
     $howDidYou   = trim(htmlspecialchars($_POST['howDidYou']));
+    $allergies   = trim(htmlspecialchars($_POST['allergies'])); // Ajout du traitement pour les allergies cutanées
+    if (isset($_POST['responsibility'])) {
+        $responsibility = trim(htmlspecialchars($_POST['responsibility']));
+    } else {
+        $responsibility = 'N/A';
+    }
+    $rgpd = trim(htmlspecialchars($_POST['rgpd'])); // Ajout du traitement pour l'acceptation des normes RGPD
     $extras      = !empty($_POST['extras']) ? implode(", ", array_map(function($value) {
         return trim(htmlspecialchars($value));
     }, $_POST['extras'])) : 'N/A';
@@ -80,10 +89,10 @@ if (
     }
 
     // Préparez la requête SQL avec le nouveau champ extras.
-    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, extras, how_did_you, creation_id, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, extras, how_did_you, creation_id, token, allergies, responsibility, rgpd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 
     // Exécutez la requête avec les données nettoyées, le token et les extras.
-    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $workshop, $extras, $howDidYou, $creationId, $token]);
+    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $workshop, $extras, $howDidYou, $creationId, $token, $allergies, $responsibility, $rgpd]);
 
     if ($result) {
 

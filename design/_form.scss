@@ -48,5 +48,24 @@
 }
 
 .small-checkbox {
-    transform: scale(0.8);
+    transform: scale(0.5);
+}
+
+.checkboxQuestionDiv {
+    display: flex;
+    width: 100%;
+
+    label {
+        flex: 60%;
+    }
+
+    .checkboxes {
+        flex: 20%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.rgpd {
+    font-size: 12px;
 }
