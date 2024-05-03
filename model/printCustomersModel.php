@@ -21,7 +21,7 @@ if (isset($_POST['customerIds'])) {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+                <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
                 <link rel="stylesheet" href="../design/style.css">
                 <title>Fiche N° <?php echo htmlspecialchars($id); ?> | Studio des Parfums</title>
                 <style>
@@ -33,7 +33,7 @@ if (isset($_POST['customerIds'])) {
                     td,
                     th {
                         border: 1px solid black;
-                        padding: 10px;
+                        padding: 8px;
                     }
 
                     h4,
@@ -59,6 +59,7 @@ if (isset($_POST['customerIds'])) {
 
                         tr {
                             -webkit-print-color-adjust: exact;
+                            print-color-adjust: exact;
                         }
 
                         tr[style*="background: #DBBA4F"] {
@@ -82,9 +83,10 @@ if (isset($_POST['customerIds'])) {
             </head>
 
             <body>
-                <header class="header">
-                    <div class="header__logo">
-                        <img src="../assets/logo.webp" alt="Logo" style="width: 100%;">
+                <header style="width: 60%;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin: auto; padding: 10px">
+                        <img style="width: 30%;" class="logo" src="../assets/logo.webp" alt="Logo">
+                        <h4>Fiche N° <?php echo htmlspecialchars($id); ?></h4>
                     </div>
                 </header>
 
@@ -108,7 +110,7 @@ if (isset($_POST['customerIds'])) {
                         'host' => 'Hôte(sse)',
                     ];
 
-                    $excludeKeys = ['id', 'token'];
+                    $excludeKeys = ['id', 'token', 'creation_id'];
 
                     echo '<div style="width: 80%; margin: auto; display: flex; flex-wrap: wrap;">';
 
@@ -124,6 +126,20 @@ if (isset($_POST['customerIds'])) {
                         echo '<p>' . htmlspecialchars($value) . '</p>';
                         echo '</div>';
                     }
+
+                    echo '<p>Toutes nos notes parfumées sont respectueuses de la réglementation en vigeur française et européennes.</p>';
+
+                    echo '<p>Néanmoins, avez-vous des allergies liées au parfum ou allergies cutanées : ';
+                    echo '<input type="checkbox" id="allergiesYes" name="allergies" value="yes"><label for="allergiesYes"></label>';
+                    echo '<input type="checkbox" id="allergiesNo" name="allergies" value="no"><label for="allergiesNo"></label></p>';
+
+                    echo '<p>Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ? ';
+                    echo '<input type="checkbox" id="responsibilityYes" name="responsibility" value="yes"><label for="responsibilityYes"></label>';
+                    echo '<input type="checkbox" id="responsibilityNo" name="responsibility" value="no"><label for="responsibilityNo"></label></p>';
+
+                    echo '<p>Dans le cadre de la RGPD, pouvons-vous conserver vos formules ? ';
+                    echo '<input type="checkbox" id="rgpdYes" name="rgpd" value="yes"><label for="rgpdYes"></label>';
+                    echo '<input type="checkbox" id="rgpdNo" name="rgpd" value="no"><label for="rgpdNo"></label></p>';
 
                     // Tableau 1 : Notes de tête
                     echo '<table style="width: 100%;">';
@@ -175,6 +191,8 @@ if (isset($_POST['customerIds'])) {
                         echo '</tr>';
                     }
                     echo '</table>';
+
+                    echo '<p>Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers.</p>';
 
                     echo '</div>';
 
