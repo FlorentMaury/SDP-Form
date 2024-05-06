@@ -59,7 +59,8 @@ ob_start();
                 echo '<td class="date" data-column="Date">' . $row['date'] . '</td>';
                 echo '<td class="creationId" data-column="NumeroCrea">' . $row['creation_id'] . '</td>';
                 // echo "<td class='download' data-column='Fiche'><a target='_blank' href='http://sdp-paris.com/SDP-Form/assets/CustomersPDF/{$row['creation_id']}/{$row['creation_id']}.pdf'><img src='./assets/download.svg' alt='Télécharger'></a></td>";
-                echo "<td class='openModal'><img class='openModal' src='./assets/download.svg' alt='Télécharger'></td>";
+                // echo "<td class='openModal'><img class='openModal' src='./assets/download.svg' alt='Télécharger'></td>";
+                echo "<td class='download' data-column='Fiche'><a href='index.php?page=customerInfos&creation_id={$row['creation_id']}'><img src='./assets/download.svg' alt='Télécharger'></a></td>";
                 // Si l'utilisateur est un administrateur.
                 if ($_SESSION['role'] > 0) {
                     echo "<td class='edit' data-column='Modifier'><a href='index.php?page=edit&id={$row['id']}'><img src='./assets/edit.svg' alt='Modifier'></a></td>";
@@ -69,8 +70,7 @@ ob_start();
             }
 
             echo '</table>';
-            echo '<input class="submit" type="submit" value="Imprimer les fiches sélectionnées">';
-
+            echo '<input class="form__submit button" type="submit" value="Imprimer les fiches sélectionnées">';
         } else {
             echo '<p>Aucun résultat.</p>';
         }

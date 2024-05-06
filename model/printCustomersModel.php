@@ -62,6 +62,11 @@ if (isset($_POST['customerIds'])) {
                         padding: 0;
                     }
 
+                    table {
+                        margin: 0;
+                        border-collapse: collapse;
+                    }
+
                     @media print {
 
                         tr {
@@ -100,7 +105,7 @@ if (isset($_POST['customerIds'])) {
                 <main style="page-break-after: always;">
                     <?php
 
-                    // Traduction des clés de la base de données.
+                    // Traduction des clés de la base de données pour le français.
                     $translations = [
                         'workshop' => 'Atelier',
                         'extras'   => 'Options',
@@ -119,13 +124,52 @@ if (isset($_POST['customerIds'])) {
                         'host' => 'Expert parf.',
                         'rgpd' => 'RGPD',
                         'allergies' => 'Allergies',
-                        'responsibility' => 'Décliner responsabilité'
+                        'responsibility' => 'Décliner responsabilité',
+                        'code_ess' => 'Code ess.',
+                        'notes_de_tete' => 'Notes de tête',
+                        'qty_ml' => 'Qté en ml',
+                        'qty_utile' => 'Qté utile',
+                        'notes_de_coeur' => 'Notes de coeur',
+                        'notes_de_fond' => 'Notes de fond',
+                        'rgpd_statement' => 'Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers.'
+                    ];
+
+                    // Traduction des clés de la base de données pour l'anglais.
+                    $translationsEN = [
+                        'workshop' => 'Workshop',
+                        'extras'   => 'Options',
+                        'how_did_you' => 'Discovery ?',
+                        'facilitator' => 'Perfume expert',
+                        'creation_id' => 'Creation number',
+                        'title' => 'Title',
+                        'lastname' => 'Lastname',
+                        'firstname' => 'Firstname',
+                        'address' => 'Address',
+                        'city' => 'City',
+                        'country' => 'Country',
+                        'email' => 'Email',
+                        'phone_number' => 'Phone number',
+                        'date' => 'Date',
+                        'host' => 'Perfume expert',
+                        'rgpd' => 'RGPD',
+                        'allergies' => 'Allergies',
+                        'responsibility' => 'Decline responsibility',
+                        'code_ess' => 'Ess. Code',
+                        'notes_de_tete' => 'Top notes',
+                        'qty_ml' => 'Qty in ml',
+                        'qty_utile' => 'Useful Qty',
+                        'notes_de_coeur' => 'Heart notes',
+                        'notes_de_fond' => 'Base notes',
+                        'rgpd_statement' => 'Since June 2018, in accordance with the new GDPR regulations, your data is collected for internal management of your file, for any reorders and for our dynamic stock management. They are not transmitted to third parties.',
                     ];
 
                     // Clés à exclure de l'affichage.
-                    $excludeKeys = ['id', 'token', 'creation_id'];
+                    $excludeKeys = ['id', 'token', 'creation_id', 'language'];
 
                     echo '<div style="width: 80%; margin: auto; display: flex; flex-wrap: wrap;">';
+
+                    // Sélection des traductions appropriées.
+                    $translations = $customer['language'] === 'fr' ? $translations : $translationsEN;
 
                     // Affichage des informations du client.
                     foreach ($customer as $key => $value) {
@@ -145,10 +189,10 @@ if (isset($_POST['customerIds'])) {
                     // Tableau 1 : Notes de tête.
                     echo '<table style="width: 100%;">';
                     echo '<tr style="background: #DBBA4F;">';
-                    echo '<th style="width: 15%;">Code ess.</th>';
-                    echo '<th style="width: 45%;">Notes de tête</th>';
-                    echo '<th style="width: 20%;">Qté en ml</th>';
-                    echo '<th style="width: 20%;">Qté utile</th>';
+                    echo '<th style="width: 15%;">' . htmlspecialchars($translations['code_ess']) . '</th>';
+                    echo '<th style="width: 45%;">' . htmlspecialchars($translations['notes_de_tete']) . '</th>';
+                    echo '<th style="width: 20%;">' . htmlspecialchars($translations['qty_ml']) . '</th>';
+                    echo '<th style="width: 20%;">' . htmlspecialchars($translations['qty_utile']) . '</th>';
                     echo '</tr>';
                     for ($i = 0; $i < 10; $i++) {
                         echo '<tr>';
@@ -162,10 +206,10 @@ if (isset($_POST['customerIds'])) {
                     // Tableau 2 : Notes de coeur.
                     echo '<table style="width: 100%;">';
                     echo '<tr style="background: #DB4B29;">';
-                    echo '<th style="width: 15%;">Code ess.</th>';
-                    echo '<th style="width: 45%;">Notes de coeur</th>';
-                    echo '<th style="width: 20%;">Qté en ml</th>';
-                    echo '<th style="width: 20%;">Qté utile</th>';
+                    echo '<th style="width: 15%;">' . htmlspecialchars($translations['code_ess']) . '</th>';
+                    echo '<th style="width: 45%;">' . htmlspecialchars($translations['notes_de_coeur']) . '</th>';
+                    echo '<th style="width: 20%;">' . htmlspecialchars($translations['qty_ml']) . '</th>';
+                    echo '<th style="width: 20%;">' . htmlspecialchars($translations['qty_utile']) . '</th>';
                     echo '</tr>';
                     for ($i = 0; $i < 10; $i++) {
                         echo '<tr>';
@@ -179,10 +223,10 @@ if (isset($_POST['customerIds'])) {
                     // Tableau 3 : Notes de fond.
                     echo '<table style="width: 100%;">';
                     echo '<tr style="background: #308ADC;">';
-                    echo '<th style="width: 15%;">Code ess.</th>';
-                    echo '<th style="width: 45%;">Notes de fond</th>';
-                    echo '<th style="width: 20%;">Qté en ml</th>';
-                    echo '<th style="width: 20%;">Qté utile</th>';
+                    echo '<th style="width: 15%;">' . htmlspecialchars($translations['code_ess']) . '</th>';
+                    echo '<th style="width: 45%;">' . htmlspecialchars($translations['notes_de_fond']) . '</th>';
+                    echo '<th style="width: 20%;">' . htmlspecialchars($translations['qty_ml']) . '</th>';
+                    echo '<th style="width: 20%;">' . htmlspecialchars($translations['qty_utile']) . '</th>';
                     echo '</tr>';
                     for ($i = 0; $i < 10; $i++) {
                         echo '<tr>';
@@ -193,7 +237,7 @@ if (isset($_POST['customerIds'])) {
                     }
                     echo '</table>';
 
-                    echo '<p class="rgpd">Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers.</p>';
+                    echo '<p class="rgpd">' . htmlspecialchars($translations['rgpd_statement']) . '</p>';
 
                     echo '</div>';
 

@@ -2298,6 +2298,7 @@ elements.forEach(element => {
     element.addEventListener('click', function () {
         lang = element.className.split('__')[1];
         localStorage.setItem('lang', lang);
+        document.getElementById('lang').value = lang; // Mettez à jour la valeur du champ caché.
         translatePage(); // Traduisez la page chaque fois qu'un drapeau est cliqué.
         createOptions(); // Mettez à jour les options de sélection de pays.
         updateFlags(); // Mettez à jour les drapeaux affichés.

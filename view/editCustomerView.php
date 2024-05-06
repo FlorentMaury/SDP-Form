@@ -34,7 +34,9 @@ if (isset($_GET['id'])) {
         <?php
         if ($_SESSION['role'] > 0) {
         ?>
-            <button class="button" type="button" onclick="confirmDelete()">Supprimer la fiche client</button>
+            <p>
+                <button class="button" type="button" onclick="confirmDelete()">Supprimer la fiche client</button>
+            </p>
         <?php } ?>
 
         <?php
@@ -76,7 +78,7 @@ if (isset($_GET['id'])) {
         <label for="phoneNumber">Numéro de téléphone :</label>
         <input type="text" id="phoneNumber" name="phoneNumber" value="<?= $data['phone_number'] ?>">
 
-        <label for="host">Hôte :</label>
+        <label for="host">Parfumeur :</label>
         <input type="text" id="host" name="host" value="<?= $data['host'] ?>">
 
         <label for="workshop">Atelier :</label>
@@ -88,9 +90,18 @@ if (isset($_GET['id'])) {
         <label for="howDidYou">Comment avez-vous entendus parler de nous :</label>
         <input type="text" id="howDidYou" name="howDidYou" value="<?= $data['how_did_you'] ?>">
 
-        <input type="submit" value="Modifier">
+        <label for="rgpd">RGPD :</label>
+        <input type="text" id="rgpd" name="rgpd" value="<?= $data['rgpd'] ?>">
+
+        <label for="allergies">Allergies :</label>
+        <input type="text" id="allergies" name="allergies" value="<?= $data['allergies'] ?>">
+
+        <label for="responsibility">Décliner responsabilité :</label>
+        <input type="text" id="responsibility" name="responsibility" value="<?= $data['responsibility'] ?>">
+
+        <button class="form__submit button" type="submit">Modifier</button>
     </form>
-    <div>
+<div>
         <!-- <object data="./assets/CustomersPDF/<?= $data['creation_id'] ?>/<?= $data['creation_id'] ?>.pdf" type="application/pdf" width="100%" height="100%">
             <p>Il semble que votre navigateur ne peut pas afficher ce PDF. Vous pouvez <a href="./assets/CustomersPDF/<?= $data['creation_id'] ?>/<?= $data['creation_id'] ?>.pdf">télécharger le PDF</a> à la place.</p>
         </object>

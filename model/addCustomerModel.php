@@ -41,7 +41,7 @@ if (
     if (isset($_POST['responsibility'])) {
         $responsibility = trim(htmlspecialchars($_POST['responsibility']));
     } else {
-        $responsibility = 'Aucune alergie';
+        $responsibility = 'Aucune allergie';
     }
     $rgpd = trim(htmlspecialchars($_POST['rgpd'])); 
     $extras      = !empty($_POST['extras']) ? implode(", ", array_map(function($value) {
@@ -90,10 +90,10 @@ if (
     }
 
     // Préparez la requête SQL avec le nouveau champ extras.
-    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, extras, how_did_you, creation_id, token, allergies, responsibility, rgpd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, extras, how_did_you, creation_id, token, allergies, responsibility, rgpd, language) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 
     // Exécutez la requête avec les données nettoyées, le token et les extras.
-    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $workshop, $extras, $howDidYou, $creationId, $token, $allergies, $responsibility, $rgpd]);
+    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $workshop, $extras, $howDidYou, $creationId, $token, $allergies, $responsibility, $rgpd, $_POST['lang']]);
 
     if ($result) {
 

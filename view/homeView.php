@@ -129,8 +129,6 @@ $config = require './model/config.php';
         </div>
     </div>
 
-    <!-- Champ invisible language. -->
-
     <!-- Champ caché si provenance d'un email. -->
     <?php
     if (isset($_GET['token'])) {
@@ -138,6 +136,9 @@ $config = require './model/config.php';
         echo '<input type="hidden" name="token" value="' . htmlspecialchars($token) . '">';
     }
     ?>
+
+    <!-- Champ caché pour la langue. -->
+    <input type="hidden" id="lang" name="lang" value="fr">
 
     <!-- Bouton d'envoi. -->
     <button class="form__submit submit" type="submit" value="Envoyer">Envoyer</button>

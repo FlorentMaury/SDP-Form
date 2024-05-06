@@ -11,28 +11,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $creationId = htmlspecialchars(trim($_POST['creationId']));
 
     // Récupérez la nouvelle valeur de chaque champ du formulaire.
-    $date         = htmlspecialchars(trim($_POST['date']));
-    $title        = htmlspecialchars(trim($_POST['title']));
-    $lastname     = htmlspecialchars(trim($_POST['lastname']));
-    $firstname    = htmlspecialchars(trim($_POST['firstname']));
-    $address      = htmlspecialchars(trim($_POST['address']));
-    $city         = htmlspecialchars(trim($_POST['city']));
-    $country      = htmlspecialchars(trim($_POST['country']));
-    $email        = htmlspecialchars(trim($_POST['email']));
-    $phone_number = htmlspecialchars(trim($_POST['phoneNumber']));
-    $host         = htmlspecialchars(trim($_POST['host']));
-    $workshop     = htmlspecialchars(trim($_POST['workshop']));
-    $how_did_you  = htmlspecialchars(trim($_POST['howDidYou']));
+    $date           = htmlspecialchars(trim($_POST['date']));
+    $title          = htmlspecialchars(trim($_POST['title']));
+    $lastname       = htmlspecialchars(trim($_POST['lastname']));
+    $firstname      = htmlspecialchars(trim($_POST['firstname']));
+    $address        = htmlspecialchars(trim($_POST['address']));
+    $city           = htmlspecialchars(trim($_POST['city']));
+    $country        = htmlspecialchars(trim($_POST['country']));
+    $email          = htmlspecialchars(trim($_POST['email']));
+    $phone_number   = htmlspecialchars(trim($_POST['phoneNumber']));
+    $host           = htmlspecialchars(trim($_POST['host']));
+    $workshop       = htmlspecialchars(trim($_POST['workshop']));
+    $how_did_you    = htmlspecialchars(trim($_POST['howDidYou']));
+    $extras         = htmlspecialchars(trim($_POST['extras']));
+    $rgpd           = htmlspecialchars(trim($_POST['rgpd']));
+    $allergies      = htmlspecialchars(trim($_POST['allergies']));
+    $responsibility = htmlspecialchars(trim($_POST['responsibility']));
 
     require('../model/connectionDBModel.php');
 
     // Mettez à jour la base de données.
     $req = $bdd->prepare('
-        UPDATE customer
-        SET date = ?, title = ?, lastname = ?, firstname = ?, address = ?, city = ?, country = ?, email = ?, phone_number = ?, workshop = ?, host = ?, how_did_you = ?
-        WHERE id = ?
+    UPDATE customer
+    SET date = ?, title = ?, lastname = ?, firstname = ?, address = ?, city = ?, country = ?, email = ?, phone_number = ?, workshop = ?, host = ?, how_did_you = ?, extras = ?, rgpd = ?, allergies = ?, responsibility = ?
+    WHERE id = ?
     ');
-    $result = $req->execute([$date, $title, $lastname, $firstname, $address, $city, $country, $email, $phone_number, $workshop, $host, $how_did_you, $id]);
+    $result = $req->execute([$date, $title, $lastname, $firstname, $address, $city, $country, $email, $phone_number, $workshop, $host, $how_did_you, $extras, $rgpd, $allergies, $responsibility, $id]);
 
     // Redirection.
     if ($result) {
@@ -106,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Écrivez le contenu dans un fichier
         file_put_contents("../assets/CustomersPDF/{$creationId}/{$creationId}.pdf", $output);
-        
+
         header("location: ../index.php?page=edit&id={$id}&success=1&message=Informations modifiées avec succès.");
         exit();
     } else {

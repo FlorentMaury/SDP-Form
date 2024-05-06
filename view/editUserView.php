@@ -21,7 +21,7 @@ ob_start();
         <input type="password" name="password" id="password" required>
         <label for="confirm_password">Confirmer le mot de passe :</label>
         <input type="password" name="confirm_password" id="confirm_password" required>
-        <input type="submit" value="Modifier le mot de passe">
+        <button type="submit">Modifier le mot de passe</button>
     </form>
 
     <h2>Modération des privilèges.</h2>
@@ -35,7 +35,7 @@ ob_start();
             <option value="1">Administrateur</option>
             <option value="2">Manager</option>
         </select>
-        <input type="submit" value="Modifier le rôle">
+        <button type="submit">Modifier le rôle</button>
     </form>
 
 </div>
