@@ -53,7 +53,7 @@ body {
 
 // Bouton de redirection.
 .redirect {
-    cursor: pointer;
+    cursor    : pointer;
     transition: all .2s ease-in-out;
 
     &:hover {
@@ -77,14 +77,14 @@ body {
 
 button,
 .button {
-    background: lighten($goldenColor, 30%);
-    align-self: end;
-    padding: 10px 20px;
-    margin: 10px;
+    background   : lighten($goldenColor, 30%);
+    align-self   : end;
+    padding      : 10px 20px;
+    margin       : 10px;
     border-radius: 5%;
-    border: none;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
+    border       : none;
+    cursor       : pointer;
+    transition   : all .2s ease-in-out;
 
     &:hover {
         background: lighten($goldenColor, 20%);

@@ -18,13 +18,14 @@ if (
     !empty($_POST['facilitator']) &&
     !empty($_POST['workshop']) &&
     !empty($_POST['howDidYou']) &&
-    isset($_POST['allergies']) && // Ajout de la vérification pour les allergies cutanées
+    isset($_POST['allergies']) && 
     isset($_POST['rgpd'])
 ) {
 
     // Connexion à la base de données.
     require('./connectionDBModel.php');
 
+    // Déclaration des variables avec les données nettoyées.
     $title       = trim(htmlspecialchars($_POST['title']));
     $lastname    = trim(htmlspecialchars($_POST['lastname']));
     $firstname   = trim(htmlspecialchars($_POST['firstname']));
@@ -36,13 +37,13 @@ if (
     $host        = trim(htmlspecialchars($_POST['facilitator']));
     $workshop    = trim(htmlspecialchars($_POST['workshop']));
     $howDidYou   = trim(htmlspecialchars($_POST['howDidYou']));
-    $allergies   = trim(htmlspecialchars($_POST['allergies'])); // Ajout du traitement pour les allergies cutanées
+    $allergies   = trim(htmlspecialchars($_POST['allergies'])); 
     if (isset($_POST['responsibility'])) {
         $responsibility = trim(htmlspecialchars($_POST['responsibility']));
     } else {
-        $responsibility = 'N/A';
+        $responsibility = 'Aucune alergie';
     }
-    $rgpd = trim(htmlspecialchars($_POST['rgpd'])); // Ajout du traitement pour l'acceptation des normes RGPD
+    $rgpd = trim(htmlspecialchars($_POST['rgpd'])); 
     $extras      = !empty($_POST['extras']) ? implode(", ", array_map(function($value) {
         return trim(htmlspecialchars($value));
     }, $_POST['extras'])) : 'N/A';

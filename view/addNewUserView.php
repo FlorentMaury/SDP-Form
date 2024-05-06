@@ -18,6 +18,8 @@ ob_start();
         echo '<p class="successMessage">' . htmlspecialchars($_GET['message']) . '</p>';
     }
     ?>
+
+    <!-- Formulaire d'ajout d'un collaborateur. -->
     <p class="form-floating m-2">
     <p>
         <label for="name">Prénom</label>

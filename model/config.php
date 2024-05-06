@@ -1,4 +1,6 @@
 <?php
+
+// Configuration des parfs, des ateliers, des méthodes de découverte et des extras.
 return [
     'hosts' => ['Karim', 'Jean-Baptiste', 'Thomas', 'Patrice', 'Selma', 'Ayoush'],
     'workshops' => ['Escapade olfactive', 'Découverte parfumée', 'Création passion', 'Duo passion', 'Escapade en famille', 'Nez à nez', 'Masterclass'],

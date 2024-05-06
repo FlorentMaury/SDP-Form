@@ -54,6 +54,7 @@ ob_start();
 
     </div>
 
+    <!-- Pop-up de confirmation. -->
     <script>
         function confirmUserDelete(id) {
             if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.")) {

@@ -1,13 +1,18 @@
 <?php
+
+// Connexion à la base de données.
 require('./model/connectionDBModel.php');
 
+// Récupérez l'ID de la fiche client.
 $id = $_GET['id'];
 
+// Récupérez les informations du client.
 $stmt = $bdd->prepare('SELECT * FROM customer WHERE creation_id = ?');
 $stmt->execute([$id]);
 $customer = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
+<!-- HTML de la fiche client. -->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -91,6 +96,7 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
     <main>
         <?php
 
+        // Traductions des clés de la base de données.
         $translations = [
             'workshop' => 'Atelier',
             'extras'   => 'Options',
@@ -112,11 +118,14 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             'responsibility' => 'Décliner responsabilité'
         ];
 
+        // Clés à exclure de l'affichage.
         $excludeKeys = ['id', 'token', 'creation_id'];
 
+        // Affichage des informations du client.
         if ($customer !== false) {
             echo '<div style="width: 80%; margin: auto; display: flex; flex-wrap: wrap;">';
 
+            // Affichage des informations du client.
             foreach ($customer as $key => $value) {
                 if (in_array($key, $excludeKeys)) {
                     continue;
@@ -130,7 +139,7 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
                 echo '</div>';
             }
 
-            // Tableau 1 : Notes de tête
+            // Tableau 1 : Notes de tête.
             echo '<table style="width: 100%;">';
             echo '<tr style="background: #DBBA4F;">';
             echo '<th style="width: 15%;">Code ess.</th>';
@@ -147,7 +156,7 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             }
             echo '</table>';
 
-            // Tableau 2 : Notes de coeur
+            // Tableau 2 : Notes de coeur.
             echo '<table style="width: 100%;">';
             echo '<tr style="background: #DB4B29;">';
             echo '<th style="width: 15%;">Code ess.</th>';
@@ -164,7 +173,7 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             }
             echo '</table>';
 
-            // Tableau 3 : Notes de fond
+            // Tableau 3 : Notes de fond.
             echo '<table style="width: 100%;">';
             echo '<tr style="background: #308ADC;">';
             echo '<th style="width: 15%;">Code ess.</th>';
@@ -193,6 +202,7 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
     </main>
 
+    <!-- Javascript. -->
     <script src="./js/script.js"></script>
     <script>
         function printPage() {

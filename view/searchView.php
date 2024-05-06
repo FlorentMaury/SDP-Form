@@ -80,6 +80,7 @@ ob_start();
 
 <?php
 
+// Script pour la redirection vers la page d'informations du client.
 echo "
   <script>
     var btns = document.querySelectorAll('.openModal');

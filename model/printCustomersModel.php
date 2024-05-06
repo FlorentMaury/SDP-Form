@@ -15,6 +15,7 @@ if (isset($_POST['customerIds'])) {
         // Génération de la fiche d'information du client.
         if ($customer !== false) {
 ?>
+            <!-- HTML des fiches à imprimer. -->
             <!DOCTYPE html>
             <html lang="fr">
 
@@ -97,6 +98,8 @@ if (isset($_POST['customerIds'])) {
 
                 <main style="page-break-after: always;">
                     <?php
+
+                    // Traduction des clés de la base de données.
                     $translations = [
                         'workshop' => 'Atelier',
                         'extras'   => 'Options',
@@ -118,15 +121,18 @@ if (isset($_POST['customerIds'])) {
                         'responsibility' => 'Décliner responsabilité'
                     ];
 
+                    // Clés à exclure de l'affichage.
                     $excludeKeys = ['id', 'token', 'creation_id'];
 
                     echo '<div style="width: 80%; margin: auto; display: flex; flex-wrap: wrap;">';
 
+                    // Affichage des informations du client.
                     foreach ($customer as $key => $value) {
                         if (in_array($key, $excludeKeys)) {
                             continue;
                         }
 
+                        // Traduction des clés.
                         $translatedKey = isset($translations[$key]) ? $translations[$key] : $key;
 
                         echo '<div style="flex: 1 0 25%;">';
@@ -135,7 +141,7 @@ if (isset($_POST['customerIds'])) {
                         echo '</div>';
                     }
 
-                    // Tableau 1 : Notes de tête
+                    // Tableau 1 : Notes de tête.
                     echo '<table style="width: 100%;">';
                     echo '<tr style="background: #DBBA4F;">';
                     echo '<th style="width: 15%;">Code ess.</th>';
@@ -152,7 +158,7 @@ if (isset($_POST['customerIds'])) {
                     }
                     echo '</table>';
 
-                    // Tableau 2 : Notes de coeur
+                    // Tableau 2 : Notes de coeur.
                     echo '<table style="width: 100%;">';
                     echo '<tr style="background: #DB4B29;">';
                     echo '<th style="width: 15%;">Code ess.</th>';
@@ -169,7 +175,7 @@ if (isset($_POST['customerIds'])) {
                     }
                     echo '</table>';
 
-                    // Tableau 3 : Notes de fond
+                    // Tableau 3 : Notes de fond.
                     echo '<table style="width: 100%;">';
                     echo '<tr style="background: #308ADC;">';
                     echo '<th style="width: 15%;">Code ess.</th>';
@@ -195,6 +201,7 @@ if (isset($_POST['customerIds'])) {
                     ?>
                 </main>
 
+                <!-- Javascript. -->
                 <script src="./js/script.js"></script>
                 <script>
                     function printPage() {

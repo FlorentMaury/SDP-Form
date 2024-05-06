@@ -14,6 +14,7 @@ ob_start();
 <div class="form">
     <h2>Modification du mot de passe.</h2>
 
+    <!-- Formulaire de modification du mot de passe. -->
     <form action="./model/editUserModel.php" method="POST">
         <input type="hidden" name="id" value="<?= $id ?>">
         <label for="password">Nouveau mot de passe :</label>
@@ -25,6 +26,7 @@ ob_start();
 
     <h2>Modération des privilèges.</h2>
 
+    <!-- Formulaire de modification du rôle. -->
     <form action="./model/editUserModel.php" method="POST">
         <input type="hidden" name="id" value="<?= $id ?>">
         <label for="role">Rôle :</label>
