@@ -25,7 +25,7 @@ ob_start();
 </div>
 
 <div class="tableContainer">
-    <form id="printForm" method="POST" action="./model/printCustomersModel.php">
+    <form id="printForm" method="POST" action="./model/printCustomersModel.php" onsubmit="return validateForm();">
         <?php
         // Boucle de créations de lignes.
         if ($customer->rowCount() > 0) {
@@ -69,7 +69,7 @@ ob_start();
             }
 
             echo '</table>';
-            echo '<input type="submit" value="Imprimer les fiches sélectionnées">';
+            echo '<input class="submit" type="submit" value="Imprimer les fiches sélectionnées">';
 
         } else {
             echo '<p>Aucun résultat.</p>';
@@ -96,6 +96,26 @@ echo "
             }
         }
     </script>
+";
+
+echo "
+<script>
+function validateForm() {
+    var checkboxes = document.getElementsByName('customerIds[]');
+    var isChecked = false;
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            isChecked = true;
+            break;
+        }
+    }
+    if (!isChecked) {
+        alert('Veuillez sélectionner au moins une fiche à imprimer.');
+        return false;
+    }
+    return true;
+}
+</script>
 ";
 
 // Fin de l'enregistrement du HTML.

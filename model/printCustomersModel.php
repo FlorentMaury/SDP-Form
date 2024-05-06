@@ -231,5 +231,4 @@ if (isset($_POST['customerIds'])) {
         }
     }
 }
-
 ?>
