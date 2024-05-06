@@ -9,4 +9,5 @@
     setcookie('auth', '', time() - 1);
     header('location: ./index.php?page=home&success=1&message=Vous êtes déconnecté.');
     exit();
+    
 ?>

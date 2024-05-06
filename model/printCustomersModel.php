@@ -1,5 +1,6 @@
 <?php
-// Vérification de l'existence des identifiants des clients sélectionnés
+
+// Vérification de l'existence des identifiants des clients sélectionnés.
 if (isset($_POST['customerIds'])) {
     require('../model/connectionDBModel.php');
     // Récupération des identifiants des clients sélectionnés.
@@ -230,4 +231,5 @@ if (isset($_POST['customerIds'])) {
         }
     }
 }
+
 ?>
