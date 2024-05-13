@@ -106,7 +106,7 @@ if (isset($_POST['customerIds'])) {
                     <?php
 
                     // Traduction des clés de la base de données pour le français.
-                    $translations = [
+                    $translationsFR = [
                         'workshop' => 'Atelier',
                         'extras'   => 'Options',
                         'how_did_you' => 'Découverte ?',
@@ -169,7 +169,7 @@ if (isset($_POST['customerIds'])) {
                     echo '<div style="width: 80%; margin: auto; display: flex; flex-wrap: wrap;">';
 
                     // Sélection des traductions appropriées.
-                    $translations = $customer['language'] === 'fr' ? $translations : $translationsEN;
+                    $translations = ($customer['language'] === 'fr') ? $translationsFR : $translationsEN;
 
                     // Affichage des informations du client.
                     foreach ($customer as $key => $value) {
@@ -262,7 +262,7 @@ if (isset($_POST['customerIds'])) {
                     }
 
                     function goBack() {
-                        window.location.href = 'https://localhost/SDP-Form/index.php?page=search';
+                        window.location.href = 'http://sdp-paris.com/SDP-Form/index.php?page=search';
                     }
                 </script>
 

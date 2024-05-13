@@ -7,43 +7,43 @@ use Endroid\QrCode\Writer\PngWriter;
 
 // Vérifiez si les champs requis sont remplis.
 if (
-    !empty($_POST['titlePrint']) &&
-    !empty($_POST['lastnamePrint']) &&
-    !empty($_POST['firstnamePrint']) &&
-    !empty($_POST['addressPrint']) &&
-    !empty($_POST['cityPrint']) &&
+    !empty($_POST['title']) &&
+    !empty($_POST['lastname']) &&
+    !empty($_POST['firstname']) &&
+    !empty($_POST['address']) &&
+    !empty($_POST['city']) &&
     !empty($_POST['country']) &&
-    !empty($_POST['emailPrint']) &&
-    !empty($_POST['phoneNumberPrint']) &&
-    !empty($_POST['facilitatorPrint']) &&
-    !empty($_POST['workshopPrint']) &&
-    !empty($_POST['howDidYouPrint']) &&
-    isset($_POST['allergiesPrint']) && 
-    isset($_POST['rgpdPrint'])
+    !empty($_POST['email']) &&
+    !empty($_POST['phoneNumber']) &&
+    !empty($_POST['facilitator']) &&
+    !empty($_POST['workshop']) &&
+    !empty($_POST['howDidYou']) &&
+    isset($_POST['allergies']) && 
+    isset($_POST['rgpd'])
 ) {
 
     // Connexion à la base de données.
     require('./connectionDBModel.php');
 
     // Déclaration des variables avec les données nettoyées.
-    $title       = trim(htmlspecialchars($_POST['titlePrint']));
-    $lastname    = trim(htmlspecialchars($_POST['lastnamePrint']));
-    $firstname   = trim(htmlspecialchars($_POST['firstnamePrint']));
-    $address     = trim(htmlspecialchars($_POST['addressPrint']));
-    $city        = trim(htmlspecialchars($_POST['cityPrint']));
+    $title       = trim(htmlspecialchars($_POST['title']));
+    $lastname    = trim(htmlspecialchars($_POST['lastname']));
+    $firstname   = trim(htmlspecialchars($_POST['firstname']));
+    $address     = trim(htmlspecialchars($_POST['address']));
+    $city        = trim(htmlspecialchars($_POST['city']));
     $country     = trim(htmlspecialchars($_POST['country']));
-    $email       = trim(htmlspecialchars($_POST['emailPrint']));
-    $phoneNumber = trim(htmlspecialchars($_POST['phoneNumberPrint']));
-    $host        = trim(htmlspecialchars($_POST['facilitatorPrint']));
-    $workshop    = trim(htmlspecialchars($_POST['workshopPrint']));
-    $howDidYou   = trim(htmlspecialchars($_POST['howDidYouPrint']));
-    $allergies   = trim(htmlspecialchars($_POST['allergiesPrint'])); 
-    if (isset($_POST['responsibilityPrint'])) {
-        $responsibility = trim(htmlspecialchars($_POST['responsibilityPrint']));
+    $email       = trim(htmlspecialchars($_POST['email']));
+    $phoneNumber = trim(htmlspecialchars($_POST['phoneNumber']));
+    $host        = trim(htmlspecialchars($_POST['facilitator']));
+    $workshop    = trim(htmlspecialchars($_POST['workshop']));
+    $howDidYou   = trim(htmlspecialchars($_POST['howDidYou']));
+    $allergies   = trim(htmlspecialchars($_POST['allergies'])); 
+    if (isset($_POST['responsibility'])) {
+        $responsibility = trim(htmlspecialchars($_POST['responsibility']));
     } else {
         $responsibility = 'Aucune allergie';
     }
-    $rgpd = trim(htmlspecialchars($_POST['rgpdPrint'])); 
+    $rgpd = trim(htmlspecialchars($_POST['rgpd'])); 
     $extras      = !empty($_POST['extras']) ? implode(", ", array_map(function($value) {
         return trim(htmlspecialchars($value));
     }, $_POST['extras'])) : 'N/A';
@@ -212,7 +212,7 @@ if (
         // Écrivez le contenu dans un fichier
         file_put_contents("../assets/CustomersPDF/{$creationId}/{$creationId}.pdf", $output);
 
-        header("location: ../model/instantPrintCustomersModel.php?customerIds={$creationId}");
+        header('location: ../index.php?page=recordCustomer&success=1&message=Merci.');
         exit();
     } else {
         header('location: ../index.php?page=home&error=1&message=Veuillez remplir tous les champs.');

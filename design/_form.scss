@@ -69,3 +69,25 @@
 .rgpd {
     font-size: 12px;
 }
+
+.checkContainer {
+    width: 100%;
+}
+
+.checkbox-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-radius: 10px;
+
+    label {
+        white-space: nowrap;
+        width: 800px;
+        transition: background-color 0.3s ease; 
+    }
+    
+    &:hover {
+        background-color: lighten($blankColor, 5%); 
+    }
+}

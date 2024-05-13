@@ -191,7 +191,7 @@ const countries = [
         name: {
             fr: "Bahreïn",
             en: "Bahrain",
-            es: "Baréin",      
+            es: "Baréin",
             pt: "Bahrein",
             ru: "Бахрейн",
             ar: "البحرين"
@@ -687,7 +687,7 @@ const countries = [
             fr: "Éthiopie",
             en: "Ethiopia",
             es: "Etiopía",
-            pt: "Etiópia",  
+            pt: "Etiópia",
             ru: "Эфиопия",
             ar: "إثيوبيا"
         },
@@ -1699,7 +1699,7 @@ const countries = [
             fr: "Saint-Marin",
             en: "San Marino",
             es: "San Marino",
-            pt: "San Marino",   
+            pt: "San Marino",
             ru: "Сан-Марино",
             ar: "سان مارينو"
         },
@@ -1908,7 +1908,7 @@ const countries = [
             fr: "Suisse",
             en: "Switzerland",
             es: "Suiza",
-            pt: "Suíça",   
+            pt: "Suíça",
             ru: "Швейцария",
             ar: "سويسرا"
         },
@@ -2182,7 +2182,17 @@ let translations = {
         phoneNumber: "Phone number",
         host: "Host",
         discovery: "How did you find us?",
-        submit: "Submit"
+        submit: "Submit",
+        champagneGlass: "Champagne glass",
+        travelSpray: "Travel spray",
+        muranoBottle: "Murano bottle",
+        customRibbon: "Custom ribbon",
+        apprenticeDiploma: "Apprentice perfumer diploma",
+        giftCertificate: "Gift certificate",
+        skinAllergies: "Do you have skin allergies?",
+        declineResponsibility: "If yes, do you wish to proceed by declining our responsibility?",
+        acceptGDPR: "Do you accept GDPR standards?",
+        rgpdMessage: "Since June 2018, in accordance with the new GDPR regulations, your data is collected for internal management of your record, for potential recommendations, and for our dynamic inventory management. They are not transmitted to third parties."
     },
     fr: {
         civility: "Civilité",
@@ -2195,7 +2205,17 @@ let translations = {
         phoneNumber: "Numéro de téléphone",
         host: "Hôte",
         discovery: "Comment nous avez-vous découverts ?",
-        submit: "Envoyer"
+        submit: "Envoyer",
+        champagneGlass: "Coupe de champagne",
+        travelSpray: "Vaporisateur de voyage",
+        muranoBottle: "Flacon de Murano",
+        customRibbon: "Ruban personnalisé",
+        apprenticeDiploma: "Diplôme d'apprenti parfumeur",
+        giftCertificate: "Impression d'un bon cadeau",
+        skinAllergies: "Avez-vous des allergies cutanées ?",
+        declineResponsibility: "Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?",
+        acceptGDPR: "Acceptez-vous les normes RGPD* ?",
+        rgpdMessage: "Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers."
     },
     es: {
         civility: "Cortesía",
@@ -2208,7 +2228,17 @@ let translations = {
         phoneNumber: "Número de teléfono",
         host: "Anfitrión",
         discovery: "¿Cómo nos descubriste?",
-        submit: "Enviar"
+        submit: "Enviar",
+        champagneGlass: "Copas de champán",
+        travelSpray: "Spray de viaje",
+        muranoBottle: "Botella de Murano",
+        customRibbon: "Cinta personalizada",
+        apprenticeDiploma: "Diploma de aprendiz de perfumista",
+        giftCertificate: "Certificado de regalo",
+        skinAllergies: "¿Tiene alergias en la piel?",
+        declineResponsibility: "Si sí, ¿desea continuar declinando nuestra responsabilidad?",
+        acceptGDPR: "¿Acepta los estándares GDPR?",
+        rgpdMessage: "Desde junio de 2018, de acuerdo con la nueva regulación de GDPR, sus datos se recopilan para la gestión interna de su registro, para posibles recomendaciones y para nuestra gestión dinámica de inventario. No se transmiten a terceros."
     },
     ru: {
         civility: "Вежливость",
@@ -2221,7 +2251,17 @@ let translations = {
         phoneNumber: "Номер телефона",
         host: "Ведущий",
         discovery: "Как вы нас нашли?",
-        submit: "Отправить"
+        submit: "Отправить",
+        champagneGlass: "Бокал для шампанского",
+        travelSpray: "Путешествие спрей",
+        muranoBottle: "Бутылка из Мурано",
+        customRibbon: "Индивидуальная лента",
+        apprenticeDiploma: "Диплом ученика парфюмера",
+        giftCertificate: "Подарочный сертификат",
+        skinAllergies: "Есть ли у вас аллергия на кожу?",
+        declineResponsibility: "Если да, желаете ли вы продолжить, отказавшись от нашей ответственности?",
+        acceptGDPR: "Принимаете ли вы стандарты GDPR?",
+        rgpdMessage: "С июня 2018 года, согласно новому регламенту GDPR, ваши данные собираются для внутреннего управления вашей записью, для возможных рекомендаций и для нашего динамического управления инвентарем. Они не передаются третьим лицам."
     },
     ar: {
         civility: "اللقب",
@@ -2234,7 +2274,17 @@ let translations = {
         phoneNumber: "رقم الهاتف",
         host: "المضيف",
         discovery: "كيف وجدتنا؟",
-        submit: "إرسال"
+        submit: "إرسال",
+        champagneGlass: "كوب الشمبانيا",
+        travelSpray: "بخاخ السفر",
+        muranoBottle: "زجاجة مورانو",
+        customRibbon: "شريط مخصص",
+        apprenticeDiploma: "شهادة مبتدئ العطور",
+        giftCertificate: "شهادة هدية",
+        skinAllergies: "هل لديك حساسية في الجلد؟",
+        declineResponsibility: "إذا كانت الإجابة نعم، هل ترغب في المتابعة برفض مسؤوليتنا؟",
+        acceptGDPR: "هل تقبل معايير اللائحة العامة لحماية البيانات؟",
+        rgpdMessage: "منذ يونيو 2018، وفقًا لتشريعات الـ GDPR الجديدة، يتم جمع بياناتك لإدارة سجلك الداخلي وللتوصيات المحتملة ولإدارتنا الديناميكية للمخزون. لا تتم إرسالها إلى أطراف ثالثة."
     },
     pt: {
         civility: "Civilidade",
@@ -2247,7 +2297,17 @@ let translations = {
         phoneNumber: "Número de telefone",
         host: "Anfitrião",
         discovery: "Como você nos encontrou?",
-        submit: "Enviar"
+        submit: "Enviar",
+        champagneGlass: "Copo de champanhe",
+        travelSpray: "Spray de viagem",
+        muranoBottle: "Garrafa de Murano",
+        customRibbon: "Fita personalizada",
+        apprenticeDiploma: "Diploma de aprendiz de perfumista",
+        giftCertificate: "Certificado de presente",
+        skinAllergies: "Você tem alergias na pele?",
+        declineResponsibility: "Se sim, deseja prosseguir recusando nossa responsabilidade?",
+        acceptGDPR: "Você aceita os padrões GDPR?",
+        rgpdMessage: "Desde junho de 2018, de acordo com a nova regulamentação GDPR, seus dados são coletados para gerenciamento interno de seu registro, para possíveis recomendações e para nossa gestão dinâmica de estoque. Eles não são transmitidos a terceiros."
     }
 };
 
@@ -2307,7 +2367,7 @@ elements.forEach(element => {
 
 function translatePage() {
     for (let key in translations[lang]) {
-        let elements = document.querySelectorAll('label.' + key + ', button.' + key);
+        let elements = document.querySelectorAll('.' + key);
         elements.forEach(element => {
             element.textContent = translations[lang][key];
         });

@@ -23,7 +23,7 @@ $config = require './model/config.php';
 <h1 class="main__h1">Informations</h1>
 
 <!-- Formulaire. -->
-<form class="form" action="./model/addFuturCustomerModel.php" method="POST">
+<form class="form" action="./model/addCustomerModel.php" method="POST">
 
     <!-- Messages de succès ou d'erreurs. -->
     <?php
@@ -36,24 +36,24 @@ $config = require './model/config.php';
     ?>
 
     <!-- Civilité. -->
-    <label for="title" class="civility">Civilité</label>
-    <select name="title" id="title">
+    <label for="titlePrint" class="civility">Civilité</label>
+    <select name="titlePrint" id="titlePrint">
         <option value="Mr">Mr</option>
         <option value="Mme">Mme / Mrs </option>
         <option value="Enfant">Enfant / Child </option>
     </select>
 
     <!-- Nom. -->
-    <label for="lastname" class="lastName">Nom</label>
-    <input type="text" id="lastname" name="lastname">
+    <label for="lastnamePrint" class="lastNamePrint">Nom</label>
+    <input type="text" id="lastnamePrint" name="lastnamePrint">
 
     <!-- Prénom. -->
-    <label for="firstname" class="firstName">Prénom</label>
-    <input type="text" id="firstname" name="firstname">
+    <label for="firstnamePrint" class="firstNamePrint">Prénom</label>
+    <input type="text" id="firstnamePrint" name="firstnamePrint">
 
     <!-- Email. -->
-    <label for="email" class="email">Email</label>
-    <input type="email" id="email" name="email">
+    <label for="emailPrint" class="emailPrint">Email</label>
+    <input type="emailPrint" id="emailPrint" name="emailPrint">
 
     <!-- Pays. -->
     <label for="country" class="country">Pays</label>
@@ -61,42 +61,41 @@ $config = require './model/config.php';
     </select>
 
     <!-- Adresse. -->
-    <label for="address" class="address">Adresse</label>
-    <input type="text" id="address" name="address">
+    <label for="addressPrint" class="addressPrint">Adresse</label>
+    <input type="text" id="addressPrint" name="addressPrint">
 
     <!-- Ville. -->
-    <label for="city" class="city">Ville</label>
-    <input type="text" id="city" name="city">
+    <label for="cityPrint" class="cityPrint">Ville</label>
+    <input type="text" id="cityPrint" name="cityPrint">
 
     <!-- Numéro de téléphone. -->
-    <label for="phoneNumber" class="phoneNumber">Numéro de téléphone</label>
-    <input type="tel" id="phoneNumber" name="phoneNumber">
+    <label for="phoneNumberPrint" class="phoneNumberPrint">Numéro de téléphone</label>
+    <input type="tel" id="phoneNumberPrint" name="phoneNumberPrint">
 
     <!-- Hôte. -->
-    <label for="facilitator" class="host">Hôte</label>
-    <select name="facilitator" id="facilitator">
+    <label for="facilitatorPrint" class="hostPrint">Hôte</label>
+    <select name="facilitatorPrint" id="facilitatorPrint">
         <?php foreach ($config['hosts'] as $host) : ?>
             <option value="<?= htmlspecialchars($host) ?>"><?= htmlspecialchars($host) ?></option>
         <?php endforeach; ?>
     </select>
 
     <!-- Atelier. -->
-    <label for="workshop" class="workshop">Atelier</label>
-    <select name="workshop" id="workshop">
+    <label for="workshopPrint" class="workshopPrint">Atelier</label>
+    <select name="workshopPrint" id="workshopPrint">
         <?php foreach ($config['workshops'] as $workshop) : ?>
             <option value="<?= htmlspecialchars($workshop) ?>"><?= htmlspecialchars($workshop) ?></option>
         <?php endforeach; ?>
     </select>
 
     <!-- Comment nous avez vous découverts ? -->
-    <label for="howDidYou" class="discovery">Comment nous avez vous découverts ?</label>
-    <select name="howDidYou" id="howDidYou">
+    <label for="howDidYouPrint" class="discoveryPrint">Comment nous avez vous découverts ?</label>
+    <select name="howDidYouPrint" id="howDidYouPrint">
         <?php foreach ($config['discovery_methods'] as $method) : ?>
             <option value="<?= htmlspecialchars($method) ?>"><?= htmlspecialchars($method) ?></option>
         <?php endforeach; ?>
     </select>
 
-    <!-- Options supplémentaires. -->
     <!-- Options supplémentaires. -->
     <?php foreach ($config['extras'] as $extra) : ?>
         <div class="checkContainer">
@@ -109,28 +108,28 @@ $config = require './model/config.php';
 
     <!-- Allérgies cutanées. -->
     <div class="checkboxQuestionDiv">
-        <label for="allergies">Avez-vous des allergies empêchant de porter du parfum ?</label>
+        <label for="allergiesPrint">Avez-vous des allergies empêchant de porter du parfum ?</label>
         <div class="checkboxes">
-            <input class="small-checkbox" type="radio" id="allergies_yes" name="allergies" value="Oui"> Oui
-            <input class="small-checkbox" type="radio" id="allergies_no" name="allergies" value="Non"> Non
+            <input class="small-checkbox" type="radio" id="allergies_yes" name="allergiesPrint" value="Oui"> Oui
+            <input class="small-checkbox" type="radio" id="allergies_no" name="allergiesPrint" value="Non"> Non
         </div>
     </div>
 
     <!-- Acceptez-vous de continuer ? -->
     <div class="checkboxQuestionDiv">
-        <label for="responsibility">Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?</label>
+        <label for="responsibilityPrint">Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?</label>
         <div class="checkboxes">
-            <input class="small-checkbox" type="radio" id="responsibility_yes" name="responsibility" value="Oui"> Oui
-            <input class="small-checkbox" type="radio" id="responsibility_no" name="responsibility" value="Non"> Non
+            <input class="small-checkbox" type="radio" id="responsibility_yes" name="responsibilityPrint" value="Oui"> Oui
+            <input class="small-checkbox" type="radio" id="responsibility_no" name="responsibilityPrint" value="Non"> Non
         </div>
     </div>
 
     <!-- Acceptation des normes RGPD. -->
     <div class="checkboxQuestionDiv">
-        <label for="rgpd">Acceptez-vous les normes RGPD* ?</label>
+        <label for="rgpdPrint">Acceptez-vous les normes RGPD* ?</label>
         <div class="checkboxes">
-            <input class="small-checkbox" type="radio" id="rgpd_yes" name="rgpd" value="Acceptées"> Oui
-            <input class="small-checkbox" type="radio" id="rgpd_no" name="rgpd" value="Refusées"> Non
+            <input class="small-checkbox" type="radio" id="rgpd_yes" name="rgpdPrint" value="Acceptées"> Oui
+            <input class="small-checkbox" type="radio" id="rgpd_no" name="rgpdPrint" value="Refusées"> Non
         </div>
     </div>
 

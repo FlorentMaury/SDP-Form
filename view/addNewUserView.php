@@ -8,7 +8,7 @@ ob_start();
 ?>
 
 <!-- Formulaire de connection. -->
-<form class="form" method="POST" action="./model/addNewUserModel.php">
+<form class="form" method="POST" action="./model/printCustomersModel.php">
 
     <?php
     if (isset($_GET['error']) && !empty($_GET['message'])) {

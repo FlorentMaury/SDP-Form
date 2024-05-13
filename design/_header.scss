@@ -84,6 +84,12 @@
             color          : black;
             display        : flex;
             justify-content: space-between;
+
+            &.active {
+                background:lighten($goldenColor, 30%); 
+                padding: 10px;
+                border-radius: 10px;
+            }
         }
     }
 }

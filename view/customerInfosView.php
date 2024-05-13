@@ -102,7 +102,7 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
         <?php
         
         // Traduction des clés de la base de données pour le français.
-        $translations = [
+        $translationsFR = [
             'workshop' => 'Atelier',
             'extras'   => 'Options',
             'how_did_you' => 'Découverte ?',
@@ -167,7 +167,7 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             echo '<div style="width: 80%; margin: auto; display: flex; flex-wrap: wrap;">';
 
             // Sélection des traductions appropriées.
-            $translations = $customer['language'] === 'fr' ? $translations : $translationsEN;
+            $translations = ($customer['language'] === 'fr') ? $translationsFR : $translationsEN;
 
             // Affichage des informations du client.
             foreach ($customer as $key => $value) {

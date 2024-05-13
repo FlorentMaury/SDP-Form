@@ -7,6 +7,15 @@ function home()
 {
     require('model/connectionDBModel.php');
     require('model/addCustomerModel.php');
+    require('view/recordCustomerView.php');
+    require('./model/instantPrintCustomersModel.php');
+};
+
+// Ajout d'un futur utilisateur.
+function recordCustomer()
+{
+    require('./model/connectionDBModel.php');
+    require('model/addFuturCustomerModel.php');
     require('view/homeView.php');
 };
 
