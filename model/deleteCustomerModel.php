@@ -20,14 +20,22 @@
 
         // Supprimez le fichier PDF associé.
         $pdfPath = "../assets/CustomersPDF/{$creationId}/{$creationId}.pdf";
-        echo $pdfPath; 
-        echo fileperms($pdfPath); 
         if (file_exists($pdfPath)) {
             if (!unlink($pdfPath)) {
                 echo "Erreur lors de la suppression du fichier : " . print_r(error_get_last(), true);
             }
         } else {
             echo "Fichier non trouvé : " . $pdfPath;
+        }
+
+        // Supprimez le dossier contenant le fichier PDF.
+        $dirPath = "../assets/CustomersPDF/{$creationId}";
+        if (is_dir($dirPath)) {
+            if (!rmdir($dirPath)) {
+                echo "Erreur lors de la suppression du dossier : " . print_r(error_get_last(), true);
+            }
+        } else {
+            echo "Dossier non trouvé : " . $dirPath;
         }
 
         // Redirigez l'utilisateur vers la page d'accueil avec un message de succès.
