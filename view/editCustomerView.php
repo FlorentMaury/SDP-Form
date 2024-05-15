@@ -118,7 +118,7 @@ if (isset($_GET['id'])) {
 
 
             function redirectToCustomerInfos() {
-                <?php echo "window.location.href = './index.php?page=customerInfos&id=" . $data['creation_id'] . "';"; ?>
+                <?php echo "window.location.href = './index.php?page=customerInfos&creation_id=" . $data['creation_id'] . "';"; ?>
             }
         </script>
     </div>
