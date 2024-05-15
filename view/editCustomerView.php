@@ -91,17 +91,26 @@ if (isset($_GET['id'])) {
         <input type="text" id="howDidYou" name="howDidYou" value="<?= $data['how_did_you'] ?>">
 
         <label for="rgpd">RGPD :</label>
-        <input type="text" id="rgpd" name="rgpd" value="<?= $data['rgpd'] ?>">
+        <select id="rgpd" name="rgpd">
+            <option value="Acceptées" <?= $data['rgpd'] == 'Acceptées' ? 'selected' : '' ?>>Acceptées</option>
+            <option value="Refusées" <?= $data['rgpd'] == 'Refusées' ? 'selected' : '' ?>>Refusées</option>
+        </select>
 
         <label for="allergies">Allergies :</label>
-        <input type="text" id="allergies" name="allergies" value="<?= $data['allergies'] ?>">
+        <select id="allergies" name="allergies">
+            <option value="Oui" <?= $data['allergies'] == 'Oui' ? 'selected' : '' ?>>Oui</option>
+            <option value="Non" <?= $data['allergies'] == 'Non' ? 'selected' : '' ?>>Non</option>
+        </select>
 
         <label for="responsibility">Décliner responsabilité :</label>
-        <input type="text" id="responsibility" name="responsibility" value="<?= $data['responsibility'] ?>">
+        <select id="responsibility" name="responsibility">
+            <option value="Oui" <?= $data['responsibility'] == 'Oui' ? 'selected' : '' ?>>Oui</option>
+            <option value="Non" <?= $data['responsibility'] == 'Non' ? 'selected' : '' ?>>Non</option>
+        </select>
 
         <button class="form__submit button" type="submit">Modifier</button>
     </form>
-<div>
+    <div>
         <!-- <object data="./assets/CustomersPDF/<?= $data['creation_id'] ?>/<?= $data['creation_id'] ?>.pdf" type="application/pdf" width="100%" height="100%">
             <p>Il semble que votre navigateur ne peut pas afficher ce PDF. Vous pouvez <a href="./assets/CustomersPDF/<?= $data['creation_id'] ?>/<?= $data['creation_id'] ?>.pdf">télécharger le PDF</a> à la place.</p>
         </object>
