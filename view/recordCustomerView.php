@@ -17,7 +17,7 @@ $config = require './model/config.php';
     <img src="./assets/en.svg" class="flagList__en" alt="en">
     <img src="./assets/es.svg" class="flagList__es" alt="es">
     <img src="./assets/pt.svg" class="flagList__pt" alt="pt">
-    <img src="./assets/ru.svg" class="flagList__ru" alt="ru">
+    <!-- <img src="./assets/ru.svg" class="flagList__ru" alt="ru"> -->
 </div>
 
 <h1 class="main__h1">Informations</h1>

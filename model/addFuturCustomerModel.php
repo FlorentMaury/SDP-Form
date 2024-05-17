@@ -21,7 +21,6 @@ if (
     isset($_POST['allergies']) && 
     isset($_POST['rgpd'])
 ) {
-
     // Connexion à la base de données.
     require('./connectionDBModel.php');
 

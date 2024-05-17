@@ -29,54 +29,54 @@
                 $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : 'home';
                 ?>
 
-<!-- Lien vers la page d'accueil pour toutes les pages. -->
-<li class="navUl__li">
-    <a href="index.php?page=home" class="<?= ($page == 'home') ? 'active' : '' ?>">
-        Accueil client
-        <img src="./assets/home.svg" alt="Accueil">
-    </a>
-</li>
+                <!-- Lien vers la page d'accueil pour toutes les pages. -->
+                <li class="navUl__li">
+                    <a href="index.php?page=home" class="<?= ($page == 'home') ? 'active' : '' ?>">
+                        Accueil client
+                        <img src="./assets/home.svg" alt="Accueil">
+                    </a>
+                </li>
 
-<!-- Lien vers la page enregistrement d'un client. -->
-<li class="navUl__li">
-    <a href="index.php?page=recordCustomer" class="<?= ($page == 'recordCustomer') ? 'active' : '' ?>">
-        Enregistrer un futur client
-        <img src="./assets/record.svg" alt="Enregistrer client">
-    </a>
-</li>
+                <!-- Lien vers la page enregistrement d'un client. -->
+                <li class="navUl__li">
+                    <a href="index.php?page=recordCustomer" class="<?= ($page == 'recordCustomer') ? 'active' : '' ?>">
+                        Enregistrer un futur client
+                        <img src="./assets/record.svg" alt="Enregistrer client">
+                    </a>
+                </li>
 
-<?php // Si l'utilisateur est connecté.
-if (isset($_SESSION['connect'])) { ?>
+                <?php // Si l'utilisateur est connecté.
+                if (isset($_SESSION['connect'])) { ?>
 
-    <li class="navUl__li">
-        <a href="index.php?page=search" class="<?= ($page == 'search') ? 'active' : '' ?>">
-            Recherche
-            <img src="./assets/search.svg" alt="Recherche">
-        </a>
-    </li>
+                    <li class="navUl__li">
+                        <a href="index.php?page=search" class="<?= ($page == 'search') ? 'active' : '' ?>">
+                            Recherche
+                            <img src="./assets/search.svg" alt="Recherche">
+                        </a>
+                    </li>
 
-    <?php // Si l'utilisateur est un administrateur.
-    if ($_SESSION['role'] == 1) { ?>
+                    <?php // Si l'utilisateur est un administrateur.
+                    if ($_SESSION['role'] == 1) { ?>
 
-        <li class="navUl__li">
-            <a href="index.php?page=add" class="<?= ($page == 'add') ? 'active' : '' ?>">
-                Ajouter un utilisateur
-                <img src="./assets/add.svg" alt="Ajouter">
-            </a>
-        </li>
-        <li class="navUl__li">
-            <a href="index.php?page=userList" class="<?= ($page == 'userList') ? 'active' : '' ?>">
-                Voir la liste des utilisateurs
-                <img src="./assets/list.svg" alt="Liste des utilisateurs">
-            </a>
-        </li>
-        <li class="navUl__li">
-            <a href="index.php?page=formParams" class="<?= ($page == 'formParams') ? 'active' : '' ?>">
-                Paramètres du formulaire
-                <img src="./assets/edit.svg" alt="Paramètres">
-            </a>
-        </li>
-    <?php } ?>
+                        <li class="navUl__li">
+                            <a href="index.php?page=add" class="<?= ($page == 'add') ? 'active' : '' ?>">
+                                Ajouter un utilisateur
+                                <img src="./assets/add.svg" alt="Ajouter">
+                            </a>
+                        </li>
+                        <li class="navUl__li">
+                            <a href="index.php?page=userList" class="<?= ($page == 'userList') ? 'active' : '' ?>">
+                                Voir la liste des utilisateurs
+                                <img src="./assets/list.svg" alt="Liste des utilisateurs">
+                            </a>
+                        </li>
+                        <li class="navUl__li">
+                            <a href="index.php?page=formParams" class="<?= ($page == 'formParams') ? 'active' : '' ?>">
+                                Paramètres du formulaire
+                                <img src="./assets/edit.svg" alt="Paramètres">
+                            </a>
+                        </li>
+                    <?php } ?>
 
                     <!-- Lien de déconnexion pour toutes les pages. -->
                     <li class="navUl__li">
@@ -112,9 +112,15 @@ if (isset($_SESSION['connect'])) { ?>
 
  -->
     <?php
-    if ($page == 'home' || $page == 'recordCustomer') {
+    if ($page == 'recordCustomer') {
     ?>
+        <script src="./js/countries.js"></script>
         <script src="./js/countryTrad.js"></script>
+    <?php
+    } elseif ($page == 'home') {
+    ?>
+        <script src="./js/countries.js"></script>
+        <script src="./js/countryTradHome.js"></script>
     <?php
     } elseif ($page == 'search') {
     ?>
@@ -122,7 +128,7 @@ if (isset($_SESSION['connect'])) { ?>
     <?php
     }
     ?>
-    <script src="./js/script.js"></script>
+    <script src="./js/nav.js"></script>
 </body>
 
 </html>

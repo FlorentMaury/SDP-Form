@@ -91,3 +91,7 @@
         background-color: lighten($blankColor, 5%); 
     }
 }
+
+.flagList__active {
+    display: none;
+}

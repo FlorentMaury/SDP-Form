@@ -17,7 +17,7 @@ $config = require './model/config.php';
     <img src="./assets/en.svg" class="flagList__en" alt="en">
     <img src="./assets/es.svg" class="flagList__es" alt="es">
     <img src="./assets/pt.svg" class="flagList__pt" alt="pt">
-    <img src="./assets/ru.svg" class="flagList__ru" alt="ru">
+    <!-- <img src="./assets/ru.svg" class="flagList__ru" alt="ru"> -->
 </div>
 
 <h1 class="main__h1">Informations</h1>
@@ -35,45 +35,44 @@ $config = require './model/config.php';
     }
     ?>
 
-    <!-- Civilité. -->
-    <label for="title" class="civility">Civilité</label>
-    <select name="title" id="title">
-        <option value="Mr">Mr</option>
-        <option value="Mme">Mme / Mrs </option>
-        <option value="Enfant">Enfant / Child </option>
+    <!-- Civilité -->
+    <label for="title" class="translate civility">Civilité</label>
+    <select name="title" id="title" class="translate">
+        <option value="Mr" class="translate mr">Mr</option>
+        <option value="Mme" class="translate mrs">Mme / Mrs</option>
+        <option value="Enfant" class="translate child">Enfant / Child</option>
     </select>
 
-    <!-- Nom. -->
-    <label for="lastname" class="lastName">Nom</label>
+    <!-- Nom -->
+    <label for="lastname" class="translate lastName">Nom</label>
     <input type="text" id="lastname" name="lastname">
 
-    <!-- Prénom. -->
-    <label for="firstname" class="firstName">Prénom</label>
+    <!-- Prénom -->
+    <label for="firstname" class="translate firstName">Prénom</label>
     <input type="text" id="firstname" name="firstname">
 
-    <!-- Email. -->
-    <label for="email" class="email">Email</label>
+    <!-- Email -->
+    <label for="email" class="translate email">Email</label>
     <input type="email" id="email" name="email">
 
-    <!-- Pays. -->
-    <label for="country" class="country">Pays</label>
-    <select name="country" id="country">
-    </select>
+    <!-- Pays -->
+    <label for="country" class="translate country">Pays</label>
+    <select name="country" id="country" class="translate"></select>
 
-    <!-- Adresse. -->
-    <label for="address" class="address">Adresse</label>
+    <!-- Adresse -->
+    <label for="address" class="translate address">Adresse</label>
     <input type="text" id="address" name="address">
 
-    <!-- Ville. -->
-    <label for="city" class="city">Ville</label>
+    <!-- Ville -->
+    <label for="city" class="translate city">Ville</label>
     <input type="text" id="city" name="city">
 
-    <!-- Numéro de téléphone. -->
-    <label for="phoneNumber" class="phoneNumber">Numéro de téléphone</label>
+    <!-- Numéro de téléphone -->
+    <label for="phoneNumber" class="translate phoneNumber">Numéro de téléphone</label>
     <input type="tel" id="phoneNumber" name="phoneNumber">
 
     <!-- Hôte. -->
-    <label for="facilitator" class="host">Hôte</label>
+    <label for="facilitator" class="hostPrint">Hôte</label>
     <select name="facilitator" id="facilitator">
         <?php foreach ($config['hosts'] as $host) : ?>
             <option value="<?= htmlspecialchars($host) ?>"><?= htmlspecialchars($host) ?></option>
@@ -97,7 +96,6 @@ $config = require './model/config.php';
     </select>
 
     <!-- Options supplémentaires. -->
-    <!-- Options supplémentaires. -->
     <?php foreach ($config['extras'] as $extra) : ?>
         <div class="checkContainer">
             <div class="checkbox-container">
@@ -107,47 +105,41 @@ $config = require './model/config.php';
         </div>
     <?php endforeach; ?>
 
-    <!-- Allérgies cutanées. -->
+    <!-- Allérgies cutanées -->
     <div class="checkboxQuestionDiv">
-        <label for="allergies">Avez-vous des allergies empêchant de porter du parfum ?</label>
+        <label for="allergies" class="translate allergiesQuestion">Avez-vous des allergies empêchant de porter du parfum ?</label>
         <div class="checkboxes">
-            <input class="small-checkbox" type="radio" id="allergies_yes" name="allergies" value="Oui"> Oui
-            <input class="small-checkbox" type="radio" id="allergies_no" name="allergies" value="Non"> Non
+            <input class="small-checkbox translate yes" type="radio" id="allergies_yes" name="allergies" value="Oui"> Oui
+            <input class="small-checkbox translate no" type="radio" id="allergies_no" name="allergies" value="Non"> Non
         </div>
     </div>
 
     <!-- Acceptez-vous de continuer ? -->
     <div class="checkboxQuestionDiv">
-        <label for="responsibility">Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?</label>
+        <label for="responsibility" class="translate responsibilityQuestion">Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?</label>
         <div class="checkboxes">
-            <input class="small-checkbox" type="radio" id="responsibility_yes" name="responsibility" value="Oui"> Oui
-            <input class="small-checkbox" type="radio" id="responsibility_no" name="responsibility" value="Non"> Non
+            <input class="small-checkbox translate yes" type="radio" id="responsibility_yes" name="responsibility" value="Oui"> Oui
+            <input class="small-checkbox translate no" type="radio" id="responsibility_no" name="responsibility" value="Non"> Non
         </div>
     </div>
 
-    <!-- Acceptation des normes RGPD. -->
+    <!-- Acceptation des normes RGPD -->
     <div class="checkboxQuestionDiv">
-        <label for="rgpd">Acceptez-vous les normes RGPD* ?</label>
+        <label for="rgpd" class="translate rgpdQuestion">Acceptez-vous les normes RGPD* ?</label>
         <div class="checkboxes">
-            <input class="small-checkbox" type="radio" id="rgpd_yes" name="rgpd" value="Acceptées"> Oui
-            <input class="small-checkbox" type="radio" id="rgpd_no" name="rgpd" value="Refusées"> Non
+            <input class="small-checkbox translate yes" type="radio" id="rgpd_yes" name="rgpd" value="Acceptées"> Oui
+            <input class="small-checkbox translate no" type="radio" id="rgpd_no" name="rgpd" value="Refusées"> Non
         </div>
     </div>
 
-    <!-- Champ caché si provenance d'un email. -->
-    <?php
-    if (isset($_GET['token'])) {
-        $token = $_GET['token'];
-        echo '<input type="hidden" name="token" value="' . htmlspecialchars($token) . '">';
-    }
-    ?>
+    <!-- Champ caché si provenance d'un email -->
+    <input type="hidden" name="token" value="<?= isset($_GET['token']) ? htmlspecialchars($_GET['token']) : '' ?>">
 
     <!-- Champ caché pour la langue. -->
     <input type="hidden" id="lang" name="lang" value="fr">
 
     <!-- Bouton d'envoi. -->
-    <button class="form__submit submit" type="submit" value="Envoyer">Envoyer</button>
-
+    <button class="form__submit submit translate" type="submit" value="Envoyer">Envoyer</button>
     <p class="rgpd">Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers.</p>
 
     <!-- Bouton pour imprimer les fiches sélectionnées. -->
