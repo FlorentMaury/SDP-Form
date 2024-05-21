@@ -73,25 +73,25 @@ $config = require './model/config.php';
 
     <!-- Hôte. -->
     <label for="facilitator" class="hostPrint">Hôte</label>
-    <select name="facilitator" id="facilitator">
+    <select name="facilitator" id="facilitator" class="translate">
         <?php foreach ($config['hosts'] as $host) : ?>
-            <option value="<?= htmlspecialchars($host) ?>"><?= htmlspecialchars($host) ?></option>
+            <option value="<?= htmlspecialchars($host) ?>" class="translate" data-translate-key="<?= htmlspecialchars($host) ?>"><?= htmlspecialchars($host) ?></option>
         <?php endforeach; ?>
     </select>
 
     <!-- Atelier. -->
     <label for="workshop" class="workshop">Atelier</label>
-    <select name="workshop" id="workshop">
+    <select name="workshop" id="workshop" class="translate">
         <?php foreach ($config['workshops'] as $workshop) : ?>
-            <option value="<?= htmlspecialchars($workshop) ?>"><?= htmlspecialchars($workshop) ?></option>
+            <option value="<?= htmlspecialchars($workshop) ?>" class="translate" data-translate-key="<?= htmlspecialchars($workshop) ?>"><?= htmlspecialchars($workshop) ?></option>
         <?php endforeach; ?>
     </select>
 
     <!-- Comment nous avez vous découverts ? -->
     <label for="howDidYou" class="discovery">Comment nous avez vous découverts ?</label>
-    <select name="howDidYou" id="howDidYou">
+    <select name="howDidYou" id="howDidYou" class="translate">
         <?php foreach ($config['discovery_methods'] as $method) : ?>
-            <option value="<?= htmlspecialchars($method) ?>"><?= htmlspecialchars($method) ?></option>
+            <option value="<?= htmlspecialchars($method) ?>" class="translate" data-translate-key="<?= htmlspecialchars($method) ?>"><?= htmlspecialchars($method) ?></option>
         <?php endforeach; ?>
     </select>
 
@@ -99,7 +99,7 @@ $config = require './model/config.php';
     <?php foreach ($config['extras'] as $extra) : ?>
         <div class="checkContainer">
             <div class="checkbox-container">
-                <label for="<?= htmlspecialchars($extra) ?>"><?= htmlspecialchars($extra) ?></label>
+                <label for="<?= htmlspecialchars($extra) ?>" class="translate" data-translate-key="<?= htmlspecialchars($extra) ?>"><?= htmlspecialchars($extra) ?></label>
                 <input class="small-checkbox" type="checkbox" id="<?= htmlspecialchars($extra) ?>" name="extras[]Print" value="<?= htmlspecialchars($extra) ?>">
             </div>
         </div>
@@ -123,9 +123,18 @@ $config = require './model/config.php';
         </div>
     </div>
 
+    <!-- Acceptation de la newsletter ? -->
+    <div class="checkboxQuestionDiv">
+        <label for="news" class="translate newsQuestion">Acceptez-vous de reçevoir la newsletter* ?</label>
+        <div class="checkboxes">
+            <input class="small-checkbox translate yes" type="radio" id="news_yes" name="news" value="Acceptées"> Oui
+            <input class="small-checkbox translate no" type="radio" id="news_no" name="news" value="Refusées"> Non
+        </div>
+    </div>
+
     <!-- Acceptation des normes RGPD -->
     <div class="checkboxQuestionDiv">
-        <label for="rgpd" class="translate rgpdQuestion">Acceptez-vous les normes RGPD* ?</label>
+        <label for="rgpd" class="translate rgpdQuestion">Acceptez-vous les normes RGPD** ?</label>
         <div class="checkboxes">
             <input class="small-checkbox translate yes" type="radio" id="rgpd_yes" name="rgpd" value="Acceptées"> Oui
             <input class="small-checkbox translate no" type="radio" id="rgpd_no" name="rgpd" value="Refusées"> Non
@@ -140,7 +149,8 @@ $config = require './model/config.php';
 
     <!-- Bouton d'envoi. -->
     <button class="form__submit submit translate" type="submit" value="Envoyer">Envoyer</button>
-    <p class="rgpd">Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers.</p>
+    <p class="news">*Le Studio des Parfums enrichi régulièrement son orgue et également les informations du monde de la parfumerie, ainsi que des offres aventageuses, acceptez-vous de recevoir cette newsletter.</p>
+    <p class="rgpd">**Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers.</p>
 
     <!-- Bouton pour imprimer les fiches sélectionnées. -->
     <!-- <button class="form__print print" type="button" value="Imprimer" onclick="window.print()">Imprimer</button> -->

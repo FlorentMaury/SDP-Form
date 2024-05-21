@@ -19,6 +19,7 @@ if (
     !empty($_POST['workshopPrint']) &&
     !empty($_POST['howDidYouPrint']) &&
     isset($_POST['allergiesPrint']) && 
+    isset($_POST['newsPrint']) &&
     isset($_POST['rgpdPrint'])
 ) {
 
@@ -38,6 +39,7 @@ if (
     $workshop    = trim(htmlspecialchars($_POST['workshopPrint']));
     $howDidYou   = trim(htmlspecialchars($_POST['howDidYouPrint']));
     $allergies   = trim(htmlspecialchars($_POST['allergiesPrint'])); 
+    $news        = trim(htmlspecialchars($_POST['newsPrint']));
     if (isset($_POST['responsibilityPrint'])) {
         $responsibility = trim(htmlspecialchars($_POST['responsibilityPrint']));
     } else {
@@ -90,10 +92,10 @@ if (
     }
 
     // Préparez la requête SQL avec le nouveau champ extras.
-    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, extras, how_did_you, creation_id, token, allergies, responsibility, rgpd, language) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, extras, how_did_you, creation_id, token, allergies, responsibility, news, rgpd, language) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 
     // Exécutez la requête avec les données nettoyées, le token et les extras.
-    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $workshop, $extras, $howDidYou, $creationId, $token, $allergies, $responsibility, $rgpd, $_POST['lang']]);
+    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $workshop, $extras, $howDidYou, $creationId, $token, $allergies, $responsibility, $news, $rgpd, $_POST['lang']]);
 
     if ($result) {
 

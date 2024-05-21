@@ -5,6 +5,9 @@ $title = 'Accueil | Studio des Parfums';
 // Début d'enregistrement du HTML.
 ob_start();
 
+// Chargez les traductions depuis le fichier JSON
+$translations = json_decode(file_get_contents('./js/translations_fr.json'), true);
+
 $config = require './model/config.php';
 
 ?>
@@ -53,7 +56,7 @@ $config = require './model/config.php';
 
     <!-- Email. -->
     <label for="emailPrint" class="emailPrint">Email</label>
-    <input type="emailPrint" id="emailPrint" name="emailPrint">
+    <input type="email" id="emailPrint" name="emailPrint">
 
     <!-- Pays. -->
     <label for="country" class="country">Pays</label>
@@ -81,18 +84,18 @@ $config = require './model/config.php';
     </select>
 
     <!-- Atelier. -->
-    <label for="workshopPrint" class="workshopPrint">Atelier</label>
+    <label for="workshopPrint" class="workshopPrint translate">Atelier</label>
     <select name="workshopPrint" id="workshopPrint">
         <?php foreach ($config['workshops'] as $workshop) : ?>
-            <option value="<?= htmlspecialchars($workshop) ?>"><?= htmlspecialchars($workshop) ?></option>
+            <option value="<?= htmlspecialchars($workshop) ?>" class="translate" data-translate-key="<?= htmlspecialchars($workshop) ?>"><?= htmlspecialchars($workshop) ?></option>
         <?php endforeach; ?>
     </select>
 
     <!-- Comment nous avez vous découverts ? -->
-    <label for="howDidYouPrint" class="discoveryPrint">Comment nous avez vous découverts ?</label>
+    <label for="howDidYouPrint" class="discoveryPrint translate">Comment nous avez vous découverts ?</label>
     <select name="howDidYouPrint" id="howDidYouPrint">
         <?php foreach ($config['discovery_methods'] as $method) : ?>
-            <option value="<?= htmlspecialchars($method) ?>"><?= htmlspecialchars($method) ?></option>
+            <option value="<?= htmlspecialchars($method) ?>" class="translate" data-translate-key="<?= htmlspecialchars($method) ?>"><?= htmlspecialchars($method) ?></option>
         <?php endforeach; ?>
     </select>
 
@@ -100,11 +103,12 @@ $config = require './model/config.php';
     <?php foreach ($config['extras'] as $extra) : ?>
         <div class="checkContainer">
             <div class="checkbox-container">
-                <label for="<?= htmlspecialchars($extra) ?>"><?= htmlspecialchars($extra) ?></label>
+                <label for="<?= htmlspecialchars($extra) ?>" class="translate" data-translate-key="<?= htmlspecialchars($extra) ?>"><?= htmlspecialchars($extra) ?></label>
                 <input class="small-checkbox" type="checkbox" id="<?= htmlspecialchars($extra) ?>" name="extras[]Print" value="<?= htmlspecialchars($extra) ?>">
             </div>
         </div>
     <?php endforeach; ?>
+
 
     <!-- Allérgies cutanées. -->
     <div class="checkboxQuestionDiv">
@@ -124,9 +128,18 @@ $config = require './model/config.php';
         </div>
     </div>
 
+    <!-- Acceptation de la newsletter ? -->
+    <div class="checkboxQuestionDiv">
+        <label for="newsPrint">Acceptez-vous de reçevoir la newsletter* ?</label>
+        <div class="checkboxes">
+            <input class="small-checkbox translate yes" type="radio" id="news_yes" name="newsPrint" value="Acceptées"> Oui
+            <input class="small-checkbox translate no" type="radio" id="news_no" name="newsPrint" value="Refusées"> Non
+        </div>
+    </div>
+
     <!-- Acceptation des normes RGPD. -->
     <div class="checkboxQuestionDiv">
-        <label for="rgpdPrint">Acceptez-vous les normes RGPD* ?</label>
+        <label for="rgpdPrint">Acceptez-vous les normes RGPD** ?</label>
         <div class="checkboxes">
             <input class="small-checkbox" type="radio" id="rgpd_yes" name="rgpdPrint" value="Acceptées"> Oui
             <input class="small-checkbox" type="radio" id="rgpd_no" name="rgpdPrint" value="Refusées"> Non
@@ -147,7 +160,8 @@ $config = require './model/config.php';
     <!-- Bouton d'envoi. -->
     <button class="form__submit submit" type="submit" value="Envoyer">Envoyer</button>
 
-    <p class="rgpd">Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers.</p>
+    <p class="news">*Le Studio des Parfums enrichi régulièrement son orgue et également les informations du monde de la parfumerie, ainsi que des offres aventageuses, acceptez-vous de recevoir cette newsletter.</p>
+    <p class="rgpd">**Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion dynamique des stocks. Elles ne sont pas transmises à des tiers.</p>
 
     <!-- Bouton pour imprimer les fiches sélectionnées. -->
     <!-- <button class="form__print print" type="button" value="Imprimer" onclick="window.print()">Imprimer</button> -->

@@ -11,11 +11,14 @@ $stmt = $bdd->prepare('SELECT * FROM customer WHERE creation_id = ?');
 $stmt->execute([$id]);
 $customer = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Générer le QR Code
-// $qrCode = new Endroid\QrCode\QrCode((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
-// $writer = new Endroid\QrCode\Writer\PngWriter();
-// $image = $writer->write($qrCode);
-// $qrCodeImage = base64_encode($image->getString());
+require('./vendor/autoload.php');
+
+$qrCode = new Endroid\QrCode\QrCode((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+$qrCode->setSize(80); // Définir la taille du QR Code (en pixels)
+// $qrCode->setMargin(5); // Définir la marge autour du QR Code (en pixels)
+$writer = new Endroid\QrCode\Writer\PngWriter();
+$image = $writer->write($qrCode);
+$qrCodeImage = base64_encode($image->getString());
 
 ?>
 
@@ -101,7 +104,7 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
     <header style="width: 60%;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin: auto; padding: 10px">
             <img style="width: 30%;" class="logo" src="./assets/logo.webp" alt="Logo">
-            <!-- <img src="data:image/png;base64,<?php echo $qrCodeImage; ?>" alt="QR Code"> -->
+            <img src="data:image/png;base64,<?php echo $qrCodeImage; ?>" alt="QR Code">
             <h4>Fiche N° <?php echo htmlspecialchars($id); ?></h4>
         </div>
     </header>
@@ -155,7 +158,9 @@ $customer = $stmt->fetch(PDO::FETCH_ASSOC);
             'phone_number' => 'Phone number',
             'date' => 'Date',
             'host' => 'Perfume expert',
+            'news' => 'Newsletter',
             'rgpd' => 'RGPD',
+            'news' => 'Newsletter',
             'allergies' => 'Allergies',
             'responsibility' => 'Decline responsibility',
             'code_ess' => 'Ess. Code',

@@ -6,6 +6,15 @@ if (isset($_GET['customerIds'])) {
     // Récupération des identifiants des clients sélectionnés.
     $customerIds = $_GET['customerIds'];
 
+    require('../vendor/autoload.php');
+
+    $qrCode = new Endroid\QrCode\QrCode((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+    $qrCode->setSize(80); // Définir la taille du QR Code (en pixels)
+    // $qrCode->setMargin(5); // Définir la marge autour du QR Code (en pixels)
+    $writer = new Endroid\QrCode\Writer\PngWriter();
+    $image = $writer->write($qrCode);
+    $qrCodeImage = base64_encode($image->getString());
+
     // Pour chaque identifiant de client
     // Préparation de la requête pour récupérer les informations du client.
     $stmt = $bdd->prepare('SELECT * FROM customer WHERE creation_id = ?');
@@ -97,6 +106,7 @@ if (isset($_GET['customerIds'])) {
             <header style="width: 60%;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin: auto; padding: 10px">
                     <img style="width: 30%;" class="logo" src="../assets/logo.webp" alt="Logo">
+                    <img src="data:image/png;base64,<?php echo $qrCodeImage; ?>" alt="QR Code">
                     <h4>Fiche N° <?php echo htmlspecialchars($customerIds); ?></h4>
                 </div>
             </header>

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const defaultLang = 'fr';
     loadTranslations(defaultLang);
     loadCountries(defaultLang);
-    
+
     // Set French flag as active on page load
     document.querySelector('.flagList__fr').classList.add('flagList__active');
 
@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const lang = this.classList[0].split('__')[1]; // ex: "flagList__fr" => "fr"
             loadTranslations(lang);
             loadCountries(lang);
-            document.getElementById('lang').value = lang; // Update hidden language input
+            document.getElementById('lang').value = lang; 
+            currentLang = this.classList[0].split('__')[1]; // Mettre à jour la langue actuelle
 
             // Reset all flags
             resetFlags();
@@ -25,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Update phone number and postal code when changing country
             updatePhoneNumber();
-            updatePostalCode();
         });
     });
 
@@ -40,22 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(translations => {
                 elementsToTranslate.forEach(element => {
-                    const key = element.classList[1];
+                    const key = element.getAttribute('data-translate-key');
                     if (translations[key]) {
                         if (element.tagName === 'INPUT' || element.tagName === 'SELECT') {
                             element.placeholder = translations[key];
                         } else {
                             element.textContent = translations[key];
                         }
-                    }
-                });
-
-                // Translate dynamic content from config.php
-                const dynamicElements = document.querySelectorAll('[data-translate-key]');
-                dynamicElements.forEach(element => {
-                    const key = element.getAttribute('data-translate-key');
-                    if (translations[key]) {
-                        element.textContent = translations[key];
                     }
                 });
 
@@ -69,11 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error loading translations:', error));
     }
 
- 
     function loadCountries(lang) {
         const countrySelect = document.getElementById('country');
-        countrySelect.innerHTML = ''; // Clear existing options
-
+        countrySelect.innerHTML = ''; 
+    
         countries.forEach(country => {
             const option = document.createElement('option');
             option.value = country.name['fr']; // Utiliser le nom français pour la valeur
@@ -95,21 +85,5 @@ function updatePhoneNumber() {
         }
     } else {
         phoneNumberInput.value = ''; // Clear phone number if no country is selected
-    }
-}
-
-function updatePostalCode() {
-    var countrySelect = document.getElementById('country');
-    var postalCodeInput = document.getElementById('postalCode');
-    var selectedCountryIndex = countrySelect.selectedIndex;
-    
-    if (selectedCountryIndex >= 0) {
-        var selectedCountryName = countrySelect.options[selectedCountryIndex].text;
-        var postalCode = postal_codes[selectedCountryName];
-        if (postalCode) {
-            postalCodeInput.value = postalCode;
-        }
-    } else {
-        postalCodeInput.value = ''; // Clear postal code if no country is selected
     }
 }
