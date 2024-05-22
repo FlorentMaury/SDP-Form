@@ -1,4 +1,4 @@
-const translationsData = {
+{
     "fr": {
         "civility": "Civilité",
         "mr": "Monsieur",
@@ -17,7 +17,6 @@ const translationsData = {
         "allergiesQuestion": "Avez-vous des allergies empêchant de porter du parfum ?",
         "responsibilityQuestion": "Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?",
         "rgpdQuestion": "Acceptez-vous les réglementations RGPD ?",
-        "newsQuestion": "Acceptez-vous de recevoir la newsletter* ?",
         "submit": "Soumettre",
         "yes": "Oui",
         "no": "Non",
@@ -66,7 +65,6 @@ const translationsData = {
         "allergiesQuestion": "Você tem alguma alergia que impeça o uso de perfume?",
         "responsibilityQuestion": "Se sim, deseja prosseguir declinando nossa responsabilidade?",
         "rgpdQuestion": "Você aceita as normas RGPD?",
-        "newsQuestion": "Você aceita receber a newsletter*?",
         "submit": "Enviar",
         "yes": "Sim",
         "no": "Não",
@@ -115,7 +113,6 @@ const translationsData = {
         "allergiesQuestion": "¿Tiene alguna alergia que le impida usar perfume?",
         "responsibilityQuestion": "Si es así, ¿desea continuar declinando nuestra responsabilidad?",
         "rgpdQuestion": "¿Acepta las normas RGPD?",
-        "newsQuestion": "¿Acepta recibir el boletín informativo*?",
         "submit": "Enviar",
         "yes": "Sí",
         "no": "No",
@@ -164,7 +161,6 @@ const translationsData = {
         "allergiesQuestion": "Do you have any allergies that prevent you from wearing perfume?",
         "responsibilityQuestion": "If yes, do you want to proceed by declining our responsibility?",
         "rgpdQuestion": "Do you accept the GDPR regulations?",
-        "newsQuestion": "Do you accept to receive the newsletter*?",
         "submit": "Submit",
         "yes": "Yes",
         "no": "No",
@@ -194,86 +190,5 @@ const translationsData = {
         "Impression d'un bon cadeau": "Gift Card Printing",
         "rgpdMessage": "**Since June 2018, in accordance with the new GDPR regulations, your data is collected for internal management of your file, for any recommendations, and for our dynamic stock management. They are not transmitted to third parties.",
         "newsletterMessage": "*Le Studio des Parfums regularly enriches its organ and also the information from the world of perfumery, as well as advantageous offers, do you accept to receive this newsletter?"
-    }
-};
-
-document.addEventListener('DOMContentLoaded', function() {
-    const flags = document.querySelectorAll('.main__flagsList img');
-    const elementsToTranslate = document.querySelectorAll('.translate');
-
-    // Load default language on page load
-    const defaultLang = 'fr';
-    loadTranslations(defaultLang);
-    loadCountries(defaultLang);
-
-    // Set French flag as active on page load
-    document.querySelector('.flagList__fr').classList.add('flagList__active');
-
-    flags.forEach(flag => {
-        flag.addEventListener('click', function() {
-            const lang = this.classList[0].split('__')[1]; // ex: "flagList__fr" => "fr"
-            loadTranslations(lang);
-            loadCountries(lang);
-            document.getElementById('lang').value = lang; 
-            currentLang = this.classList[0].split('__')[1]; // Mettre à jour la langue actuelle
-
-            // Reset all flags
-            resetFlags();
-
-            // Hide the clicked flag
-            this.classList.add('flagList__active');
-
-            // Update phone number and postal code when changing country
-            updatePhoneNumber();
-        });
-    });
-
-    function resetFlags() {
-        flags.forEach(flag => {
-            flag.classList.remove('flagList__active');
-        });
-    }
-
-    function loadTranslations(lang) {
-        const translations = translationsData[lang];
-
-        elementsToTranslate.forEach(element => {
-            const key = element.getAttribute('data-translate-key');
-            const translation = translations[key];
-            if (translation) {
-                if (element.tagName === 'INPUT' || element.tagName === 'SELECT') {
-                    element.placeholder = translation;
-                } else {
-                    element.textContent = translation;
-                }
-            }
-        });
-    }
-
-    function loadCountries(lang) {
-        const countrySelect = document.getElementById('country');
-        countrySelect.innerHTML = ''; 
-    
-        countries.forEach(country => {
-            const option = document.createElement('option');
-            option.value = country.name['fr']; // Utiliser le nom français pour la valeur
-            option.textContent = country.name[lang] || country.name['en']; // Utiliser la langue de l'utilisateur
-            countrySelect.appendChild(option);
-        });
-    }
-});
-
-function updatePhoneNumber() {
-    var countrySelect = document.getElementById('country');
-    var phoneNumberInput = document.getElementById('phoneNumber');
-    var selectedCountryIndex = countrySelect.selectedIndex;
-    
-    if (selectedCountryIndex >= 0) {
-        var selectedCountry = countries[selectedCountryIndex];
-        if (selectedCountry) {
-            phoneNumberInput.value = selectedCountry.dial_code;
-        }
-    } else {
-        phoneNumberInput.value = ''; // Clear phone number if no country is selected
     }
 }
