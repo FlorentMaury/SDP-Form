@@ -16,7 +16,7 @@ const translationsData = {
         "discovery": "Comment nous avez-vous découverts ?",
         "allergiesQuestion": "Avez-vous des allergies empêchant de porter du parfum ?",
         "responsibilityQuestion": "Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?",
-        "rgpdQuestion": "Acceptez-vous les réglementations RGPD ?",
+        "rgpdQuestion": "Acceptez-vous les réglementations RGPD** ?",
         "newsQuestion": "Acceptez-vous de recevoir la newsletter* ?",
         "submit": "Soumettre",
         "yes": "Oui",
@@ -65,7 +65,7 @@ const translationsData = {
         "discovery": "Como nos descobriu?",
         "allergiesQuestion": "Você tem alguma alergia que impeça o uso de perfume?",
         "responsibilityQuestion": "Se sim, deseja prosseguir declinando nossa responsabilidade?",
-        "rgpdQuestion": "Você aceita as normas RGPD?",
+        "rgpdQuestion": "Você aceita as normas RGPD**?",
         "newsQuestion": "Você aceita receber a newsletter*?",
         "submit": "Enviar",
         "yes": "Sim",
@@ -114,7 +114,7 @@ const translationsData = {
         "discovery": "¿Cómo nos descubrió?",
         "allergiesQuestion": "¿Tiene alguna alergia que le impida usar perfume?",
         "responsibilityQuestion": "Si es así, ¿desea continuar declinando nuestra responsabilidad?",
-        "rgpdQuestion": "¿Acepta las normas RGPD?",
+        "rgpdQuestion": "¿Acepta las normas RGPD**?",
         "newsQuestion": "¿Acepta recibir el boletín informativo*?",
         "submit": "Enviar",
         "yes": "Sí",
@@ -163,7 +163,7 @@ const translationsData = {
         "discovery": "How did you discover us?",
         "allergiesQuestion": "Do you have any allergies that prevent you from wearing perfume?",
         "responsibilityQuestion": "If yes, do you want to proceed by declining our responsibility?",
-        "rgpdQuestion": "Do you accept the GDPR regulations?",
+        "rgpdQuestion": "Do you accept the GDPR regulations**?",
         "newsQuestion": "Do you accept to receive the newsletter*?",
         "submit": "Submit",
         "yes": "Yes",
@@ -200,13 +200,16 @@ const translationsData = {
 document.addEventListener('DOMContentLoaded', function() {
     const flags = document.querySelectorAll('.main__flagsList img');
     const elementsToTranslate = document.querySelectorAll('.translate');
+    const countrySelect = document.getElementById('country');
+    const phoneNumberInput = document.getElementById('phoneNumber');
 
-    // Load default language on page load
+    // Charge la langue par défaut au chargement de la page
     const defaultLang = 'fr';
     loadTranslations(defaultLang);
     loadCountries(defaultLang);
+    updatePhoneNumber();
 
-    // Set French flag as active on page load
+    // Définit le drapeau français comme actif au chargement de la page
     document.querySelector('.flagList__fr').classList.add('flagList__active');
 
     flags.forEach(flag => {
@@ -215,17 +218,20 @@ document.addEventListener('DOMContentLoaded', function() {
             loadTranslations(lang);
             loadCountries(lang);
             document.getElementById('lang').value = lang; 
-            currentLang = this.classList[0].split('__')[1]; // Mettre à jour la langue actuelle
 
-            // Reset all flags
+            // Réinitialise tous les drapeaux
             resetFlags();
 
-            // Hide the clicked flag
+            // Masque le drapeau cliqué
             this.classList.add('flagList__active');
 
-            // Update phone number and postal code when changing country
+            // Met à jour le numéro de téléphone et le code postal lors du changement de pays
             updatePhoneNumber();
         });
+    });
+
+    countrySelect.addEventListener('change', function() {
+        updatePhoneNumber();
     });
 
     function resetFlags() {
@@ -251,29 +257,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadCountries(lang) {
-        const countrySelect = document.getElementById('country');
         countrySelect.innerHTML = ''; 
     
         countries.forEach(country => {
             const option = document.createElement('option');
             option.value = country.name['fr']; // Utiliser le nom français pour la valeur
             option.textContent = country.name[lang] || country.name['en']; // Utiliser la langue de l'utilisateur
+            option.setAttribute('data-dial-code', country.dial_code); // Ajouter le code de composition comme attribut
             countrySelect.appendChild(option);
         });
     }
-});
 
-function updatePhoneNumber() {
-    var countrySelect = document.getElementById('country');
-    var phoneNumberInput = document.getElementById('phoneNumber');
-    var selectedCountryIndex = countrySelect.selectedIndex;
-    
-    if (selectedCountryIndex >= 0) {
-        var selectedCountry = countries[selectedCountryIndex];
-        if (selectedCountry) {
-            phoneNumberInput.value = selectedCountry.dial_code;
+    function updatePhoneNumber() {
+        var selectedCountryIndex = countrySelect.selectedIndex;
+        
+        if (selectedCountryIndex >= 0) {
+            var selectedCountry = countries[selectedCountryIndex];
+            if (selectedCountry) {
+                phoneNumberInput.value = selectedCountry.dial_code;
+            }
+        } else {
+            phoneNumberInput.value = ''; // Efface le numéro de téléphone si aucun pays n'est sélectionné
         }
-    } else {
-        phoneNumberInput.value = ''; // Clear phone number if no country is selected
     }
-}
+});

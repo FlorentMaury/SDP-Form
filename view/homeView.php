@@ -106,46 +106,42 @@ $config = require './model/config.php';
         </div>
     <?php endforeach; ?>
 
-    <!-- Allérgies cutanées -->
-    <div class="checkboxQuestionDiv">
-        <label for="allergies" class="translate allergiesQuestion" data-translate-key="allergiesQuestion">Avez-vous des
-            allergies empêchant de porter du parfum
-            ?</label>
-        <div class="checkboxes">
-            <input class="small-checkbox translate yes" type="radio" id="allergies_yes" name="allergies" value="Oui">
-            Oui
-            <input class="small-checkbox translate no" type="radio" id="allergies_no" name="allergies" value="Non"> Non
-        </div>
+<!-- Allérgies cutanées -->
+<div class="checkboxQuestionDiv">
+    <label for="allergies" class="translate allergiesQuestion" data-translate-key="allergiesQuestion">Avez-vous des allergies empêchant de porter du parfum ?</label>
+    <div class="checkboxes">
+        <input class="small-checkbox translate" type="radio" id="allergies_yes" name="allergies" value="Oui" data-translate-key="yes"> <span class="translate" data-translate-key="yes">Oui</span>
+        <input class="small-checkbox translate" type="radio" id="allergies_no" name="allergies" value="Non" data-translate-key="no"> <span class="translate" data-translate-key="no">Non</span>
     </div>
+</div>
 
-    <!-- Acceptez-vous de continuer ? -->
-    <div class="checkboxQuestionDiv">
-        <label for="responsibility" class="translate responsibilityQuestion" data-translate-key="responsibilityQuestion">Si
-            oui, souhaitez-vous poursuivre en
-            déclinant notre responsabilité ?</label>
-        <div class="checkboxes">
-            <input class="small-checkbox translate yes" type="radio" id="responsibility_yes" name="responsibility" value="Oui"> Oui
-            <input class="small-checkbox translate no" type="radio" id="responsibility_no" name="responsibility" value="Non"> Non
-        </div>
+<!-- Acceptez-vous de continuer ? -->
+<div class="checkboxQuestionDiv">
+    <label for="responsibility" class="translate responsibilityQuestion" data-translate-key="responsibilityQuestion">Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?</label>
+    <div class="checkboxes">
+        <input class="small-checkbox translate" type="radio" id="responsibility_yes" name="responsibility" value="Oui" data-translate-key="yes"> <span class="translate" data-translate-key="yes">Oui</span>
+        <input class="small-checkbox translate" type="radio" id="responsibility_no" name="responsibility" value="Non" data-translate-key="no"> <span class="translate" data-translate-key="no">Non</span>
     </div>
+</div>
 
-    <!-- Acceptation de la newsletter ? -->
-    <div class="checkboxQuestionDiv">
-        <label for="news" class="translate newsQuestion" data-translate-key="newsQuestion">Acceptez-vous de reçevoir la newsletter* ?</label>
-        <div class="checkboxes">
-            <input class="small-checkbox translate yes" type="radio" id="news_yes" name="news" value="Acceptées"> Oui
-            <input class="small-checkbox translate no" type="radio" id="news_no" name="news" value="Refusées"> Non
-        </div>
+<!-- Acceptation de la newsletter ? -->
+<div class="checkboxQuestionDiv">
+    <label for="news" class="translate newsQuestion" data-translate-key="newsQuestion">Acceptez-vous de recevoir la newsletter* ?</label>
+    <div class="checkboxes">
+        <input class="small-checkbox translate" type="radio" id="news_yes" name="news" value="Acceptées" data-translate-key="yes"> <span class="translate" data-translate-key="yes">Oui</span>
+        <input class="small-checkbox translate" type="radio" id="news_no" name="news" value="Refusées" data-translate-key="no"> <span class="translate" data-translate-key="no">Non</span>
     </div>
+</div>
 
-    <!-- Acceptation des normes RGPD -->
-    <div class="checkboxQuestionDiv">
-        <label for="rgpd" class="translate rgpdQuestion" data-translate-key="rgpdQuestion">Acceptez-vous les normes RGPD** ?</label>
-        <div class="checkboxes">
-            <input class="small-checkbox translate yes" type="radio" id="rgpd_yes" name="rgpd" value="Acceptées"> Oui
-            <input class="small-checkbox translate no" type="radio" id="rgpd_no" name="rgpd" value="Refusées"> Non
-        </div>
+<!-- Acceptation des normes RGPD -->
+<div class="checkboxQuestionDiv">
+    <label for="rgpd" class="translate rgpdQuestion" data-translate-key="rgpdQuestion">Acceptez-vous les normes RGPD** ?</label>
+    <div class="checkboxes">
+        <input class="small-checkbox translate" data-translate-key="yes" type="radio" id="rgpd_yes" name="rgpd" value="Acceptées"> <span class="translate" data-translate-key="yes">Oui</span>
+        <input class="small-checkbox translate" data-translate-key="no" type="radio" id="rgpd_no" name="rgpd" value="Refusées"> <span class="translate" data-translate-key="no">Non</span>
     </div>
+</div>
+
 
     <!-- Champ caché si provenance d'un email -->
     <input type="hidden" name="token" value="<?= isset($_GET['token']) ? htmlspecialchars($_GET['token']) : '' ?>">

@@ -117,11 +117,6 @@
         <script src="./js/countries.js"></script>
         <script src="./js/countryTrad.js"></script>
     <?php
-    } elseif ($page == 'home') {
-    ?>
-        <script src="./js/countries.js"></script>
-        <script src="./js/countryTrad.js"></script>
-    <?php
     } elseif ($page == 'search') {
     ?>
         <script src="./js/search.js"></script>

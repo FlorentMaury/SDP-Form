@@ -1,7 +1,6 @@
 <?php
 $title = 'Accueil | Studio des Parfums';
 ob_start();
-$translations = json_decode(file_get_contents('./js/translations_fr.json'), true);
 $config = require './model/config.php';
 ?>
 
@@ -58,8 +57,8 @@ $config = require './model/config.php';
     <input type="text" id="cityPrint" name="cityPrint">
 
     <!-- Numéro de téléphone -->
-    <label for="phoneNumberPrint" class="translate phoneNumberPrint" data-translate-key="phoneNumber">Numéro de téléphone</label>
-    <input type="tel" id="phoneNumberPrint" name="phoneNumberPrint">
+    <label for="phoneNumber" class="translate phoneNumberPrint" data-translate-key="phoneNumber">Numéro de téléphone</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber">
 
     <!-- Hôte -->
     <label for="facilitatorPrint" class="translate hostPrint" data-translate-key="host">Hôte</label>
@@ -99,44 +98,42 @@ $config = require './model/config.php';
     </div>
     <?php endforeach; ?>
 
-    <!-- Allergies cutanées -->
-    <div class="checkboxQuestionDiv">
-        <label for="allergiesPrint" class="translate allergiesQuestion" data-translate-key="allergiesQuestion">Avez-vous des allergies empêchant de porter du parfum ?</label>
-        <div class="checkboxes">
-            <input class="small-checkbox" type="radio" id="allergies_yes" name="allergiesPrint" value="Oui"> Oui
-            <input class="small-checkbox" type="radio" id="allergies_no" name="allergiesPrint" value="Non"> Non
-        </div>
+<!-- Allergies cutanées -->
+<div class="checkboxQuestionDiv">
+    <label for="allergiesPrint" class="translate allergiesQuestion" data-translate-key="allergiesQuestion">Avez-vous des allergies empêchant de porter du parfum ?</label>
+    <div class="checkboxes">
+        <input class="small-checkbox translate" type="radio" id="allergies_yes" name="allergiesPrint" value="Oui" data-translate-key="yes"> <span class="translate" data-translate-key="yes">Yes</span>
+        <input class="small-checkbox translate" type="radio" id="allergies_no" name="allergiesPrint" value="Non" data-translate-key="no"> <span class="translate" data-translate-key="no">Non</span>
     </div>
+</div>
 
-    <!-- Acceptez-vous de continuer ? -->
-    <div class="checkboxQuestionDiv">
-        <label for="responsibilityPrint" class="translate responsibilityQuestion" data-translate-key="responsibilityQuestion">Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?</label>
-        <div class="checkboxes">
-            <input class="small-checkbox" type="radio" id="responsibility_yes" name="responsibilityPrint" value="Oui">
-            Oui
-            <input class="small-checkbox" type="radio" id="responsibility_no" name="responsibilityPrint" value="Non">
-            Non
-        </div>
+<!-- Acceptez-vous de continuer ? -->
+<div class="checkboxQuestionDiv">
+    <label for="responsibilityPrint" class="translate responsibilityQuestion" data-translate-key="responsibilityQuestion">Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?</label>
+    <div class="checkboxes">
+        <input class="small-checkbox translate" type="radio" id="responsibility_yes" name="responsibilityPrint" value="Oui" data-translate-key="yes"> <span class="translate" data-translate-key="yes">Yes</span>
+        <input class="small-checkbox translate" type="radio" id="responsibility_no" name="responsibilityPrint" value="Non" data-translate-key="no"> <span class="translate" data-translate-key="no">Non</span>
     </div>
+</div>
 
-    <!-- Acceptation de la newsletter -->
-    <div class="checkboxQuestionDiv">
-        <label for="newsPrint" class="translate newsQuestion" data-translate-key="newsQuestion">Acceptez-vous de recevoir la newsletter* ?</label>
-        <div class="checkboxes">
-            <input class="small-checkbox translate yes" type="radio" id="news_yes" name="newsPrint" value="Acceptées">
-            Oui
-            <input class="small-checkbox translate no" type="radio" id="news_no" name="newsPrint" value="Refusées"> Non
-        </div>
+<!-- Acceptation de la newsletter -->
+<div class="checkboxQuestionDiv">
+    <label for="newsPrint" class="translate newsQuestion" data-translate-key="newsQuestion">Acceptez-vous de recevoir la newsletter* ?</label>
+    <div class="checkboxes">
+        <input class="small-checkbox translate" type="radio" id="news_yes" name="newsPrint" value="Acceptées" data-translate-key="yes">  <span class="translate" data-translate-key="yes">Yes</span>
+        <input class="small-checkbox translate" type="radio" id="news_no" name="newsPrint" value="Refusées" data-translate-key="no"> <span class="translate" data-translate-key="no">Non</span>
     </div>
+</div>
 
-    <!-- Acceptation des normes RGPD -->
-    <div class="checkboxQuestionDiv">
-        <label for="rgpdPrint" class="translate rgpdQuestion" data-translate-key="rgpdQuestion">Acceptez-vous les normes RGPD** ?</label>
-        <div class="checkboxes">
-            <input class="small-checkbox" type="radio" id="rgpd_yes" name="rgpdPrint" value="Acceptées"> Oui
-            <input class="small-checkbox" type="radio" id="rgpd_no" name="rgpdPrint" value="Refusées"> Non
-        </div>
+<!-- Acceptation des normes RGPD -->
+<div class="checkboxQuestionDiv">
+    <label for="rgpdPrint" class="translate rgpdQuestion" data-translate-key="rgpdQuestion">Acceptez-vous les normes RGPD** ?</label>
+    <div class="checkboxes">
+        <input class="small-checkbox translate" type="radio" id="rgpd_yes" name="rgpdPrint" value="Acceptées" data-translate-key="yes"> <span class="translate" data-translate-key="yes">Yes</span>
+        <input class="small-checkbox translate" type="radio" id="rgpd_no" name="rgpdPrint" value="Refusées" data-translate-key="no"> <span class="translate" data-translate-key="no">Non</span>
     </div>
+</div>
+
 
     <!-- Champ caché si provenance d'un email -->
     <?php

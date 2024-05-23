@@ -14,7 +14,7 @@ if (
     !empty($_POST['cityPrint']) &&
     !empty($_POST['country']) &&
     !empty($_POST['emailPrint']) &&
-    !empty($_POST['phoneNumberPrint']) &&
+    !empty($_POST['phoneNumber']) &&
     !empty($_POST['facilitatorPrint']) &&
     !empty($_POST['workshopPrint']) &&
     !empty($_POST['howDidYouPrint']) &&
@@ -34,7 +34,7 @@ if (
     $city        = trim(htmlspecialchars($_POST['cityPrint']));
     $country     = trim(htmlspecialchars($_POST['country']));
     $email       = trim(htmlspecialchars($_POST['emailPrint']));
-    $phoneNumber = trim(htmlspecialchars($_POST['phoneNumberPrint']));
+    $phoneNumber = trim(htmlspecialchars($_POST['phoneNumber']));
     $host        = trim(htmlspecialchars($_POST['facilitatorPrint']));
     $workshop    = trim(htmlspecialchars($_POST['workshopPrint']));
     $howDidYou   = trim(htmlspecialchars($_POST['howDidYouPrint']));
