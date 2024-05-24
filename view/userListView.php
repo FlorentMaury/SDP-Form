@@ -43,7 +43,9 @@ ob_start();
                 echo '<td data-column="Nom">' . $row['surname'] . '</td>';
                 echo '<td data-column="Prénom">' . $row['email'] . '</td>';
                 echo "<td class='edit' data-column='Modifier'><a href='index.php?page=editUser&id={$row['id']}'><img src='./assets/edit.svg' alt='Modifier'></a></td>";
-                echo "<td class='edit' data-column='Modifier'><a href='javascript:void(0)' onclick='confirmUserDelete(" . $row['id'] . ")'><img src='./assets/delete.svg' alt='Supprimer'></a></td>";
+                if($row['id'] > 3) {
+                    echo "<td class='edit' data-column='Modifier'><a href='javascript:void(0)' onclick='confirmUserDelete(" . $row['id'] . ")'><img src='./assets/delete.svg' alt='Supprimer'></a></td>";
+                }
             }
 
             echo '</table>';
