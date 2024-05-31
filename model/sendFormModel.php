@@ -29,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['email'])) {
 
         // Préparer le contenu de l'email.
         $subject = 'Complétez votre formulaire';
-        $message = "Cliquez sur le lien suivant pour compléter votre formulaire : <br /> $link";
+        $message = "Cliquez sur le lien suivant pour compléter votre formulaire : $link";
         $headers = 'From: Studio des Parfums' . "\r\n" .
-            'Reply-To: your-email@example.com' . "\r\n" .
+            // 'Reply-To: your-email@example.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
         // Envoyer l'email.

@@ -8,6 +8,17 @@ $config = require './model/config.php';
 // Récupérer le token depuis l'URL
 $token = isset($_GET['token']) ? htmlspecialchars($_GET['token']) : '';
 
+// Préparez une requête SQL pour vérifier si le token existe déjà dans la table tokens.
+$stmt = $bdd->prepare('SELECT 1 FROM tokens WHERE token = ?');
+$stmt->execute([$token]);
+$row = $stmt->fetch();
+
+if (!$row) {
+    // Si le token n'existe pas, affichez un message d'erreur et arrêtez l'exécution du script.
+    echo "Votre code est invalide.";
+    exit();
+}
+
 ?>
 
 <!-- Début de structure des pages. -->

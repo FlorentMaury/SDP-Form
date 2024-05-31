@@ -87,10 +87,15 @@ if (
         $stmt = $bdd->prepare('SELECT 1 FROM customer WHERE token = ?');
         $stmt->execute([$token]);
         $row = $stmt->fetch();
-
+    
         if ($row) {
             // Si le token existe déjà, redirigez vers la page d'accueil avec un message d'erreur.
             header('location: ../index.php?page=fromEmail&error=1&message=Vous êtes déjà enregistré.');
+            exit();
+        } else {
+            // Si le token n'existe pas, effectuez une action spécifique ici.
+            // Par exemple, redirigez vers une page d'erreur.
+            header('location: ../index.php?page=fromEmail&error=1&message=Token invalide.');
             exit();
         }
     }
