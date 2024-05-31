@@ -135,7 +135,7 @@ $config = require './model/config.php';
 </div>
 
 
-    <!-- Champ caché si provenance d'un email -->
+    <!-- Champ caché si provenance d'un email. -->
     <?php
     if (isset($_GET['token'])) {
         $token = $_GET['token'];

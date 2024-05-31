@@ -1,3 +1,4 @@
+// Liste des éléments à traduire.
 const translationsData = {
     "fr": {
         "civility": "Civilité",
@@ -197,21 +198,23 @@ const translationsData = {
     }
 };
 
+// Récupération des infos de la page.
 document.addEventListener('DOMContentLoaded', function() {
     const flags = document.querySelectorAll('.main__flagsList img');
     const elementsToTranslate = document.querySelectorAll('.translate');
     const countrySelect = document.getElementById('country');
     const phoneNumberInput = document.getElementById('phoneNumber');
 
-    // Charge la langue par défaut au chargement de la page
+    // Charge la langue par défaut au chargement de la page.
     const defaultLang = 'fr';
     loadTranslations(defaultLang);
     loadCountries(defaultLang);
     updatePhoneNumber();
 
-    // Définit le drapeau français comme actif au chargement de la page
+    // Définit le drapeau français comme actif au chargement de la page.
     document.querySelector('.flagList__fr').classList.add('flagList__active');
 
+    // Ajoute un écouteur d'événement sur chaque drapeau.
     flags.forEach(flag => {
         flag.addEventListener('click', function() {
             const lang = this.classList[0].split('__')[1]; // ex: "flagList__fr" => "fr"
@@ -219,27 +222,30 @@ document.addEventListener('DOMContentLoaded', function() {
             loadCountries(lang);
             document.getElementById('lang').value = lang; 
 
-            // Réinitialise tous les drapeaux
+            // Réinitialise tous les drapeaux.
             resetFlags();
 
             // Masque le drapeau cliqué
             this.classList.add('flagList__active');
 
-            // Met à jour le numéro de téléphone et le code postal lors du changement de pays
+            // Met à jour le numéro de téléphone et le code postal lors du changement de pays.
             updatePhoneNumber();
         });
     });
 
+    // Met à jour le numéro de téléphone lors du changement de pays.
     countrySelect.addEventListener('change', function() {
         updatePhoneNumber();
     });
 
+    // Fonction pour réinitialiser tous les drapeaux.
     function resetFlags() {
         flags.forEach(flag => {
             flag.classList.remove('flagList__active');
         });
     }
 
+    // Fonction pour charger les traductions.
     function loadTranslations(lang) {
         const translations = translationsData[lang];
 
@@ -256,6 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Fonction pour charger les pays.
     function loadCountries(lang) {
         countrySelect.innerHTML = ''; 
     
@@ -268,6 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Fonction pour mettre à jour le numéro de téléphone.
     function updatePhoneNumber() {
         var selectedCountryIndex = countrySelect.selectedIndex;
         

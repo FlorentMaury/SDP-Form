@@ -211,7 +211,7 @@ if (
             mkdir("../assets/CustomersPDF/{$creationId}", 0777, true);
         }
 
-        // Écrivez le contenu dans un fichier
+        // Écrivez le contenu dans un fichier.
         file_put_contents("../assets/CustomersPDF/{$creationId}/{$creationId}.pdf", $output);
 
         header("location: ../model/instantPrintCustomersModel.php?customerIds={$creationId}");

@@ -31,7 +31,7 @@ if (!empty($_POST['email']) && !empty($_POST['password']) && empty($_SESSION)) {
         }
     }
 
-    // Récupérer l'ID de l'utilisateur avec l'email
+    // Récupérer l'ID de l'utilisateur avec l'email.
     $req = $bdd->prepare('SELECT id FROM user WHERE email = ?');
     $req->execute([$email]);
     $user = $req->fetch();

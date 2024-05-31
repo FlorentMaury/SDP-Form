@@ -6,7 +6,7 @@ if (isset($_POST['customerIds'])) {
     // Récupération des identifiants des clients sélectionnés.
     $customerIds = $_POST['customerIds'];
 
-    // Pour chaque identifiant de client
+    // Pour chaque identifiant de client.
     foreach ($customerIds as $id) {
         // Préparation de la requête pour récupérer les informations du client.
         $stmt = $bdd->prepare('SELECT * FROM customer WHERE creation_id = ?');

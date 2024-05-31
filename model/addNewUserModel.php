@@ -35,9 +35,9 @@ if (!empty($_POST['name']) && !empty($_POST['surname']) && !empty($_POST['email'
                strlen($password) >= 8;
     }
 
-    // Vérifie si le mot de passe est suffisamment sécurisé
+    // Vérifie si le mot de passe est suffisamment sécurisé.
     if (!isPasswordSecure($password)) {
-        // Si le mot de passe n'est pas suffisamment sécurisé, redirige l'utilisateur avec un message d'erreur
+        // Si le mot de passe n'est pas suffisamment sécurisé, redirige l'utilisateur avec un message d'erreur.
         header('location: ../index.php?page=add&error=1&message=Le mot de passe doit avoir au moins 8 caractères, un chiffre, une lettre majuscule, une lettre minuscule et un caractère spécial.');
         exit();
     }

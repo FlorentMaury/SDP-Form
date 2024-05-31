@@ -45,6 +45,14 @@
                     </a>
                 </li>
 
+                <!-- Lien vers la page du formulaire à envoyer. -->
+                <li class="navUl__li">
+                    <a href="index.php?page=sendForm" class="<?= ($page == 'sendForm') ? 'active' : '' ?>">
+                        Envoyer un formulaire
+                        <img src="./assets/send.svg" alt="Envoyer le formulaire">
+                    </a>
+                </li>
+
                 <?php // Si l'utilisateur est connecté.
                 if (isset($_SESSION['connect'])) { ?>
 

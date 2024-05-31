@@ -7,51 +7,56 @@ use Endroid\QrCode\Writer\PngWriter;
 
 // Vérifiez si les champs requis sont remplis.
 if (
-    !empty($_POST['title']) &&
-    !empty($_POST['lastname']) &&
-    !empty($_POST['firstname']) &&
-    !empty($_POST['address']) &&
-    !empty($_POST['city']) &&
+    !empty($_POST['titleEmail']) &&
+    !empty($_POST['lastnameEmail']) &&
+    !empty($_POST['firstnameEmail']) &&
+    !empty($_POST['addressEmail']) &&
+    !empty($_POST['cityEmail']) &&
     !empty($_POST['country']) &&
-    !empty($_POST['email']) &&
+    !empty($_POST['emailEmail']) &&
     !empty($_POST['phoneNumber']) &&
-    !empty($_POST['facilitator']) &&
-    !empty($_POST['workshop']) &&
-    !empty($_POST['howDidYou']) &&
-    isset($_POST['allergies']) && 
-    isset($_POST['news']) &&
-    isset($_POST['rgpd'])
+    !empty($_POST['facilitatorEmail']) &&
+    !empty($_POST['workshopEmail']) &&
+    !empty($_POST['howDidYouEmail']) &&
+    isset($_POST['allergiesEmail']) && 
+    isset($_POST['newsEmail']) &&
+    isset($_POST['rgpdEmail'])
 ) {
     // Connexion à la base de données.
     require('./connectionDBModel.php');
 
     // Déclaration des variables avec les données nettoyées.
-    $title       = trim(htmlspecialchars($_POST['title']));
-    $lastname    = trim(htmlspecialchars($_POST['lastname']));
-    $firstname   = trim(htmlspecialchars($_POST['firstname']));
-    $address     = trim(htmlspecialchars($_POST['address']));
-    $city        = trim(htmlspecialchars($_POST['city']));
+    $title       = trim(htmlspecialchars($_POST['titleEmail']));
+    $lastname    = trim(htmlspecialchars($_POST['lastnameEmail']));
+    $firstname   = trim(htmlspecialchars($_POST['firstnameEmail']));
+    $address     = trim(htmlspecialchars($_POST['addressEmail']));
+    $city        = trim(htmlspecialchars($_POST['cityEmail']));
     $country     = trim(htmlspecialchars($_POST['country']));
-    $email       = trim(htmlspecialchars($_POST['email']));
+    $email       = trim(htmlspecialchars($_POST['emailEmail']));
     $phoneNumber = trim(htmlspecialchars($_POST['phoneNumber']));
-    $host        = trim(htmlspecialchars($_POST['facilitator']));
-    $workshop    = trim(htmlspecialchars($_POST['workshop']));
-    $howDidYou   = trim(htmlspecialchars($_POST['howDidYou']));
-    $allergies   = trim(htmlspecialchars($_POST['allergies'])); 
-    $news        = trim(htmlspecialchars($_POST['news']));
+    $host        = trim(htmlspecialchars($_POST['facilitatorEmail']));
+    $workshop    = trim(htmlspecialchars($_POST['workshopEmail']));
+    $howDidYou   = trim(htmlspecialchars($_POST['howDidYouEmail']));
+    $allergies   = trim(htmlspecialchars($_POST['allergiesEmail'])); 
+    $news        = trim(htmlspecialchars($_POST['newsEmail']));
+    if (isset($_GET['token'])) {
+        $token = trim(htmlspecialchars($_GET['token']));
+    } else {
+        $token = NULL;
+    }
     if (isset($_POST['responsibility'])) {
-        $responsibility = trim(htmlspecialchars($_POST['responsibility']));
+        $responsibility = trim(htmlspecialchars($_POST['responsibilityEmail']));
     } else {
         $responsibility = 'Aucune allergie';
     }
-    $rgpd = trim(htmlspecialchars($_POST['rgpd'])); 
+    $rgpd = trim(htmlspecialchars($_POST['rgpdEmail'])); 
     $extras      = !empty($_POST['extras']) ? implode(", ", array_map(function($value) {
         return trim(htmlspecialchars($value));
     }, $_POST['extras'])) : 'N/A';
 
     // L'adresse email est-elle correcte ?
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location: index.php?page=home&error=1&message=L\'adresse email est invalide.');
+        header('location: index.php?page=fromEmail&error=1&message=L\'adresse email est invalide.');
         exit();
     }
 
@@ -85,7 +90,7 @@ if (
 
         if ($row) {
             // Si le token existe déjà, redirigez vers la page d'accueil avec un message d'erreur.
-            header('location: ../index.php?page=home&error=1&message=Vous êtes déjà enregistré.');
+            header('location: ../index.php?page=fromEmail&error=1&message=Vous êtes déjà enregistré.');
             exit();
         }
     }
@@ -213,10 +218,10 @@ if (
         // Écrivez le contenu dans un fichier.
         file_put_contents("../assets/CustomersPDF/{$creationId}/{$creationId}.pdf", $output);
 
-        header('location: ../index.php?page=recordCustomer&success=1&message=Merci.');
+        header('location: ../index.php?page=fromEmail&success=1&message=Merci.');
         exit();
     } else {
-        header('location: ../index.php?page=home&error=1&message=Veuillez remplir tous les champs.');
+        header('location: ../index.php?page=fromEmail&error=1&message=Veuillez remplir tous les champs.');
         exit();
     }
 }

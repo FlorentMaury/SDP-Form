@@ -19,6 +19,14 @@ function recordCustomer()
     require('view/homeView.php');
 };
 
+// Envoi du formulaire.
+function sendForm()
+{
+    require('./model/connectionDBModel.php');
+    require('./view/sendFormView.php');
+    require('./model/sendFormModel.php');
+}
+
 // Dans la page de recherche.
 function search()
 {
@@ -39,6 +47,14 @@ function formParams()
 {
     require('./model/connectionDBModel.php');
     require('view/formParamsView.php');
+};
+
+// Venant d'un email.
+function fromEmail()
+{
+    require('./model/connectionDBModel.php');
+    require('view/fromEmailView.php');
+    require('./model/fromEmailModel.php');
 };
 
 // Ajout d'un utilisateur.

@@ -11,14 +11,11 @@
 // Initialisation de la session.
 session_start();
 
-// Intégration des connexions.
-require('./model/connectionDBModel.php');
-
 // Routeur.
 require('./controller/controller.php');
 
 // Pages valides.
-$validPages = ['home', 'search', 'logIn', 'logOut', 'customerInfos', 'forgotPassword', 'add', 'recordCustomer', 'editUser', 'userList', 'edit', 'formParams'];
+$validPages = ['home', 'search', 'logIn', 'logOut', 'fromEmail', 'sendForm', 'customerInfos', 'forgotPassword', 'add', 'recordCustomer', 'editUser', 'userList', 'edit', 'formParams'];
 
 // Si $_GET['page'] n'est pas défini, définir une valeur par défaut 'logIn'
 if (!isset($_GET['page'])) {
@@ -41,6 +38,10 @@ try {
             else if ($_GET['page'] == 'search') {
                 search();
             }
+            // Page d'envoi du formulaire.
+            else if ($_GET['page'] == 'sendForm') {
+                sendForm();
+            }
             // Page de connexion.
             else if ($_GET['page'] == 'logIn') {
                 logIn();
@@ -48,6 +49,10 @@ try {
             // Page de paramètres du formulaire.
             else if ($_GET['page'] == 'formParams') {
                 formParams();
+            }
+            // Page venant d'un email.
+            else if ($_GET['page'] == 'fromEmail') {
+                fromEmail();
             }
             // Page d'ajout.
             else if ($_GET['page'] == 'add') {
@@ -76,13 +81,13 @@ try {
         } else if ($_GET['page'] == 'home' && isset($_GET['token'])) {
             $token = $_GET['token'];
 
-            // Préparez une requête SQL pour vérifier si le token existe déjà
+            // Préparez une requête SQL pour vérifier si le token existe déjà.
             $stmt = $bdd->prepare('SELECT 1 FROM customer WHERE token = ?');
             $stmt->execute([$token]);
             $row = $stmt->fetch();
 
             if ($row) {
-                // Si le token existe déjà, appelez la fonction home() avec un message d'erreur
+                // Si le token existe déjà, appelez la fonction home() avec un message d'erreur.
                 header('location: ./index.php?page=home&error=1&message=Vous êtes déjà enregistré.');
                 exit();
             } else {

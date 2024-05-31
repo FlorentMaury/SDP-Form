@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mkdir("../assets/CustomersPDF/{$creationId}", 0777, true);
         }
 
-        // Écrivez le contenu dans un fichier
+        // Écrivez le contenu dans un fichier.
         file_put_contents("../assets/CustomersPDF/{$creationId}/{$creationId}.pdf", $output);
 
         header("location: ../index.php?page=edit&id={$id}&success=1&message=Informations modifiées avec succès.");
