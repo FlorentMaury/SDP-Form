@@ -1,8 +1,5 @@
 <?php
 
-// Modification du titre de la page.
-$title = 'Enregistrement | Studio des Parfums';
-
 $config = require './model/config.php';
 
 // Récupérer le token depuis l'URL
@@ -15,7 +12,7 @@ $row = $stmt->fetch();
 
 if (!$row) {
     // Si le token n'existe pas, affichez un message d'erreur et arrêtez l'exécution du script.
-    echo "Votre code est invalide.";
+    header('location: ./index.php?page=errorView');
     exit();
 }
 
@@ -26,17 +23,15 @@ if (!$row) {
 <html lang="fr">
 
 <!-- Head. -->
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./design/style.css">
-    <title>Formulaire | Studio des Parfums</title>
+    <title>Enregistrement | Studio des Parfums</title>
 </head>
 
 <!-- Body. -->
-
 <body>
 
     <header class="header">
