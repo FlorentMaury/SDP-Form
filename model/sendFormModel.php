@@ -28,9 +28,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['email'])) {
         $link = "http://sdp-paris.com/SDP-Form/index?page=fromEmail&token=$token";
 
         // Préparer le contenu de l'email.
-        $subject = 'Complétez votre formulaire';
-        $message = "Cliquez sur le lien suivant pour compléter votre formulaire : $link";
-        $headers = 'From: Studio des Parfums' . "\r\n" .
+        $subject = 'Complétez votre formulaire / Fill your form';
+        $message = "
+        <html>
+        <head>
+        <title>Complétez votre formulaire  / Fill your form</title>
+        <style>
+            .centered-content {
+                text-align: center;
+            }
+        </style>
+        </head>
+        <body>
+            <img src='http://sdp-paris.com/SDP-Form/assets/FromEmailView.svg' alt='Logo' style='width: 100%;'>
+            <div class='centered-content'>
+            <p>Cliquez sur le lien suivant pour vous enregistrer :</p>
+            <p>Click the link below to register :</p>
+            <a href='$link' style='display: block;'>Formulaire / Form</a>
+            </div>
+        </body>
+        </html>
+        ";
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+        $headers .= 'From: Studio des Parfums' . "\r\n" .
             // 'Reply-To: your-email@example.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
