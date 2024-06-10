@@ -37,11 +37,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['email'])) {
             .centered-content {
                 text-align: center;
             }
+            a {
+                font-weight: bold;
+                font-size: 1.5 em;
+                margin-bottom: 20px;
+            }
         </style>
         </head>
         <body>
-            <img src='http://sdp-paris.com/SDP-Form/assets/FromEmailView.svg' alt='Logo' style='width: 100%;'>
             <div class='centered-content'>
+            <img src='http://sdp-paris.com/SDP-Form/assets/FromEmailView.svg' alt='Logo' style='width: 80%;'>
             <p>Cliquez sur le lien suivant pour vous enregistrer :</p>
             <p>Click the link below to register :</p>
             <a href='$link' style='display: block;'>Formulaire / Form</a>
@@ -51,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['email'])) {
         ";
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-        $headers .= 'From: Studio des Parfums' . "\r\n" .
+        $headers .= 'From: Studio des Parfums <accueil@sdp-paris.com>' . "\r\n";
             // 'Reply-To: your-email@example.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 

@@ -29,32 +29,32 @@
                 $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : 'home';
                 ?>
 
-                <!-- Lien vers la page d'accueil pour toutes les pages. -->
-                <li class="navUl__li">
-                    <a href="index.php?page=home" class="<?= ($page == 'home') ? 'active' : '' ?>">
-                        Accueil client
-                        <img src="./assets/home.svg" alt="Accueil">
-                    </a>
-                </li>
-
-                <!-- Lien vers la page enregistrement d'un client. -->
-                <li class="navUl__li">
-                    <a href="index.php?page=recordCustomer" class="<?= ($page == 'recordCustomer') ? 'active' : '' ?>">
-                        Enregistrer un futur client
-                        <img src="./assets/record.svg" alt="Enregistrer client">
-                    </a>
-                </li>
-
-                <!-- Lien vers la page du formulaire à envoyer. -->
-                <li class="navUl__li">
-                    <a href="index.php?page=sendForm" class="<?= ($page == 'sendForm') ? 'active' : '' ?>">
-                        Envoyer un formulaire
-                        <img src="./assets/send.svg" alt="Envoyer le formulaire">
-                    </a>
-                </li>
-
                 <?php // Si l'utilisateur est connecté.
                 if (isset($_SESSION['connect'])) { ?>
+
+                    <!-- Lien vers la page d'accueil pour toutes les pages. -->
+                    <li class="navUl__li">
+                        <a href="index.php?page=home" class="<?= ($page == 'home') ? 'active' : '' ?>">
+                            Accueil client
+                            <img src="./assets/home.svg" alt="Accueil">
+                        </a>
+                    </li>
+
+                    <!-- Lien vers la page enregistrement d'un client. -->
+                    <li class="navUl__li">
+                        <a href="index.php?page=recordCustomer" class="<?= ($page == 'recordCustomer') ? 'active' : '' ?>">
+                            Enregistrer un futur client
+                            <img src="./assets/record.svg" alt="Enregistrer client">
+                        </a>
+                    </li>
+
+                    <!-- Lien vers la page du formulaire à envoyer. -->
+                    <li class="navUl__li">
+                        <a href="index.php?page=sendForm" class="<?= ($page == 'sendForm') ? 'active' : '' ?>">
+                            Envoyer un formulaire
+                            <img src="./assets/send.svg" alt="Envoyer le formulaire">
+                        </a>
+                    </li>
 
                     <li class="navUl__li">
                         <a href="index.php?page=search" class="<?= ($page == 'search') ? 'active' : '' ?>">

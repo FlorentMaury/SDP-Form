@@ -25,6 +25,12 @@ if (!isset($_GET['page'])) {
 // Direction de l'utilisateur en fonction de la requête.
 try {
     if (isset($_GET['page']) && in_array($_GET['page'], $validPages)) {
+
+        // Page venant d'un email.
+        if ($_GET['page'] == 'fromEmail') {
+            fromEmail();
+        }
+
         if (isset($_SESSION['id'])) {
             // Page d'enregistrement d'un client à l'accueil.
             if ($_GET['page'] == 'home') {
@@ -50,10 +56,6 @@ try {
             else if ($_GET['page'] == 'formParams') {
                 formParams();
             }
-            // Page venant d'un email.
-            else if ($_GET['page'] == 'fromEmail') {
-                fromEmail();
-            }
             // Page d'ajout.
             else if ($_GET['page'] == 'add') {
                 add();
@@ -78,7 +80,8 @@ try {
             else if ($_GET['page'] == 'logOut') {
                 logOut();
             }
-        } else if ($_GET['page'] == 'home' && isset($_GET['token'])) {
+        } 
+        else if ($_GET['page'] == 'home' && isset($_GET['token'])) {
             $token = $_GET['token'];
 
             // Préparez une requête SQL pour vérifier si le token existe déjà.
@@ -93,7 +96,8 @@ try {
             } else {
                 home();
             }
-        } else {
+        } 
+        else {
             // Retour accueil.
             logIn();
         }

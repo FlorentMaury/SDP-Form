@@ -183,7 +183,7 @@ if (!$row) {
 
             <!-- Bouton d'envoi. -->
             <p class="news newsletterMessage translate" data-translate-key="newsletterMessage">*Le Studio des Parfums enrichi régulièrement son orgue et également les informations du
-                monde de la parfumerie, ainsi que des offres aventageuses, acceptez-vous de recevoir cette newsletter.</p>
+                monde de la parfumerie, ainsi que des offres avantageuses, acceptez-vous de recevoir cette newsletter.</p>
             <p class="rgpd rgpdMessage translate" data-translate-key="rgpdMessage">**Depuis Juin 2018, en accord avec la nouvelle réglementation RGPD, vos données sont
                 collectées afin de gestion interne de votre fiche, pour les éventuelles recommandes et pour notre gestion
                 dynamique des stocks. Elles ne sont pas transmises à des tiers.</p>

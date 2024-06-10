@@ -18,7 +18,7 @@ if (
     !empty($_POST['facilitatorEmail']) &&
     !empty($_POST['workshopEmail']) &&
     !empty($_POST['howDidYouEmail']) &&
-    isset($_POST['allergiesEmail']) && 
+    isset($_POST['allergiesEmail']) &&
     isset($_POST['newsEmail']) &&
     isset($_POST['rgpdEmail'])
 ) {
@@ -37,7 +37,7 @@ if (
     $host        = trim(htmlspecialchars($_POST['facilitatorEmail']));
     $workshop    = trim(htmlspecialchars($_POST['workshopEmail']));
     $howDidYou   = trim(htmlspecialchars($_POST['howDidYouEmail']));
-    $allergies   = trim(htmlspecialchars($_POST['allergiesEmail'])); 
+    $allergies   = trim(htmlspecialchars($_POST['allergiesEmail']));
     $news        = trim(htmlspecialchars($_POST['newsEmail']));
     if (isset($_GET['token'])) {
         $token = trim(htmlspecialchars($_GET['token']));
@@ -49,8 +49,8 @@ if (
     } else {
         $responsibility = 'Aucune allergie';
     }
-    $rgpd = trim(htmlspecialchars($_POST['rgpdEmail'])); 
-    $extras      = !empty($_POST['extras']) ? implode(", ", array_map(function($value) {
+    $rgpd = trim(htmlspecialchars($_POST['rgpdEmail']));
+    $extras      = !empty($_POST['extras']) ? implode(", ", array_map(function ($value) {
         return trim(htmlspecialchars($value));
     }, $_POST['extras'])) : 'N/A';
 
@@ -79,26 +79,38 @@ if (
     // Générez la valeur pour la colonne customer_id.
     $creationId = $yearMonth . str_pad($nextId, 3, '0', STR_PAD_LEFT);
 
-    // Vérifiez si le token est présent dans $_POST.
-    $token = isset($_POST['token']) ? trim(htmlspecialchars($_POST['token'])) : NULL;
+// Vérifiez si le token est présent dans $_POST.
+$token = isset($_POST['token']) ? trim(htmlspecialchars($_POST['token'])) : NULL;
 
-    if ($token) {
-        // Préparez une requête SQL pour vérifier si le token existe déjà.
-        $stmt = $bdd->prepare('SELECT 1 FROM customer WHERE token = ?');
-        $stmt->execute([$token]);
-        $row = $stmt->fetch();
-    
-        if ($row) {
-            // Si le token existe déjà, redirigez vers la page d'accueil avec un message d'erreur.
-            header('location: ../index.php?page=fromEmail&error=1&message=Vous êtes déjà enregistré.');
-            exit();
-        } else {
-            // Si le token n'existe pas, effectuez une action spécifique ici.
-            // Par exemple, redirigez vers une page d'erreur.
-            header('location: ../index.php?page=fromEmail&error=1&message=Token invalide.');
-            exit();
-        }
+if ($token) {
+    // Préparez une requête SQL pour vérifier si le token existe déjà.
+    $stmt = $bdd->prepare('SELECT 1 FROM customer WHERE token = ?');
+    $stmt->execute([$token]);
+    $row = $stmt->fetch();
+
+    if ($row) {
+        // Si le token existe déjà, redirigez vers la page d'accueil avec un message d'erreur.
+        header('location: ../index.php?page=fromEmail&error=1&message=Vous êtes déjà enregistré.');
+        exit();
     }
+
+    // Préparez une requête SQL pour vérifier si le token existe et n'a pas expiré.
+    $stmt = $bdd->prepare('SELECT 1 FROM tokens WHERE token = ? AND expiry_date > NOW()');
+    $stmt->execute([$token]);
+    $row = $stmt->fetch();
+
+    if (!$row) {
+        // Le token n'est pas valide ou a expiré.
+        // Redirigez vers la page d'accueil avec un message d'erreur.
+        header('location: ../index.php?page=fromEmail&error=1&message=Token invalide ou expiré.');
+        exit();
+    }
+} else {
+    // Le token n'est pas présent dans $_POST.
+    // Redirigez vers la page d'accueil avec un message d'erreur.
+    header('location: ../index.php?page=fromEmail&error=1&message=Token manquant.');
+    exit();
+}
 
     // Préparez la requête SQL avec le nouveau champ extras.
     $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, extras, how_did_you, creation_id, token, allergies, responsibility, news, rgpd, language) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
@@ -200,7 +212,7 @@ if (
             </div>
         </div>
         ";
-        
+
 
         // Chargez le HTML dans Dompdf.
         $dompdf->loadHtml($html);

@@ -53,8 +53,8 @@ function formParams()
 function fromEmail()
 {
     require('./model/connectionDBModel.php');
-    require('view/fromEmailView.php');
     require('./model/fromEmailModel.php');
+    require('view/fromEmailView.php');
 };
 
 // Ajout d'un utilisateur.
