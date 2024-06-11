@@ -17,6 +17,7 @@ if (
     !empty($_POST['phoneNumber']) &&
     !empty($_POST['facilitatorPrint']) &&
     !empty($_POST['workshopPrint']) &&
+    !empty($_POST['workshopDatePrint']) &&
     !empty($_POST['howDidYouPrint']) &&
     isset($_POST['allergiesPrint']) && 
     isset($_POST['newsPrint']) &&
@@ -37,6 +38,7 @@ if (
     $phoneNumber = trim(htmlspecialchars($_POST['phoneNumber']));
     $host        = trim(htmlspecialchars($_POST['facilitatorPrint']));
     $workshop    = trim(htmlspecialchars($_POST['workshopPrint']));
+    $date        = trim(htmlspecialchars($_POST['workshopDatePrint']));
     $howDidYou   = trim(htmlspecialchars($_POST['howDidYouPrint']));
     $allergies   = trim(htmlspecialchars($_POST['allergiesPrint'])); 
     $news        = trim(htmlspecialchars($_POST['newsPrint']));
@@ -56,10 +58,11 @@ if (
         exit();
     }
 
-    // Année et mois actuels.
-    $yearMonth = date('Ym');
+    // Année et mois de la date entrée par l'utilisateur.
+    $userDate = DateTime::createFromFormat('Y-m-d', $_POST['date']);
+    $yearMonth = $userDate->format('Ym');
 
-    // Obtenez le plus grand customer_id qui commence par l'année et le mois actuels.
+    // Obtenez le plus grand customer_id qui commence par l'année et le mois de la date entrée par l'utilisateur.
     $stmt = $bdd->prepare("SELECT creation_id FROM customer WHERE creation_id LIKE ? ORDER BY creation_id DESC LIMIT 1");
     $stmt->execute([$yearMonth . '%']);
     $row = $stmt->fetch();
@@ -91,11 +94,13 @@ if (
         }
     }
 
+    $date = $userDate->format('Y-m-d');
+
     // Préparez la requête SQL avec le nouveau champ extras.
-    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, extras, how_did_you, creation_id, token, allergies, responsibility, news, rgpd, language) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt = $bdd->prepare('INSERT INTO customer(title, lastname, firstname, email, address, city, country, phone_number, host, workshop, date, extras, how_did_you, creation_id, token, allergies, responsibility, news, rgpd, language) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 
     // Exécutez la requête avec les données nettoyées, le token et les extras.
-    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $workshop, $extras, $howDidYou, $creationId, $token, $allergies, $responsibility, $news, $rgpd, $_POST['lang']]);
+    $result = $stmt->execute([$title,  $lastname, $firstname, $email, $address, $city, $country, $phoneNumber, $host, $workshop, $date, $extras, $howDidYou, $creationId, $token, $allergies, $responsibility, $news, $rgpd, $_POST['lang']]);
 
     if ($result) {
 
@@ -105,7 +110,7 @@ if (
         $dompdf = new Dompdf();
 
         // Obtenez la date actuelle.
-        $date = date('Y-m-d');
+        // $date = date('Y-m-d');
 
         // Générez le lien vers le fichier PDF.
         $pdfLink = "http://sdp-paris.com/SDP-Form/assets/CustomersPDF/{$creationId}/{$creationId}.pdf";

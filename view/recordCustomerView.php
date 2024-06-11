@@ -60,6 +60,10 @@ $config = require './model/config.php';
     <label for="phoneNumber" class="translate phoneNumberPrint" data-translate-key="phoneNumber">Numéro de téléphone</label>
     <input type="tel" id="phoneNumber" name="phoneNumber">
 
+    <!-- Date de l'atelier. -->
+    <label for="workshopDatePrint" class="translate workshopDatePrint" data-translate-key="date">Date de l'atelier</label>
+    <input type="date" id="workshopDatePrint" name="workshopDatePrint">
+
     <!-- Hôte -->
     <label for="facilitatorPrint" class="translate hostPrint" data-translate-key="host">Hôte</label>
     <select name="facilitatorPrint" id="facilitatorPrint">

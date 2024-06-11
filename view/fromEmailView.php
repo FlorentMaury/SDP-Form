@@ -103,6 +103,10 @@ if (!$row) {
             <label for="phoneNumber" class="translate phoneNumber" data-translate-key="phoneNumber">Numéro de téléphone</label>
             <input type="tel" id="phoneNumber" name="phoneNumber">
 
+            <!-- Date de l'atelier. -->
+            <label for="date" class="translate date" data-translate-key="date">Date de l'atelier</label>
+            <input type="date" id="date" name="date">
+
             <!-- Hôte. -->
             <label for="facilitatorEmail" class="translate host" data-translate-key="host">Hôte</label>
             <select name="facilitatorEmail" id="facilitatorEmail" class="translate">
