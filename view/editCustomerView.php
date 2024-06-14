@@ -51,6 +51,9 @@ if (isset($_GET['id'])) {
         <input type="hidden" name="profile_id" value="<?= $id ?>">
         <input type="hidden" name="creationId" value="<?= $data['creation_id'] ?>">
 
+        <label for="newCreationId">Numéro de création :</label>
+        <input type="number" id="newCreationId" name="newCreationId" value="<?= $data['creation_id'] ?>">
+
         <label for="date">Date :</label>
         <input type="text" id="date" name="date" value="<?= $data['date'] ?>">
 

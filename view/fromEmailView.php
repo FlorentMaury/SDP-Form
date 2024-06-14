@@ -10,11 +10,11 @@ $stmt = $bdd->prepare('SELECT 1 FROM tokens WHERE token = ?');
 $stmt->execute([$token]);
 $row = $stmt->fetch();
 
-if (!$row) {
-    // Si le token n'existe pas, affichez un message d'erreur et arrêtez l'exécution du script.
-    header('location: ./index.php?page=errorView');
-    exit();
-}
+// if (!$row) {
+//     // Si le token n'existe pas, affichez un message d'erreur et arrêtez l'exécution du script.
+//     header('location: ./index.php?page=errorView');
+//     exit();
+// }
 
 ?>
 
@@ -69,7 +69,7 @@ if (!$row) {
 
             <!-- Civilité -->
             <label for="titleEmail" class="translate civility" data-translate-key="civility">Civilité</label>
-            <select name="titleEmail" id="titleEmail" class="translate">
+            <select name="titleEmail" id="titleEmail" class="translate" required>
                 <option value="Mr" class="translate mr" data-translate-key="mr">Mr</option>
                 <option value="Mme" class="translate mrs" data-translate-key="mrs">Mme / Mrs</option>
                 <option value="Enfant" class="translate child" data-translate-key="child">Enfant / Child</option>
@@ -77,39 +77,39 @@ if (!$row) {
 
             <!-- Nom -->
             <label for="lastnameEmail" class="translate lastName" data-translate-key="lastName">Nom</label>
-            <input type="text" id="lastnameEmail" name="lastnameEmail">
+            <input type="text" id="lastnameEmail" name="lastnameEmail" required>
 
             <!-- Prénom -->
             <label for="firstnameEmail" class="translate firstName" data-translate-key="firstName">Prénom</label>
-            <input type="text" id="firstnameEmail" name="firstnameEmail">
+            <input type="text" id="firstnameEmail" name="firstnameEmail" required>
 
             <!-- Email -->
-            <label for="emailEmail" class="translate email" data-translate-key="email">Email</label>
-            <input type="emailEmail" id="email" name="emailEmail">
+            <label for="email" class="translate email" data-translate-key="email">Email</label>
+            <input type="emailEmail" id="email" name="emailEmail" required>
 
             <!-- Pays -->
             <label for="country" class="translate country" data-translate-key="country">Pays</label>
-            <select name="country" id="country" class="translate"></select>
+            <select name="country" id="country" class="translate" required></select>
 
             <!-- Adresse -->
             <label for="addressEmail" class="translate address" data-translate-key="address">Adresse</label>
-            <input type="text" id="addressEmail" name="addressEmail">
+            <input type="text" id="addressEmail" name="addressEmail" required>
 
             <!-- Ville -->
             <label for="cityEmail" class="translate city" data-translate-key="city">Ville</label>
-            <input type="text" id="cityEmail" name="cityEmail">
+            <input type="text" id="cityEmail" name="cityEmail" required>
 
             <!-- Numéro de téléphone -->
             <label for="phoneNumber" class="translate phoneNumber" data-translate-key="phoneNumber">Numéro de téléphone</label>
-            <input type="tel" id="phoneNumber" name="phoneNumber">
+            <input type="tel" id="phoneNumber" name="phoneNumber" required>
 
             <!-- Date de l'atelier. -->
             <label for="date" class="translate date" data-translate-key="date">Date de l'atelier</label>
-            <input type="date" id="date" name="date">
+            <input type="date" id="date" name="date" required>
 
             <!-- Hôte. -->
             <label for="facilitatorEmail" class="translate host" data-translate-key="host">Hôte</label>
-            <select name="facilitatorEmail" id="facilitatorEmail" class="translate">
+            <select name="facilitatorEmail" id="facilitatorEmail" class="translate" required>
                 <?php foreach ($config['hosts'] as $host) : ?>
                     <option value="<?= htmlspecialchars($host) ?>" class="translate" data-translate-key="<?= htmlspecialchars($host) ?>"><?= htmlspecialchars($host) ?></option>
                 <?php endforeach; ?>
@@ -117,7 +117,7 @@ if (!$row) {
 
             <!-- Atelier. -->
             <label for="workshopEmail" class="translate workshop" data-translate-key="workshop">Atelier</label>
-            <select name="workshopEmail" id="workshopEmail" class="translate">
+            <select name="workshopEmail" id="workshopEmail" class="translate" required>
                 <?php foreach ($config['workshops'] as $workshop) : ?>
                     <option value="<?= htmlspecialchars($workshop) ?>" class="translate" data-translate-key="<?= htmlspecialchars($workshop) ?>"><?= htmlspecialchars($workshop) ?></option>
                 <?php endforeach; ?>
@@ -126,7 +126,7 @@ if (!$row) {
             <!-- Comment nous avez vous découverts ? -->
             <label for="howDidYouEmail" class="translate discovery" data-translate-key="discovery">Comment nous avez vous découverts
                 ?</label>
-            <select name="howDidYouEmail" id="howDidYouEmail" class="translate">
+            <select name="howDidYouEmail" id="howDidYouEmail" class="translate" required>
                 <?php foreach ($config['discovery_methods'] as $method) : ?>
                     <option value="<?= htmlspecialchars($method) ?>" class="translate" data-translate-key="<?= htmlspecialchars($method) ?>"><?= htmlspecialchars($method) ?></option>
                 <?php endforeach; ?>
@@ -146,7 +146,7 @@ if (!$row) {
             <div class="checkboxQuestionDiv">
                 <label for="allergiesEmail" class="translate allergiesQuestion" data-translate-key="allergiesQuestion">Avez-vous des allergies empêchant de porter du parfum ?</label>
                 <div class="checkboxes">
-                    <input class="small-checkbox translate" type="radio" id="allergies_yes" name="allergiesEmail" value="Oui" data-translate-key="yes"> <span class="translate" data-translate-key="yes">Oui</span>
+                    <input class="small-checkbox translate" type="radio" id="allergies_yes" name="allergiesEmail" value="Oui" data-translate-key="yes" required> <span class="translate" data-translate-key="yes">Oui</span>
                     <input class="small-checkbox translate" type="radio" id="allergies_no" name="allergiesEmail" value="Non" data-translate-key="no"> <span class="translate" data-translate-key="no">Non</span>
                 </div>
             </div>
@@ -155,7 +155,7 @@ if (!$row) {
             <div class="checkboxQuestionDiv">
                 <label for="responsibilityEmail" class="translate responsibilityQuestion" data-translate-key="responsibilityQuestion">Si oui, souhaitez-vous poursuivre en déclinant notre responsabilité ?</label>
                 <div class="checkboxes">
-                    <input class="small-checkbox translate" type="radio" id="responsibility_yes" name="responsibilityEmail" value="Oui" data-translate-key="yes"> <span class="translate" data-translate-key="yes">Oui</span>
+                    <input class="small-checkbox translate" type="radio" id="responsibility_yes" name="responsibilityEmail" value="Oui" data-translate-key="yes" required> <span class="translate" data-translate-key="yes">Oui</span>
                     <input class="small-checkbox translate" type="radio" id="responsibility_no" name="responsibilityEmail" value="Non" data-translate-key="no"> <span class="translate" data-translate-key="no">Non</span>
                 </div>
             </div>
@@ -164,7 +164,7 @@ if (!$row) {
             <div class="checkboxQuestionDiv">
                 <label for="newsEmail" class="translate newsQuestion" data-translate-key="newsQuestion">Acceptez-vous de recevoir la newsletter* ?</label>
                 <div class="checkboxes">
-                    <input class="small-checkbox translate" type="radio" id="news_yes" name="newsEmail" value="Acceptées" data-translate-key="yes"> <span class="translate" data-translate-key="yes">Oui</span>
+                    <input class="small-checkbox translate" type="radio" id="news_yes" name="newsEmail" value="Acceptées" data-translate-key="yes" required> <span class="translate" data-translate-key="yes">Oui</span>
                     <input class="small-checkbox translate" type="radio" id="news_no" name="newsEmail" value="Refusées" data-translate-key="no"> <span class="translate" data-translate-key="no">Non</span>
                 </div>
             </div>
@@ -173,14 +173,10 @@ if (!$row) {
             <div class="checkboxQuestionDiv">
                 <label for="rgpdEmail" class="translate rgpdQuestion" data-translate-key="rgpdQuestion">Acceptez-vous les normes RGPD** ?</label>
                 <div class="checkboxes">
-                    <input class="small-checkbox translate" data-translate-key="yes" type="radio" id="rgpd_yes" name="rgpdEmail" value="Acceptées"> <span class="translate" data-translate-key="yes">Oui</span>
+                    <input class="small-checkbox translate" data-translate-key="yes" type="radio" id="rgpd_yes" name="rgpdEmail" value="Acceptées" required> <span class="translate" data-translate-key="yes">Oui</span>
                     <input class="small-checkbox translate" data-translate-key="no" type="radio" id="rgpd_no" name="rgpdEmail" value="Refusées"> <span class="translate" data-translate-key="no">Non</span>
                 </div>
             </div>
-
-
-            <!-- Champ caché si provenance d'un email -->
-            <input type="hidden" name="token" value="<?= isset($_GET['token']) ? htmlspecialchars($_GET['token']) : '' ?>">
 
             <!-- Champ caché pour la langue. -->
             <input type="hidden" id="lang" name="lang" value="fr">

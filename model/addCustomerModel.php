@@ -59,23 +59,31 @@ if (
     }
 
     // Année et mois de la date entrée par l'utilisateur.
-    $userDate = DateTime::createFromFormat('Y-m-d', $_POST['date']);
+    $userDate = DateTime::createFromFormat('Y-m-d', $_POST['workshopDatePrint']);
     $yearMonth = $userDate->format('Ym');
 
-    // Obtenez le plus grand customer_id qui commence par l'année et le mois de la date entrée par l'utilisateur.
-    $stmt = $bdd->prepare("SELECT creation_id FROM customer WHERE creation_id LIKE ? ORDER BY creation_id DESC LIMIT 1");
+    // Obtenez tous les creation_id qui commencent par l'année et le mois de la date entrée par l'utilisateur.
+    $stmt = $bdd->prepare("SELECT creation_id FROM customer WHERE creation_id LIKE ? ORDER BY creation_id");
     $stmt->execute([$yearMonth . '%']);
-    $row = $stmt->fetch();
+    $rows = $stmt->fetchAll();
 
-    if ($row) {
-        // Si un tel customer_id existe, prenez les trois derniers chiffres et ajoutez 1.
-        $nextId = substr($row['creation_id'], -3) + 1;
-    } else {
-        // Sinon, c'est la première commande du mois, donc utilisez 1 comme ID.
-        $nextId = 1;
+    // Convertissez les creation_id en numéros de séquence (les trois derniers chiffres) et triez-les.
+    $sequenceNumbers = array_map(function($row) {
+        return (int)substr($row['creation_id'], -3);
+    }, $rows);
+    sort($sequenceNumbers);
+
+    // Trouvez le premier "trou" dans la séquence de numéros.
+    $nextId = 1;
+    foreach ($sequenceNumbers as $number) {
+        if ($number == $nextId) {
+            $nextId++;
+        } else {
+            break;
+        }
     }
 
-    // Générez la valeur pour la colonne customer_id.
+    // Générez la valeur pour la colonne creation_id.
     $creationId = $yearMonth . str_pad($nextId, 3, '0', STR_PAD_LEFT);
 
     // Vérifiez si le token est présent dans $_POST.
@@ -104,120 +112,120 @@ if (
 
     if ($result) {
 
-        require '../vendor/autoload.php';
+        // require '../vendor/autoload.php';
 
-        // Créez une nouvelle instance de Dompdf.
-        $dompdf = new Dompdf();
+        // // Créez une nouvelle instance de Dompdf.
+        // $dompdf = new Dompdf();
 
-        // Obtenez la date actuelle.
-        // $date = date('Y-m-d');
+        // // Obtenez la date actuelle.
+        // // $date = date('Y-m-d');
 
-        // Générez le lien vers le fichier PDF.
-        $pdfLink = "http://sdp-paris.com/SDP-Form/assets/CustomersPDF/{$creationId}/{$creationId}.pdf";
+        // // Générez le lien vers le fichier PDF.
+        // $pdfLink = "http://sdp-paris.com/SDP-Form/assets/CustomersPDF/{$creationId}/{$creationId}.pdf";
 
-        // Créez une nouvelle instance de QrCode.
-        $qrCode = new QrCode($pdfLink);
+        // // Créez une nouvelle instance de QrCode.
+        // $qrCode = new QrCode($pdfLink);
 
-        // Définissez les paramètres du QR code si nécessaire.
-        $qrCode->setSize(100); // Taille en pixels.
+        // // Définissez les paramètres du QR code si nécessaire.
+        // $qrCode->setSize(100); // Taille en pixels.
 
-        // Générez le QR code en tant qu'image PNG.
-        $writer = new PngWriter();
-        $image = $writer->write($qrCode);
+        // // Générez le QR code en tant qu'image PNG.
+        // $writer = new PngWriter();
+        // $image = $writer->write($qrCode);
 
-        // Encodez l'image en base64 pour l'inclure dans le HTML.
-        $qrCodeImage = base64_encode($image->getString());
+        // // Encodez l'image en base64 pour l'inclure dans le HTML.
+        // $qrCodeImage = base64_encode($image->getString());
 
-        // Générez le HTML pour le PDF.
-        $html = "
-        <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        // // Générez le HTML pour le PDF.
+        // $html = "
+        // <style>
+        // @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         
-        .file {
-            width: 100%;
-            overflow: hidden;
-        }
+        // .file {
+        //     width: 100%;
+        //     overflow: hidden;
+        // }
         
-        .header {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-            padding: 10px;
-            text-align: center;
-            position: relative;
-            overflow: hidden; 
-        }
+        // .header {
+        //     font-family: 'Roboto', sans-serif;
+        //     background-color: #f8f9fa;
+        //     padding: 10px;
+        //     text-align: center;
+        //     position: relative;
+        //     overflow: hidden; 
+        // }
         
-        .header img {
-            position: absolute;
-            left: 20px;
-            top: 20px;
-        }
+        // .header img {
+        //     position: absolute;
+        //     left: 20px;
+        //     top: 20px;
+        // }
         
-        .summary {
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* Alignement vertical */
-            flex-wrap: nowrap;
-        }
+        // .summary {
+        //     font-family: 'Roboto', sans-serif;
+        //     display: flex;
+        //     justify-content: space-between;
+        //     align-items: center; /* Alignement vertical */
+        //     flex-wrap: nowrap;
+        // }
         
-        .summary > div {
-            width: 50%; /* Augmentez la largeur à 50% pour laisser plus d'espace pour le QR code */
-            padding: 10px; /* Ajout de marges intérieures */
-            box-sizing: border-box; /* Assurez-vous que les marges intérieures ne dépassent pas la largeur spécifiée */
-        }
+        // .summary > div {
+        //     width: 50%; /* Augmentez la largeur à 50% pour laisser plus d'espace pour le QR code */
+        //     padding: 10px; /* Ajout de marges intérieures */
+        //     box-sizing: border-box; /* Assurez-vous que les marges intérieures ne dépassent pas la largeur spécifiée */
+        // }
         
-        .summary img {
-            max-width: 100%; /* Pour s'assurer que le QR code ne dépasse pas la largeur du conteneur */
-            height: auto;
-        }
-        </style>
+        // .summary img {
+        //     max-width: 100%; /* Pour s'assurer que le QR code ne dépasse pas la largeur du conteneur */
+        //     height: auto;
+        // }
+        // </style>
         
             
-        <div class='file'>
-            <div class='header'>
-                <img src='/assets/logo.webp' alt='Logo'>
-                <h1>Création N°$creationId</h1>
-                <img src='data:image/png;base64,$qrCodeImage' />
-            </div>
+        // <div class='file'>
+        //     <div class='header'>
+        //         <img src='/assets/logo.webp' alt='Logo'>
+        //         <h1>Création N°$creationId</h1>
+        //         <img src='data:image/png;base64,$qrCodeImage' />
+        //     </div>
             
-            <div class='summary'>
-                <div>
-                    <p>Date : $date Civilité : $title Nom : $lastname Prénom : $firstname</p>
-                    <p>Adresse : $address Ville : $city Pays : $country</p>
-                    <p>Email : $email Numéro de téléphone : $phoneNumber</p>
-                    <p>Hôte : $host Atelier : $workshop</p>
-                    <p>Comment avez-vous entendu parler de nous ? : $howDidYou</p>
-                    <p>Options : " . (!empty($extras) ? $extras : "Aucune") . "</p>
-                </div>
-                <div>
-                    <img src='data:image/png;base64,$qrCodeImage' />
-                </div>
-            </div>
-        </div>
-        ";
+        //     <div class='summary'>
+        //         <div>
+        //             <p>Date : $date Civilité : $title Nom : $lastname Prénom : $firstname</p>
+        //             <p>Adresse : $address Ville : $city Pays : $country</p>
+        //             <p>Email : $email Numéro de téléphone : $phoneNumber</p>
+        //             <p>Hôte : $host Atelier : $workshop</p>
+        //             <p>Comment avez-vous entendu parler de nous ? : $howDidYou</p>
+        //             <p>Options : " . (!empty($extras) ? $extras : "Aucune") . "</p>
+        //         </div>
+        //         <div>
+        //             <img src='data:image/png;base64,$qrCodeImage' />
+        //         </div>
+        //     </div>
+        // </div>
+        // ";
         
 
-        // Chargez le HTML dans Dompdf.
-        $dompdf->loadHtml($html);
+        // // Chargez le HTML dans Dompdf.
+        // $dompdf->loadHtml($html);
 
-        // Rendez le PDF.
-        $dompdf->render();
+        // // Rendez le PDF.
+        // $dompdf->render();
 
-        // Récupérez le contenu du PDF.
-        $output = $dompdf->output();
+        // // Récupérez le contenu du PDF.
+        // $output = $dompdf->output();
 
-        if (!is_writable("../assets/CustomersPDF/")) {
-            die('Le dossier n\'est pas accessible en écriture');
-        }
+        // if (!is_writable("../assets/CustomersPDF/")) {
+        //     die('Le dossier n\'est pas accessible en écriture');
+        // }
 
-        // Créez les dossiers s'ils n'existent pas déjà.
-        if (!is_dir("../assets/CustomersPDF/{$creationId}")) {
-            mkdir("../assets/CustomersPDF/{$creationId}", 0777, true);
-        }
+        // // Créez les dossiers s'ils n'existent pas déjà.
+        // if (!is_dir("../assets/CustomersPDF/{$creationId}")) {
+        //     mkdir("../assets/CustomersPDF/{$creationId}", 0777, true);
+        // }
 
-        // Écrivez le contenu dans un fichier.
-        file_put_contents("../assets/CustomersPDF/{$creationId}/{$creationId}.pdf", $output);
+        // // Écrivez le contenu dans un fichier.
+        // file_put_contents("../assets/CustomersPDF/{$creationId}/{$creationId}.pdf", $output);
 
         header("location: ../model/instantPrintCustomersModel.php?customerIds={$creationId}");
         exit();
