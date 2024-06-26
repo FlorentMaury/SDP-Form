@@ -1,15 +1,14 @@
 <?php return array (
-  // Parfumeurs;
   'hosts' => 
   array (
-    0 => 'Karim',
-    1 => 'Jean-Baptiste',
-    2 => 'Thomas',
-    3 => 'Patrice',
-    4 => 'Selma',
-    5 => 'Ayoush',
+    0 => 'Inconnu',
+    1 => 'Karim',
+    2 => 'Jean-Baptiste',
+    3 => 'Thomas',
+    4 => 'Patrice',
+    5 => 'Selma',
+    6 => 'Ayoush',
   ),
-  // Ateliers;
   'workshops' => 
   array (
     0 => 'Escapade olfactive',
@@ -20,7 +19,6 @@
     5 => 'Nez à nez',
     6 => 'Masterclass',
   ),
-  // Découverte des ateliers;
   'discovery_methods' => 
   array (
     0 => 'Bon cadeau',
@@ -29,7 +27,6 @@
     3 => 'TripAdvisor',
     4 => 'Autre',
   ),
-  // Extras;
   'extras' => 
   array (
     0 => 'Coupe de champagne',

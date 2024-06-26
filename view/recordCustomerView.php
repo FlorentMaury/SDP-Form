@@ -68,7 +68,9 @@ $config = require './model/config.php';
     <label for="facilitatorPrint" class="translate hostPrint" data-translate-key="host">Hôte</label>
     <select name="facilitatorPrint" id="facilitatorPrint">
         <?php foreach ($config['hosts'] as $host) : ?>
-        <option value="<?= htmlspecialchars($host) ?>"><?= htmlspecialchars($host) ?></option>
+        <option value="<?= htmlspecialchars($host) ?>" class="translate" data-translate-key="<?= htmlspecialchars($host) ?>">
+            <?= htmlspecialchars($host) ?>
+        </option>
         <?php endforeach; ?>
     </select>
 
